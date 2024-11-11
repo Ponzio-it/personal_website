@@ -1,0 +1,47 @@
+<!-- portfolio/templates/portfolio/project.html -->
+
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h1>My Projects</h1>
+
+{% for project in projects %} 
+  <div class="project">
+    <h2>{{ project.title }}</h2>
+    <p><strong>Description:</strong> {{ project.description }}</p>
+    <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+    <p><strong>Date:</strong> {{ project.date }}</p>
+
+    {% if project.public_url %}
+      <p><a href="{{ project.public_url }}" target="_blank">View Project</a></p>
+    {% endif %}
+    
+    {% if project.private_url %}
+      <p><a href="{{ project.private_url }}" target="_blank">Private Link (requires permission)</a></p>
+    {% endif %}
+
+    <div class="folders">
+      <h3>Folders</h3>
+      {% for folder in project.folders.all %}
+        <div class="folder">
+          <h4>{{ folder.name }}</h4>
+
+          <ul>
+            {% for file in folder.files.all %}
+              <li>
+                {% if file.is_private %}
+                  <strong>{{ file.name }}</strong> (Private)
+                {% else %}
+                  <a href="{{ file.file.url }}" target="_blank">{{ file.name }}</a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <hr>
+{% endfor %}
+
+{% endblock %}
