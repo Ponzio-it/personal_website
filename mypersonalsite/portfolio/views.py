@@ -4,7 +4,7 @@ import os
 from django.shortcuts import render
 from django.conf import settings
 from django.http import FileResponse, Http404
-from .models import Project
+from .models import Project, ContactInfo
 
 # Home page view
 def home(request):
@@ -30,10 +30,16 @@ def projects(request):
     }
     return render(request, 'portfolio/projects.html', context)
 
-# Contact page view
 def contact(request):
-    """Render the Contact page."""
-    return render(request, 'portfolio/contact.html')
+    """
+    Render the Contact page, displaying site-wide contact information
+    like email, LinkedIn, and GitHub links.
+    """
+    contact_info = ContactInfo.objects.first()  # Retrieve the single ContactInfo instance
+    context = {
+        'contact_info': contact_info
+    }
+    return render(request, 'portfolio/contact.html', context)
 
 # Open CV page view
 def open_cv(request):

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError #use in ContactInfo
 
 class Project(models.Model):
     """
@@ -56,3 +56,26 @@ class File(models.Model):
     class Meta:
         verbose_name = "File"
         verbose_name_plural = "Files"
+
+
+
+class ContactInfo(models.Model):
+    """Model to store site-wide contact information."""
+
+    email = models.EmailField(help_text="Email address for contacting the site owner.")
+    linkedin_url = models.URLField(help_text="URL of the LinkedIn profile.")
+    github_url = models.URLField(help_text="URL of the GitHub profile.")
+
+    def __str__(self):
+        """Return the email as the string representation."""
+        return self.email
+
+    def save(self, *args, **kwargs):
+        """Ensure only one instance of ContactInfo exists."""
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValidationError('Only one instance of ContactInfo is allowed.')
+        super(ContactInfo, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Contact Information'
+        verbose_name_plural = 'Contact Information'

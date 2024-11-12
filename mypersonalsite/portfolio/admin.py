@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File
+from .models import Project, Folder, File, ContactInfo
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -19,3 +19,10 @@ class FileAdmin(admin.ModelAdmin):
     list_display = ('name', 'folder', 'is_private')  # Display file name, folder, and privacy status
     search_fields = ('name',)
     list_filter = ('is_private', 'folder')
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(admin.ModelAdmin):
+    """Admin view for managing ContactInfo model."""
+
+    # Define fields to display in the admin list view
+    list_display = ('email', 'linkedin_url', 'github_url')

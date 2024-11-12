@@ -2,9 +2,16 @@
 
 {% extends 'portfolio/base.html' %}
 
-{% block title %}contacts{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block content %}
-<h1>Those are my contacts</h1>
-<p>contacts.</p>
+    <h1>Contact Me</h1>
+
+    {% if contact_info %}
+        <p>Email: <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+        <p>LinkedIn: <a href="{{ contact_info.linkedin_url }}" target="_blank">View LinkedIn Profile</a></p>
+        <p>GitHub: <a href="{{ contact_info.github_url }}" target="_blank">View GitHub Profile</a></p>
+    {% else %}
+        <p>Contact information is not available at the moment.</p>
+    {% endif %}
 {% endblock %}
