@@ -79,3 +79,33 @@ class ContactInfo(models.Model):
     class Meta:
         verbose_name = 'Contact Information'
         verbose_name_plural = 'Contact Information'
+
+
+
+class Certificate(models.Model):
+    """Model to store certificates with links to descriptions and course information."""
+    title = models.CharField(max_length=255, help_text="The title of the certificate.")
+    description = models.TextField(help_text="Description of the course.")
+    link = models.URLField(help_text="URL to the certificate or course information.")
+
+    def __str__(self):
+        return self.title
+
+class Education(models.Model):
+    """Model to store educational background information, such as university and master’s degrees."""
+    DEGREE_CHOICES = [
+        ('Bachelors', 'Bachelors'),
+        ('Masters', 'Masters'),
+        ('PhD', 'PhD'),
+        ('Other', 'Other'),
+    ]
+    
+    institution = models.CharField(max_length=255, help_text="Name of the educational institution.")
+    degree = models.CharField(max_length=50, choices=DEGREE_CHOICES, help_text="Degree type (e.g., Bachelor's, Master's).")
+    field_of_study = models.CharField(max_length=255, help_text="Field of study (e.g., Computer Science).")
+    start_date = models.DateField(help_text="Start date of the program.")
+    end_date = models.DateField(help_text="End date of the program, or expected end date.")
+    description = models.TextField(blank=True, help_text="Optional description of the program or notable achievements.")
+
+    def __str__(self):
+        return f"{self.degree} in {self.field_of_study} from {self.institution}"

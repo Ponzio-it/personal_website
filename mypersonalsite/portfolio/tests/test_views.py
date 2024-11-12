@@ -53,8 +53,8 @@ class ProjectViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_about_me_view_status_code(self):
-        """Test if the about_me view is accessible."""
-        response = self.client.get(reverse('portfolio:about_me'))
+        """Test if the education view is accessible."""
+        response = self.client.get(reverse('portfolio:education'))
         self.assertEqual(response.status_code, 200)
 
     def test_contact_view_status_code(self):

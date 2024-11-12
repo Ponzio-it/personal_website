@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File, ContactInfo
+from .models import Project, Folder, File, ContactInfo, Certificate, Education
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -26,3 +26,12 @@ class ContactInfoAdmin(admin.ModelAdmin):
 
     # Define fields to display in the admin list view
     list_display = ('email', 'linkedin_url', 'github_url')
+
+
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ('title', 'link')
+
+@admin.register(Education)
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ('institution', 'degree', 'field_of_study', 'start_date', 'end_date')

@@ -8,7 +8,7 @@ app_name = 'portfolio'
 # URL patterns for the portfolio app
 urlpatterns = [
     path('', views.home, name='home'),
-    path('about/', views.about_me, name='about_me'),
+    path('education/', views.education, name='education'),
     path('projects/', views.projects, name='projects'),
     path('contact/', views.contact, name='contact'),
     # URL for downloading the CV

@@ -4,17 +4,26 @@ import os
 from django.shortcuts import render
 from django.conf import settings
 from django.http import FileResponse, Http404
-from .models import Project, ContactInfo
+from .models import Project, ContactInfo, Certificate, Education
 
 # Home page view
 def home(request):
     """Render the home page."""
     return render(request, 'portfolio/home.html')
 
-# About Me page view
-def about_me(request):
-    """Render the About Me page."""
-    return render(request, 'portfolio/about_me.html')
+def education(request):
+    """
+    Render the Education page, displaying a list of certificates and
+    educational history (university and master's degree information).
+    """
+    certificates = Certificate.objects.all()
+    education_history = Education.objects.order_by('-end_date')  # Order by end date, most recent first
+
+    context = {
+        'certificates': certificates,
+        'education_history': education_history,
+    }
+    return render(request, 'portfolio/education.html', context)
 
 # Projects page view with dynamic data
 def projects(request):
