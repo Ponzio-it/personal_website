@@ -1,0 +1,40 @@
+<!-- portfolio/templates/portfolio/education.html -->
+
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Education{% endblock %}
+
+{% block content %}
+    <h1>My Education</h1>
+
+    <h2>Certificates</h2>
+    {% if certificates %}
+        <ul>
+            {% for certificate in certificates %}
+                <li>
+                    <strong>{{ certificate.title }}</strong><br>
+                    <a href="{{ certificate.link }}" target="_blank">Course Link</a><br>
+                    <p>{{ certificate.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No certificates available at the moment.</p>
+    {% endif %}
+
+    <h2>Educational Background</h2>
+    {% if education_history %}
+        <ul>
+            {% for education in education_history %}
+                <li>
+                    <strong>{{ education.degree }} in {{ education.field_of_study }}</strong><br>
+                    {{ education.institution }}<br>
+                    {{ education.start_date|date:"F Y" }} - {{ education.end_date|date:"F Y" }}<br>
+                    <p>{{ education.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No educational background available at the moment.</p>
+    {% endif %}
+{% endblock %}
