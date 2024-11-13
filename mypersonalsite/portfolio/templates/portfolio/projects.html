@@ -19,7 +19,7 @@
     {% if project.private_url %}
       <p><a href="{{ project.private_url }}" target="_blank">Private Link (requires permission)</a></p>
     {% endif %}
-
+    <!-- Folders Section-->
     <div class="folders">
       <h3>Folders</h3>
       {% for folder in project.folders.all %}
@@ -38,8 +38,28 @@
             {% endfor %}
           </ul>
         </div>
-      {% endfor %}
+      {% endfor %}    
     </div>
+
+    <!-- Reviews Section -->
+    <h2>Reviews</h2>
+    {% if project.reviews.all %}
+        <ul>
+            {% for review in project.reviews.all %}
+                {% if review.status == 'approved' %}
+                    <li>
+                        <strong>{{ review.reviewer_name }}:</strong> {{ review.content }}
+                        {% if review.recommendation %} (Recommended) {% endif %}
+                        <p><em>Submitted on {{ review.created_at|date:"Y-m-d" }}</em></p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews yet. Be the first to review!</p>
+    {% endif %}
+    <a href="{% url 'portfolio:project_review' project.pk %}">Leave a Review</a>
+
   </div>
   <hr>
 {% endfor %}
