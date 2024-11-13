@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File, ContactInfo, Certificate, Education
+from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -35,3 +35,32 @@ class CertificateAdmin(admin.ModelAdmin):
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
     list_display = ('institution', 'degree', 'field_of_study', 'start_date', 'end_date')
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    """
+    Admin interface for managing user reviews on projects.
+    Allows admins to approve or reject reviews submitted by users.
+    """
+    
+    list_display = ('reviewer_name', 'project', 'recommendation', 'status', 'created_at')
+    # Display reviewer name, project, recommendation, status, and created date in the list view
+
+    list_filter = ('status', 'recommendation')  # Filter by review status and recommendation
+
+    actions = ['approve_reviews', 'reject_reviews']  # Add bulk action buttons for review approval/rejection
+
+    def approve_reviews(self, request, queryset):
+        """
+        Custom admin action to mark selected reviews as 'approved'.
+        """
+        queryset.update(status='approved')
+    approve_reviews.short_description = "Approve selected reviews"
+
+    def reject_reviews(self, request, queryset):
+        """
+        Custom admin action to mark selected reviews as 'rejected'.
+        """
+        queryset.update(status='rejected')
+    reject_reviews.short_description = "Reject selected reviews"

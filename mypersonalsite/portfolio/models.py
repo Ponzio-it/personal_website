@@ -109,3 +109,25 @@ class Education(models.Model):
 
     def __str__(self):
         return f"{self.degree} in {self.field_of_study} from {self.institution}"
+
+class Review(models.Model):
+    """
+    Model for storing user reviews associated with a project.
+    Reviews are created by users and are subject to admin approval.
+    """
+
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
+
+    project = models.ForeignKey('Project', related_name='reviews', on_delete=models.CASCADE, help_text="The project this review is associated with.")
+    reviewer_name = models.CharField(max_length=100,help_text="Name of the reviewer submitting the review.")
+    content = models.TextField(help_text="Content of the review.")
+    recommendation = models.BooleanField(default=False,help_text="Does the reviewer recommend this project?")
+    status = models.CharField(max_length=10,choices=STATUS_CHOICES,default='pending', help_text="Approval status of the review.")
+    created_at = models.DateTimeField(auto_now_add=True, help_text="Timestamp for when the review was created.")
+
+    def __str__(self):
+        return f"Review by {self.reviewer_name} on {self.project.title}"
