@@ -6,29 +6,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
-    <!-- Link to CSS stylesheets here -->
+
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="A showcase of my projects, education, and professional experiences. Discover my portfolio and connect with me.">
+    <meta name="author" content="Your Name">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="My Portfolio">
+    <meta property="og:description" content="A showcase of my projects, education, and professional experiences.">
+    <meta property="og:image" content="{% static 'portfolio/images/preview_image.jpg' %}">
+    <meta property="og:url" content="https://www.yourwebsite.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Link to CSS stylesheets -->
     <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/styles.css' %}">
-
 
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="{% url 'portfolio:home' %}">Home</a></li>
-            <li><a href="{% url 'portfolio:education' %}">Education</a></li>
-            <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
-            <li><a href="{% url 'portfolio:contact' %}">Contact</a></li>
-            <li><a href="{% url 'portfolio:open_cv' %}">Open CV</a></li>
+    <!-- Header with Navigation -->
+    <header>
+        <nav aria-label="Main Navigation">
+            <ul>
+                <li><a href="{% url 'portfolio:home' %}">Home</a></li>
+                <li><a href="{% url 'portfolio:education' %}">Education</a></li>
+                <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
+                <li><a href="{% url 'portfolio:contact' %}">Contact</a></li>
+                <li><a href="{% url 'portfolio:open_cv' %}">Open CV</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
+    <!-- Main Content Area -->
+    <main class="container" role="main">
         {% block content %}{% endblock %}
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; {{ current_year }} Ettore Ponzio. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

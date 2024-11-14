@@ -5,36 +5,69 @@
 {% block title %}Education{% endblock %}
 
 {% block content %}
-    <h1>My Education</h1>
+    <!-- Page Meta Tags for SEO -->
+    <meta name="description" content="Explore my educational background, skills, and certifications. View my achievements and qualifications.">
 
-    <h2>Certificates</h2>
-    {% if certificates %}
-        <ul>
-            {% for certificate in certificates %}
-                <li>
-                    <strong>{{ certificate.title }}</strong><br>
-                    <a href="{{ certificate.link }}" target="_blank">Course Link</a><br>
-                    <p>{{ certificate.description }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No certificates available at the moment.</p>
-    {% endif %}
+    <article>
+        <header>
+            <h1>My Education</h1>
+        </header>
 
-    <h2>Educational Background</h2>
-    {% if education_history %}
-        <ul>
-            {% for education in education_history %}
-                <li>
-                    <strong>{{ education.degree }} in {{ education.field_of_study }}</strong><br>
-                    {{ education.institution }}<br>
-                    {{ education.start_date|date:"F Y" }} - {{ education.end_date|date:"F Y" }}<br>
-                    <p>{{ education.description }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No educational background available at the moment.</p>
-    {% endif %}
+        <!-- Skills Section -->
+        <section aria-labelledby="skills-heading">
+            <h2 id="skills-heading">Skills</h2>
+            <ul>
+                {% for skill in skills %}
+                    <li>
+                        <a href="?skill={{ skill.id }}">{{ skill.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% if selected_skill %}
+                <div aria-live="polite">
+                    <h3>Showing results for skill: {{ selected_skill.name }}</h3>
+                    <a href="{% url 'portfolio:education' %}">Clear filter</a>
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- Certificates Section -->
+        <section aria-labelledby="certificates-heading">
+            <h2 id="certificates-heading">Certificates</h2>
+            {% if certificates %}
+                <ul>
+                    {% for certificate in certificates %}
+                        <li>
+                            <strong>{{ certificate.title }}</strong><br>
+                            <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer">Course Link</a><br>
+                            <p>{{ certificate.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No certificates available at the moment.</p>
+            {% endif %}
+        </section>
+
+        <!-- Educational Background Section -->
+        <section aria-labelledby="education-heading">
+            <h2 id="education-heading">Educational Background</h2>
+            {% if education_history %}
+                <ul>
+                    {% for education in education_history %}
+                        <li>
+                            <strong>{{ education.degree }} in {{ education.field_of_study }}</strong><br>
+                            {{ education.institution }}<br>
+                            <time datetime="{{ education.start_date|date:"Y-m" }}">{{ education.start_date|date:"F Y" }}</time> -
+                            <time datetime="{{ education.end_date|date:"Y-m" }}">{{ education.end_date|date:"F Y" }}</time><br>
+                            <p>{{ education.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No educational background available at the moment.</p>
+            {% endif %}
+        </section>
+    </article>
 {% endblock %}
