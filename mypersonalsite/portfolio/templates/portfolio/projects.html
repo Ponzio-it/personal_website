@@ -2,66 +2,75 @@
 
 {% extends "portfolio/base.html" %}
 
+{% block title %}Projects - My Portfolio{% endblock %}
+
 {% block content %}
-<h1>My Projects</h1>
+    <!-- Page Meta Description for SEO -->
+    <meta name="description" content="Explore my projects, including descriptions, technologies used, and reviews. View public and private project links and explore files by folder.">
 
-{% for project in projects %} 
-  <div class="project">
-    <h2>{{ project.title }}</h2>
-    <p><strong>Description:</strong> {{ project.description }}</p>
-    <p><strong>Technologies:</strong> {{ project.technologies }}</p>
-    <p><strong>Date:</strong> {{ project.date }}</p>
+    <article>
+        <header>
+            <h1>My Projects</h1>
+        </header>
 
-    {% if project.public_url %}
-      <p><a href="{{ project.public_url }}" target="_blank">View Project</a></p>
-    {% endif %}
-    
-    {% if project.private_url %}
-      <p><a href="{{ project.private_url }}" target="_blank">Private Link (requires permission)</a></p>
-    {% endif %}
-    <!-- Folders Section-->
-    <div class="folders">
-      <h3>Folders</h3>
-      {% for folder in project.folders.all %}
-        <div class="folder">
-          <h4>{{ folder.name }}</h4>
+        {% for project in projects %}
+            <section class="project" aria-labelledby="project-{{ project.id }}">
+                <h2 id="project-{{ project.id }}">{{ project.title }}</h2>
+                <p><strong>Description:</strong> {{ project.description }}</p>
+                <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+                <p><strong>Date:</strong> {{ project.date }}</p>
 
-          <ul>
-            {% for file in folder.files.all %}
-              <li>
-                {% if file.is_private %}
-                  <strong>{{ file.name }}</strong> (Private)
-                {% else %}
-                  <a href="{{ file.file.url }}" target="_blank">{{ file.name }}</a>
+                {% if project.public_url %}
+                    <p><a href="{{ project.public_url }}" target="_blank" rel="noopener noreferrer">View Project</a></p>
                 {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endfor %}    
-    </div>
 
-    <!-- Reviews Section -->
-    <h2>Reviews</h2>
-    {% if project.reviews.all %}
-        <ul>
-            {% for review in project.reviews.all %}
-                {% if review.status == 'approved' %}
-                    <li>
-                        <strong>{{ review.reviewer_name }}:</strong> {{ review.content }}
-                        {% if review.recommendation %} (Recommended) {% endif %}
-                        <p><em>Submitted on {{ review.created_at|date:"Y-m-d" }}</em></p>
-                    </li>
+                {% if project.private_url %}
+                    <p><a href="{{ project.private_url }}" target="_blank" rel="noopener noreferrer">Private Link (requires permission)</a></p>
                 {% endif %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No reviews yet. Be the first to review!</p>
-    {% endif %}
-    <a href="{% url 'portfolio:project_review' project.pk %}">Leave a Review</a>
 
-  </div>
-  <hr>
-{% endfor %}
+                <!-- Folders Section -->
+                <section class="folders" aria-labelledby="folders-heading-{{ project.id }}">
+                    <h3 id="folders-heading-{{ project.id }}">Folders</h3>
+                    {% for folder in project.folders.all %}
+                        <article class="folder" aria-labelledby="folder-{{ folder.id }}">
+                            <h4 id="folder-{{ folder.id }}">{{ folder.name }}</h4>
+                            <ul>
+                                {% for file in folder.files.all %}
+                                    <li>
+                                        {% if file.is_private %}
+                                            <strong>{{ file.name }}</strong> (Private)
+                                        {% else %}
+                                            <a href="{{ file.file.url }}" target="_blank" rel="noopener noreferrer">{{ file.name }}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </article>
+                    {% endfor %}
+                </section>
 
+                <!-- Reviews Section -->
+                <section class="reviews" aria-labelledby="reviews-heading-{{ project.id }}">
+                    <h3 id="reviews-heading-{{ project.id }}">Reviews</h3>
+                    {% if project.reviews.all %}
+                        <ul>
+                            {% for review in project.reviews.all %}
+                                {% if review.status == 'approved' %}
+                                    <li>
+                                        <strong>{{ review.reviewer_name }}:</strong> {{ review.content }}
+                                        {% if review.recommendation %} (Recommended) {% endif %}
+                                        <p><em>Submitted on {{ review.created_at|date:"Y-m-d" }}</em></p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No reviews yet. Be the first to review!</p>
+                    {% endif %}
+                    <p><a href="{% url 'portfolio:project_review' project.pk %}">Leave a Review</a></p>
+                </section>
+            </section>
+            <hr>
+        {% endfor %}
+    </article>
 {% endblock %}

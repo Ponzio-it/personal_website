@@ -2,16 +2,26 @@
 
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact - My Portfolio{% endblock %}
 
 {% block content %}
-    <h1>Contact Me</h1>
+    <!-- Page Meta Description for SEO -->
+    <meta name="description" content="Get in touch with me via email, LinkedIn, or GitHub. Connect and view my professional profiles.">
 
-    {% if contact_info %}
-        <p>Email: <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
-        <p>LinkedIn: <a href="{{ contact_info.linkedin_url }}" target="_blank">View LinkedIn Profile</a></p>
-        <p>GitHub: <a href="{{ contact_info.github_url }}" target="_blank">View GitHub Profile</a></p>
-    {% else %}
-        <p>Contact information is not available at the moment.</p>
-    {% endif %}
+    <article>
+        <header>
+            <h1>Contact Me</h1>
+        </header>
+
+        {% if contact_info %}
+            <section aria-labelledby="contact-info">
+                <h2 id="contact-info">Contact Information</h2>
+                <p>Email: <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+                <p>LinkedIn: <a href="{{ contact_info.linkedin_url }}" target="_blank" rel="noopener noreferrer">View LinkedIn Profile</a></p>
+                <p>GitHub: <a href="{{ contact_info.github_url }}" target="_blank" rel="noopener noreferrer">View GitHub Profile</a></p>
+            </section>
+        {% else %}
+            <p>Contact information is not available at the moment.</p>
+        {% endif %}
+    </article>
 {% endblock %}
