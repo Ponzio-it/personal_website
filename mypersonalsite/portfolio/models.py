@@ -80,6 +80,12 @@ class ContactInfo(models.Model):
         verbose_name = 'Contact Information'
         verbose_name_plural = 'Contact Information'
 
+class Skill(models.Model):
+    """Model to represent a skill that can be linked to certificates and education entries."""
+    name = models.CharField(max_length=100, unique=True, help_text="The name of the skill (e.g., Python, Data Analysis).")
+
+    def __str__(self):
+        return self.name
 
 
 class Certificate(models.Model):
@@ -87,6 +93,7 @@ class Certificate(models.Model):
     title = models.CharField(max_length=255, help_text="The title of the certificate.")
     description = models.TextField(help_text="Description of the course.")
     link = models.URLField(help_text="URL to the certificate or course information.")
+    skills = models.ManyToManyField(Skill, related_name="certificates", blank=True, help_text="Skills related to this certificate.")
 
     def __str__(self):
         return self.title
@@ -106,7 +113,8 @@ class Education(models.Model):
     start_date = models.DateField(help_text="Start date of the program.")
     end_date = models.DateField(help_text="End date of the program, or expected end date.")
     description = models.TextField(blank=True, help_text="Optional description of the program or notable achievements.")
-
+    skills = models.ManyToManyField(Skill, related_name="educations", blank=True, help_text="Skills related to this educational entry.")
+    
     def __str__(self):
         return f"{self.degree} in {self.field_of_study} from {self.institution}"
 
@@ -131,3 +139,4 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review by {self.reviewer_name} on {self.project.title}"
+

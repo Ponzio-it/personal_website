@@ -7,6 +7,20 @@
 {% block content %}
     <h1>My Education</h1>
 
+    <h2>Skills</h2>
+    <ul>
+        {% for skill in skills %}
+            <li>
+                <a href="?skill={{ skill.id }}">{{ skill.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if selected_skill %}
+        <h3>Showing results for skill: {{ selected_skill.name }}</h3>
+        <a href="{% url 'portfolio:education' %}">Clear filter</a>
+    {% endif %}
+
     <h2>Certificates</h2>
     {% if certificates %}
         <ul>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review
+from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -27,14 +27,37 @@ class ContactInfoAdmin(admin.ModelAdmin):
     # Define fields to display in the admin list view
     list_display = ('email', 'linkedin_url', 'github_url')
 
+@admin.register(Skill)
+class SkillAdmin(admin.ModelAdmin):
+    '''
+    Custom admin class for the Skill model. This class allows managing
+    skills and displays related certificates and education entries
+    directly in the admin list view for easy access.'''
+
+    list_display = ('name', 'related_certificates', 'related_educations')
+    search_fields = ('name',)
+
+    def related_certificates(self, obj):
+        return ", ".join([certificate.title for certificate in obj.certificates.all()])
+    related_certificates.short_description = "Certificates"
+
+    def related_educations(self, obj):
+        return ", ".join([education.degree + " in " + education.field_of_study for education in obj.educations.all()])
+    related_educations.short_description = "Education Entries"
+
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
     list_display = ('title', 'link')
+    search_fields = ('title',)
+    filter_horizontal = ('skills',)  # This enables a horizontal filter for selecting skills
+
 
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
     list_display = ('institution', 'degree', 'field_of_study', 'start_date', 'end_date')
+    search_fields = ('institution', 'degree', 'field_of_study')
+    filter_horizontal = ('skills',)  # This enables a horizontal filter for selecting skills
 
 
 @admin.register(Review)

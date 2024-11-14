@@ -6,7 +6,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.generic import DetailView, CreateView
 from django.http import FileResponse, Http404
-from .models import Project, ContactInfo, Certificate, Education, Review
+from .models import Project, ContactInfo, Certificate, Education, Review, Skill
 from .form  import ReviewForm
 
 # Home page view
@@ -16,17 +16,31 @@ def home(request):
 
 def education(request):
     """
-    Render the Education page, displaying a list of certificates and
-    educational history (university and master's degree information).
+    Render the Education page, displaying a list of skills, certificates,
+    and educational history.
     """
-    certificates = Certificate.objects.all()
-    education_history = Education.objects.order_by('-end_date')  # Order by end date, most recent first
+    # Fetch all skills
+    skills = Skill.objects.all()
+
+    # Filter certificates and education by selected skill if provided
+    skill_id = request.GET.get('skill')
+    if skill_id:
+        selected_skill = get_object_or_404(Skill, id=skill_id)
+        certificates = Certificate.objects.filter(skills__id=skill_id)
+        education_history = Education.objects.filter(skills__id=skill_id)
+    else:
+        selected_skill = None
+        certificates = Certificate.objects.all()
+        education_history = Education.objects.order_by('-end_date')  # Order by most recent first
 
     context = {
+        'skills': skills,
         'certificates': certificates,
         'education_history': education_history,
+        'selected_skill': selected_skill
     }
     return render(request, 'portfolio/education.html', context)
+    
 
 # Projects page view with dynamic data
 def projects(request):
