@@ -2,15 +2,15 @@
 
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Education{% endblock %}
+{% block title %}Education and Experience{% endblock %}
 
 {% block content %}
-    <!-- Page Meta Tags for SEO -->
-    <meta name="description" content="Explore my educational background, skills, and certifications. View my achievements and qualifications.">
+    <!-- Page Meta Description for SEO -->
+    <meta name="description" content="Explore my educational background, skills, certifications, and job experience.">
 
     <article>
         <header>
-            <h1>My Education</h1>
+            <h1>My Education and Experience</h1>
         </header>
 
         <!-- Skills Section -->
@@ -67,6 +67,25 @@
                 </ul>
             {% else %}
                 <p>No educational background available at the moment.</p>
+            {% endif %}
+        </section>
+
+        <!-- Job Experience Section -->
+        <section aria-labelledby="job-experience-heading">
+            <h2 id="job-experience-heading">Job Experience</h2>
+            {% if job_experiences %}
+                <ul>
+                    {% for job in job_experiences %}
+                        <li>
+                            <strong>{{ job.title }} at {{ job.company }}</strong><br>
+                            <time datetime="{{ job.start_date|date:"Y-m-d" }}">{{ job.start_date|date:"F Y" }}</time> -
+                            <time datetime="{{ job.end_date|default_if_none:"Present"|date:"Y-m-d" }}">{{ job.end_date|default:"Present"|date:"F Y" }}</time><br>
+                            <p>{{ job.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No job experiences found.</p>
             {% endif %}
         </section>
     </article>

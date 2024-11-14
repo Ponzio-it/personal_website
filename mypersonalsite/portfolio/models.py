@@ -140,3 +140,15 @@ class Review(models.Model):
     def __str__(self):
         return f"Review by {self.reviewer_name} on {self.project.title}"
 
+class JobExperience(models.Model):
+    """Model to represent a job experience entry associated with various skills."""
+    
+    title = models.CharField(max_length=255, help_text="Job title (e.g., Software Developer)")
+    company = models.CharField(max_length=255, help_text="Company name")
+    start_date = models.DateField(help_text="Start date of the job")
+    end_date = models.DateField(null=True, blank=True, help_text="End date of the job (if applicable)")
+    description = models.TextField(blank=True, help_text="Description of responsibilities or achievements")
+    skills = models.ManyToManyField(Skill, related_name="job_experiences", blank=True, help_text="Skills related to this job experience")
+
+    def __str__(self):
+        return f"{self.title} at {self.company}"
