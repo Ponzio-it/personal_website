@@ -1,0 +1,27 @@
+/* Centering content for the portfolio introduction */
+.portfolio-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2em 1em;
+}
+
+.portfolio-intro header h1 {
+    /* Font and color should already be set globally */
+    margin-bottom: 1em;
+}
+
+/* Styling for the image in the intro section */
+.intro-image {
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 50%; /* Makes the image circular if square */
+    margin: 1em 0;
+}
+
+/* Styling for the paragraph */
+.portfolio-intro p {
+    max-width: 600px; /* Limits the paragraph width for readability */
+    margin-top: 1em;
+}
