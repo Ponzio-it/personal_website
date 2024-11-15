@@ -16,4 +16,6 @@ urlpatterns = [
     path('open-cv/', views.open_cv, name='open_cv'),
     path('projects/<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),
     path('projects/<int:pk>/review/', ReviewCreateView.as_view(), name='project_review'),
+    path('linkedin/', views.redirect_to_linkedin, name='linkedin'),
+    path('github/', views.redirect_to_github, name='github'),
 ]

@@ -119,3 +119,11 @@ class ReviewCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['project'] = get_object_or_404(Project, pk=self.kwargs['pk'])
         return context
+    
+def redirect_to_linkedin(request):
+    """Redirects to the LinkedIn profile."""
+    return redirect("https://www.linkedin.com/in/ettore-ponzio")
+
+def redirect_to_github(request):
+    """Redirects to the GitHub profile."""
+    return redirect("https://github.com/Ponzio-it")
