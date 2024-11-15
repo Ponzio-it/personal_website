@@ -1,19 +1,20 @@
 <!-- portfolio/templates/portfolio/base.html -->
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Portfolio{% endblock %}</title>
+    <title>{% block title %}{% trans "My Portfolio" %}{% endblock %}</title>
 
     <!-- Meta Tags for SEO -->
-    <meta name="description" content="A showcase of my projects, education, and professional experiences. Discover my portfolio and connect with me.">
-    <meta name="author" content="Your Name">
+    <meta name="description" content="{% trans 'A showcase of my projects, education, and professional experiences. Discover my portfolio and connect with me.' %}">
+    <meta name="author" content="{% trans 'Your Name' %}">
 
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="My Portfolio">
-    <meta property="og:description" content="A showcase of my projects, education, and professional experiences.">
+    <meta property="og:title" content="{% trans 'My Portfolio' %}">
+    <meta property="og:description" content="{% trans 'A showcase of my projects, education, and professional experiences.' %}">
     <meta property="og:image" content="{% static 'portfolio/images/preview_image.jpg' %}">
     <meta property="og:url" content="https://www.yourwebsite.com">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,16 +30,17 @@
 <body>
     <!-- Header with Navigation -->
     <header>
-        <nav aria-label="Main Navigation">
+        <nav aria-label="{% trans 'Main Navigation' %}">
             <ul>
-                <li><a href="{% url 'portfolio:home' %}">Home</a></li>
-                <li><a href="{% url 'portfolio:education' %}">Experiences</a></li>
-                <li><a href="{% url 'portfolio:projects' %}">Projects</a></li>
-                <li><a href="{% url 'portfolio:contact' %}">Contact Me</a></li>
-                <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">LinkedIn</a></li>
-                <li><a href="{% url 'portfolio:github' %}" target="_blank">GitHub</a></li>
-                <li><a href="{% url 'portfolio:open_cv' %}">Open CV</a></li>
-               
+                <li><a href="{% url 'portfolio:home' %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'portfolio:education' %}">{% trans "Experiences" %}</a></li>
+                <li><a href="{% url 'portfolio:projects' %}">{% trans "Projects" %}</a></li>
+                <li><a href="{% url 'portfolio:contact' %}">{% trans "Contact Me" %}</a></li>
+                <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
+                <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>
+                <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Open CV" %}</a></li>
+                <li><a href="/en/">English</a></li>
+                <li><a href="/it/">Italiano</a></li>
             </ul>
         </nav>
     </header>
@@ -50,7 +52,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; {{ current_year }} Ettore Ponzio. All Rights Reserved.</p>
+        <p>&copy; {{ current_year }} {% trans "Ettore Ponzio. All Rights Reserved." %}</p>
     </footer>
 </body>
 </html>

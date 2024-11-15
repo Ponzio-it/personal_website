@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill
+from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill, JobExperience
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -45,6 +45,21 @@ class SkillAdmin(admin.ModelAdmin):
         return ", ".join([education.degree + " in " + education.field_of_study for education in obj.educations.all()])
     related_educations.short_description = "Education Entries"
 
+
+    def related_job_experiences(self, obj):
+        return ", ".join([job.title for job in obj.job_experiences.all()])
+    related_job_experiences.short_description = "Job Experiences"
+
+@admin.register(JobExperience)
+class JobExperienceAdmin(admin.ModelAdmin):
+    """
+    Admin class for the JobExperience model.
+    Displays detailed information about job experiences.
+    """
+    list_display = ('title', 'company', 'start_date', 'end_date')
+    search_fields = ('title', 'company', 'description')
+    list_filter = ('start_date', 'end_date')
+    filter_horizontal = ('skills',)
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):

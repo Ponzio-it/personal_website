@@ -16,10 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 
 # URL configuration for the project
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
     #include the portfolio app URLs
-    path('', include('portfolio.urls')),
+    #path('', include('portfolio.urls')),
 ]
+
+urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),  # Admin URLs
+    path('', include('portfolio.urls')),  # Include your app's URLs
+)
