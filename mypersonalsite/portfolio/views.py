@@ -7,7 +7,8 @@ from django.urls import reverse
 from django.views.generic import DetailView, CreateView
 from django.http import FileResponse, Http404
 from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience
-from .form  import ReviewForm
+from .form  import ReviewForm, ContactForm
+from django.core.mail import send_mail
 
 # Home page view
 def home(request):
@@ -61,14 +62,56 @@ def projects(request):
 
 def contact(request):
     """
-    Render the Contact page, displaying site-wide contact information
-    like email, LinkedIn, and GitHub links.
+    Render the contact page with a form for user messages.
+    Handles form submissions to send emails to the site owner.
     """
-    contact_info = ContactInfo.objects.first()  # Retrieve the single ContactInfo instance
-    context = {
-        'contact_info': contact_info
-    }
-    return render(request, 'portfolio/contact.html', context)
+    # Retrieve the contact information (email address) from the database
+    contact_info = ContactInfo.objects.first()
+
+    # Instantiate the form
+    form = ContactForm()
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        # Validate the form
+        if form.is_valid():
+            # Extract cleaned data from the form
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            # Compose the email message
+            full_message = (
+                f"Message from {first_name} {last_name} ({email}):\n\n{message}"
+            )
+
+            # Send the email to the site owner's email address
+            send_mail(
+                subject='Contact Form Submission',
+                message=full_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[contact_info.email],
+            )
+
+            # Render the template with a success message
+            return render(
+                request,
+                'portfolio/contact.html',
+                {
+                    'form': ContactForm(),  # Empty form for new submissions
+                    'contact_info': contact_info,
+                    'success': True,  # Success flag for user feedback
+                },
+            )
+
+    # Render the contact page with the form
+    return render(
+        request,
+        'portfolio/contact.html',
+        {'form': form, 'contact_info': contact_info},
+    )
 
 # Open CV page view
 def open_cv(request):

@@ -1,12 +1,10 @@
-<!-- portfolio/templates/portfolio/contacts.html -->
-
 {% extends 'portfolio/base.html' %}
 
 {% block title %}Contact - My Portfolio{% endblock %}
 
 {% block content %}
     <!-- Page Meta Description for SEO -->
-    <meta name="description" content="Get in touch with me via email, LinkedIn, or GitHub. Connect and view my professional profiles.">
+    <meta name="description" content="Get in touch with me via email or through the contact form.">
 
     <article>
         <header>
@@ -16,12 +14,28 @@
         {% if contact_info %}
             <section aria-labelledby="contact-info">
                 <h2 id="contact-info">Contact Information</h2>
+                <!-- Clickable email link -->
                 <p>Email: <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
-                <p>LinkedIn: <a href="{{ contact_info.linkedin_url }}" target="_blank" rel="noopener noreferrer">View LinkedIn Profile</a></p>
-                <p>GitHub: <a href="{{ contact_info.github_url }}" target="_blank" rel="noopener noreferrer">View GitHub Profile</a></p>
             </section>
         {% else %}
             <p>Contact information is not available at the moment.</p>
         {% endif %}
+
+        <!-- Contact Form Section -->
+        <section aria-labelledby="contact-form">
+            <h2 id="contact-form">Send Me a Message</h2>
+
+            <!-- Success message -->
+            {% if success %}
+                <p>Your message has been sent successfully. Thank you for reaching out!</p>
+            {% endif %}
+
+            <!-- Contact form -->
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
     </article>
 {% endblock %}
