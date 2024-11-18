@@ -19,7 +19,14 @@
         </header>
 
         <img src="{% static 'portfolio/images/profile.jpeg' %}" alt="Profile Image" class="intro-image">
-
-        <p>This is where I showcase my projects and experience.</p>
+        
+        {% for section in sections %}
+        <section class="dynamic-section">
+            <h2>{{ section.title }}</h2>
+            <p>{{ section.description }}</p>
+        </section>
+    {% endfor %}
+        
+    
     </article>
 {% endblock %}

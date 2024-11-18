@@ -6,14 +6,15 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.generic import DetailView, CreateView
 from django.http import FileResponse, Http404
-from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience
+from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section
 from .form  import ReviewForm, ContactForm
 from django.core.mail import send_mail
 
 # Home page view
 def home(request):
-    """Render the home page."""
-    return render(request, 'portfolio/home.html')
+    """Render the home page with dynamic sections."""
+    sections = Section.objects.all()
+    return render(request, 'portfolio/home.html', {'sections': sections})
 
 def education(request):
     """

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill, JobExperience
+from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -102,3 +102,9 @@ class ReviewAdmin(admin.ModelAdmin):
         """
         queryset.update(status='rejected')
     reject_reviews.short_description = "Reject selected reviews"
+
+
+@admin.register(Section)
+class SectionAdmin(admin.ModelAdmin):
+    """"Admin interface to add personal description"""
+    list_display = ('title', 'description')

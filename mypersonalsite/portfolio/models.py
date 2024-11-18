@@ -152,3 +152,14 @@ class JobExperience(models.Model):
 
     def __str__(self):
         return f"{self.title} at {self.company}"
+
+
+class Section(models.Model):
+    """Model to represent personal description"""
+
+    title = models.CharField(max_length=200, help_text="Title of the section")
+    description = models.TextField(help_text="Description content for the section")
+
+    def __str__(self):
+        return self.title
+    

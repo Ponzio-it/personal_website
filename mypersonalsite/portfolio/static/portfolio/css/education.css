@@ -1,0 +1,51 @@
+    /* Specific styles for the education page */
+
+    /* Skills Section */
+    #skills-section .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #skills-section .skills-list li {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    /* Certificates Section */
+    #certificates-section .certificates-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    #certificates-section .certificate-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        width: calc(33.333% - 20px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Education and Job Experience Section */
+    #education-job-container {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+        color: #0A192F;
+    }
+
+    #education-section, #job-experience-section {
+        flex: 1;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #0A192F; 
+    }

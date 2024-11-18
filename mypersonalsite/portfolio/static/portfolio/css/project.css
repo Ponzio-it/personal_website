@@ -1,0 +1,135 @@
+.projects-page {
+    text-align: center;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #ffffff; /* Ensure title text uses the specified color */
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.project-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    color: #0A192F; /* Text color for project card */
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #0A192F;
+}
+
+.project-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+/* Folders Section */
+.folders {
+    margin-top: 20px;
+    color: #0A192F;
+}
+
+.folders h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #0A192F;
+}
+
+.folder {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #0A192F;
+}
+
+.folder h4 {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0A192F;
+}
+
+.folder-files {
+    list-style-type: none;
+    padding: 0;
+    color: #0A192F;
+}
+
+.folder-files li {
+    font-family: monospace;
+    margin: 2px 0;
+    color: #0A192F;
+}
+
+/* Reviews Section */
+.reviews {
+    margin-top: 20px;
+    color: #0A192F;
+}
+
+.reviews h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #0A192F;
+}
+
+.reviews-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    scroll-behavior: smooth;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.review {
+    min-width: 250px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #0A192F;
+}
+
+.recommendation {
+    color: green;
+    font-weight: bold;
+}
+
+.review-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.review-link:hover {
+    text-decoration: underline;
+}

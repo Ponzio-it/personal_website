@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="{% static 'portfolio/css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'portfolio/css/main.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet">
+    
 
+    {% block styles %}{% endblock %}
 </head>
 <body>
     <!-- Header with Navigation -->
@@ -38,7 +40,7 @@
                 <li><a href="{% url 'portfolio:contact' %}">{% trans "Contact Me" %}</a></li>
                 <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
                 <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>
-                <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Open CV" %}</a></li>
+                <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
                 <li><a href="/en/">English</a></li>
                 <li><a href="/it/">Italiano</a></li>
             </ul>
