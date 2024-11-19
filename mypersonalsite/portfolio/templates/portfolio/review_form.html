@@ -1,25 +1,21 @@
-<!-- portfolio/templates/portfolio/submit_review.html -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block title %}Submit a Review{% endblock %}
 
-{% extends "portfolio/base.html" %}
-
-{% block title %}Submit a Review for {{ project.title }}{% endblock %}
-
-{% block content %}
-    <!-- Page Meta Description for SEO -->
-    <meta name="description" content="Submit your review for the project {{ project.title }}. Share your feedback and recommendations.">
-
-    <article>
-        <header>
-            <h2>Submit a Review for {{ project.title }}</h2>
-        </header>
-
-        <form method="post" aria-labelledby="submit-review-heading">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit Review</button>
-        </form>
-
-        <p><a href="{% url 'portfolio:project_detail' project.pk %}">Back to Project</a></p>
-    </article>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/project.css' %}">
 {% endblock %}
 
+{% block content %}
+<article>
+    <header>
+        <h1>Submit a Review for {{ project.title }}</h1>
+    </header>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">Submit Review</button>
+    </form>
+</article>
+{% endblock %}

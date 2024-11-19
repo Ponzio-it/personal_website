@@ -27,8 +27,7 @@ class Folder(models.Model):
     Model representing a folder within a project. Each folder contains related files
     and groups files by type (e.g., Documentation, Reports).
     """
-    project = models.ForeignKey(Project, related_name='folders', on_delete=models.CASCADE,
-                                help_text="The project to which this folder belongs.")
+    project = models.ForeignKey(Project, related_name='folders', on_delete=models.CASCADE, help_text="The project to which this folder belongs.")
     name = models.CharField(max_length=100, help_text="Name of the folder, e.g., 'Documentation'.")
 
     def __str__(self):
@@ -44,8 +43,7 @@ class File(models.Model):
     Model representing a file within a folder. Each file has a name, file content,
     and an option to be marked as private.
     """
-    folder = models.ForeignKey(Folder, related_name='files', on_delete=models.CASCADE,
-                               help_text="The folder to which this file belongs.")
+    folder = models.ForeignKey(Folder, related_name='files', on_delete=models.CASCADE, help_text="The folder to which this file belongs.")
     name = models.CharField(max_length=100, help_text="Name of the file, e.g., 'Project_Plan.pdf'.")
     file = models.FileField(upload_to='project_files/', help_text="File to be uploaded for the project.")
     is_private = models.BooleanField(default=False, help_text="Flag to indicate if the file is private.")

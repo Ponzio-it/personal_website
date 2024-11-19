@@ -1,0 +1,124 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #0A192F;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.contact-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Contact Container */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.contact-info, .contact-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #0A192F;
+}
+
+/* Contact Info */
+.contact-info p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.contact-info a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Form */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.btn-submit {
+    background-color: #007BFF;
+    color: #ffffff;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+/* Success Message */
+.success-message {
+    color: #28A745;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-title {
+        font-size: 2rem;
+    }
+
+    .section-heading {
+        font-size: 1.2rem;
+    }
+}

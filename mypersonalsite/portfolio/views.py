@@ -133,11 +133,13 @@ class ProjectDetailView(DetailView):
     View for displaying details of a single project, along with approved reviews.
     """
     model = Project
-    template_name = 'portfolio/projects.html'
+    template_name = 'portfolio/project_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Include only approved reviews in the context
+        # Prefetch related folders and files
+        context['folders'] = self.object.folders.prefetch_related('files').all()
         context['reviews'] = self.object.reviews.filter(status='approved')
         return context
 
