@@ -19,4 +19,6 @@ urlpatterns = [
     path('linkedin/', views.redirect_to_linkedin, name='linkedin'),
     path('github/', views.redirect_to_github, name='github'),
     path('folders/<int:pk>/', views.FolderDetailView.as_view(), name='folder_detail'),
+    path('blog/', views.blog_list, name='blog_list'),
+    path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
 ]

@@ -1,0 +1,47 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/blog_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="blog-detail">
+    <!-- Dynamic Meta Tags for SEO -->
+    <meta name="description" content="{{ post.excerpt }}">
+    <meta property="og:title" content="{{ post.title }}">
+    <meta property="og:description" content="{{ post.excerpt }}">
+    {% if post.featured_image %}
+        <meta property="og:image" content="{{ post.featured_image.url }}">
+    {% endif %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ post.publication_date|date:'Y-m-d' }}">
+    <meta property="article:author" content="{{ post.author }}">
+
+    <header>
+        <h1>{{ post.title }}</h1>
+        <p class="meta">By {{ post.author }} on {{ post.publication_date }}</p>
+    </header>
+    
+    {% if post.featured_image %}
+    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="featured-image">
+    {% endif %}
+    
+    <section class="content">
+        {{ post.content|safe }}
+    </section>
+    
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <h2>Related Posts</h2>
+        {% for related_post in related_posts %}
+        <article class="related-post">
+            <h3><a href="{% url 'portfolio:blog_detail' related_post.slug %}">{{ related_post.title }}</a></h3>
+        </article>
+        {% endfor %}
+    </section>
+    <p><a href="{% url 'portfolio:blog_list'%}">Back to Blog list</a></p>
+</article>
+{% endblock %}
+

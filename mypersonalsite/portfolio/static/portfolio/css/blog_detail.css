@@ -1,0 +1,33 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #0A192F;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.blog-detail h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.content {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.related-posts {
+    margin-top: 40px;
+}
+
+.related-post h3 {
+    font-size: 1.2rem;
+}

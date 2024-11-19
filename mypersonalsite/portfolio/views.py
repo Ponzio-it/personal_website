@@ -6,10 +6,11 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.generic import DetailView, CreateView
 from django.http import FileResponse, Http404
-from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section, Folder
+from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section, Folder, BlogPost, Category
 from .form  import ReviewForm, ContactForm
 from django.core.mail import send_mail
-from datetime import datetime
+from django.db.models import Q
+
 
 # Home page view
 def home(request):
@@ -186,3 +187,67 @@ def redirect_to_linkedin(request):
 def redirect_to_github(request):
     """Redirects to the GitHub profile."""
     return redirect("https://github.com/Ponzio-it")
+
+def blog_list(request):
+    """
+    View to display the list of blog posts.
+
+    Features:
+    - Captures a search query from the request.
+    - Filters blog posts by the query if provided.
+    - Orders posts by publication date (newest first).
+    - Includes all categories for filtering.
+
+    Context:
+        posts: Filtered and ordered blog posts.
+        categories: All available categories.
+        query: The search query entered by the user (if any).
+
+    Template:
+        blog/blog_list.html
+    """
+    query = request.GET.get('q')  # Capture the search query from the URL
+    posts = BlogPost.objects.all().order_by('-publication_date')
+    categories = Category.objects.all()
+
+    if query:
+        posts = posts.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )
+
+    context = {
+        'posts': posts,
+        'categories': categories,
+        'query': query,
+    }
+
+    return render(request, 'portfolio/blog_list.html', context)
+
+
+def blog_detail(request, slug):
+    """
+    View to display the details of a single blog post.
+
+    Features:
+    - Retrieves the blog post based on the provided slug.
+    - Fetches up to 3 related posts sharing the same categories,
+      excluding the current post.
+
+    Context:
+        post: The requested blog post.
+        related_posts: A queryset of related blog posts.
+
+    Template:
+        blog/blog_detail.html
+    """
+    post = get_object_or_404(BlogPost, slug=slug)
+    related_posts = BlogPost.objects.filter(
+        categories__in=post.categories.all()
+    ).exclude(id=post.id)[:3]
+
+    context = {
+        'post': post,
+        'related_posts': related_posts,
+    }
+
+    return render(request, 'portfolio/blog_detail.html', context)

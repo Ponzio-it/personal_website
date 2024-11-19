@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'portfolio/css/navigation.css' %}">
     <link rel="stylesheet" href="{% static 'portfolio/css/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'portfolio/css/main.css' %}">
+    <!-- link rel="stylesheet" href="{% static 'portfolio/css/main.css' %}" -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet">
     
 
@@ -47,6 +47,7 @@
                     <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
                     <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>
                     <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
+                    <li><a href="{% url 'portfolio:blog_list' %}">{% trans "Blog" %}</a></li>
                     
                     <!-- Conditional Language Switch -->
                     {% if LANGUAGE_CODE == "en" %}

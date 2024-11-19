@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section
+from .models import Project, Folder, File, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section, Category, BlogPost
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -108,3 +108,26 @@ class ReviewAdmin(admin.ModelAdmin):
 class SectionAdmin(admin.ModelAdmin):
     """"Admin interface to add personal description"""
     list_display = ('title', 'description')
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    """
+    Custom admin configuration for Category model.
+    """
+    list_display = ('name', 'slug')  # Display name and slug in the admin list
+    prepopulated_fields = {'slug': ('name',)}  # Auto-fill slug based on name
+    search_fields = ('name',)  # Add a search bar for categories
+
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    """
+    Custom admin configuration for BlogPost model.
+    """
+    list_display = ('title', 'author', 'publication_date')  # Columns to display in the admin list
+    list_filter = ('categories', 'publication_date')  # Add filters for categories and publication date
+    search_fields = ('title', 'content')  # Add a search bar for posts
+    prepopulated_fields = {'slug': ('title',)}  # Auto-fill slug based on title
+    date_hierarchy = 'publication_date'  # Add a date hierarchy filter
+    filter_horizontal = ('categories',)  # Display categories as a horizontal filter for many-to-many field

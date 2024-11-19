@@ -1,0 +1,46 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/blog_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="blog-list">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Browse insightful blog posts about projects, experiences, and more. Stay updated with the latest articles.">
+    <header>
+        <h1>Blog</h1>
+        <!-- Search Bar -->
+        <form method="get" action="" class="search-form" role="search">
+            <label for="search" class="visually-hidden">Search</label>
+            <input type="text" id="search" name="q" value="{{ query|default:'' }}" placeholder="Search blog posts..." aria-label="Search blog posts">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    
+    <!-- Categories -->
+    <section class="categories">
+        {% for category in categories %}
+        <a href="?category={{ category.slug }}" class="category">{{ category.name }}</a>
+        {% endfor %}
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="posts">
+        {% for post in posts %}
+        <article class="post">
+            {% if post.featured_image %}
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-thumbnail">
+            {% endif %}
+            <h2><a href="{% url 'portfolio:blog_detail' post.slug %}">{{ post.title }}</a></h2>
+            <p class="excerpt">{{ post.excerpt }}</p>
+            <p class="meta">By {{ post.author }} on {{ post.publication_date }}</p>
+        </article>
+        {% empty %}
+        <p>No posts found.</p>
+        {% endfor %}
+    </section>
+</article>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError #use in ContactInfo
+from django.utils.text import slugify #use in Category
 
 class Project(models.Model):
     """
@@ -161,3 +162,66 @@ class Section(models.Model):
     def __str__(self):
         return self.title
     
+
+class Category(models.Model):
+    """
+    Model representing a blog category.
+
+    Attributes:
+        name (str): The name of the category.
+        slug (str): A URL-friendly identifier for the category.
+    """
+    name = models.CharField(max_length=100, help_text="Name of the category.")
+    slug = models.SlugField(max_length=100, unique=True, blank=True, help_text="URL-friendly identifier for the category (auto-generated).")
+
+    def save(self, *args, **kwargs):
+        """
+        Automatically generate a slug from the category name if not provided.
+        """
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        """
+        Return the string representation of the category.
+        """
+        return self.name
+
+
+class BlogPost(models.Model):
+    """
+    Model representing a blog post.
+
+    Attributes:
+        title (str): The title of the blog post.
+        slug (str): A URL-friendly identifier for the post.
+        content (str): The main content of the post.
+        excerpt (str): A short summary or excerpt from the post.
+        featured_image (ImageField): An optional featured image for the post.
+        publication_date (date): The date the post was published.
+        categories (Category): Categories associated with the post.
+        author (str): The name of the post's author.
+    """
+    title = models.CharField(max_length=200, help_text="Title of the blog post.")
+    slug = models.SlugField(max_length=200, unique=True, blank=True, help_text="URL-friendly identifier for the post (auto-generated).")
+    content = models.TextField(help_text="Main content of the blog post.")
+    excerpt = models.TextField(blank=True, help_text="Short summary or excerpt of the blog post.")
+    featured_image = models.ImageField(upload_to='blog_images/',blank=True, null=True, help_text="Optional featured image for the blog post.")
+    publication_date = models.DateField(auto_now_add=True, help_text="Date the blog post was published.")
+    categories = models.ManyToManyField(Category, related_name='blog_posts', help_text="Categories associated with the blog post.")
+    author = models.CharField(max_length=100, help_text="Author of the blog post.")
+
+    def save(self, *args, **kwargs):
+        """
+        Automatically generate a slug from the blog post title if not provided.
+        """
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        """
+        Return the string representation of the blog post (its title).
+        """
+        return self.title
