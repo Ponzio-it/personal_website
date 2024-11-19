@@ -4,29 +4,31 @@
 {% load static %}
 {% block title %}Home - My Portfolio{% endblock %}
 
-{% block extra_styles %}
+{% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/home.css' %}">
 {% endblock %}
 
-
 {% block content %}
-    <!-- Page Meta Description for SEO -->
-    <meta name="description" content="Welcome to my portfolio. Discover my projects, skills, and professional experience.">
-
-    <article>
-        <header>
+<article class="home-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-text">
             <h1>Welcome to My Portfolio</h1>
-        </header>
+            <p>Explore my projects, skills, and professional experiences. Let's build something amazing together!</p>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'portfolio/images/profile.jpeg' %}" alt="Profile Image">
+        </div>
+    </section>
 
-        <img src="{% static 'portfolio/images/profile.jpeg' %}" alt="Profile Image" class="intro-image">
-        
+    <!-- Dynamic Sections -->
+    <section class="sections-container">
         {% for section in sections %}
-        <section class="dynamic-section">
+        <div class="dynamic-section">
             <h2>{{ section.title }}</h2>
             <p>{{ section.description }}</p>
-        </section>
-    {% endfor %}
-        
-    
-    </article>
+        </div>
+        {% endfor %}
+    </section>
+</article>
 {% endblock %}

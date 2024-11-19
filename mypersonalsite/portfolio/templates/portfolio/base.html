@@ -33,20 +33,37 @@
     <!-- Header with Navigation -->
     <header>
         <nav aria-label="{% trans 'Main Navigation' %}">
-            <ul>
-                <li><a href="{% url 'portfolio:home' %}">{% trans "Home" %}</a></li>
-                <li><a href="{% url 'portfolio:education' %}">{% trans "Experiences" %}</a></li>
-                <li><a href="{% url 'portfolio:projects' %}">{% trans "Projects" %}</a></li>
-                <li><a href="{% url 'portfolio:contact' %}">{% trans "Contact Me" %}</a></li>
-                <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
-                <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>
-                <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
-                <li><a href="/en/">English</a></li>
-                <li><a href="/it/">Italiano</a></li>
-            </ul>
+            <div class="nav-container">
+                <!-- Logo Section -->
+                <a href="{% url 'portfolio:home' %}" class="logo">MyPortfolio</a>
+                <!-- Menu Toggle Button for Mobile -->
+                <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li><a href="{% url 'portfolio:home' %}">{% trans "Home" %}</a></li>
+                    <li><a href="{% url 'portfolio:education' %}">{% trans "Experiences" %}</a></li>
+                    <li><a href="{% url 'portfolio:projects' %}">{% trans "Projects" %}</a></li>
+                    <li><a href="{% url 'portfolio:contact' %}">{% trans "Contact Me" %}</a></li>
+                    <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
+                    <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>
+                    <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
+                    
+                    <!-- Conditional Language Switch -->
+                    {% if LANGUAGE_CODE == "en" %}
+                        <li><a href="/it/">Italiano</a></li>
+                    {% elif LANGUAGE_CODE == "it" %}
+                        <li><a href="/en/">English</a></li>
+                    {% else %}
+                        <li><a href="/en/">English</a></li>
+                        <li><a href="/it/">Italiano</a></li>
+                    {% endif %}
+                </ul>
+                <!-- Include the JavaScript file -->
+                <script src="{% static 'portfolio/js/menu.js' %}" defer></script>
+            </div>
         </nav>
     </header>
-
+    
     <!-- Main Content Area -->
     <main class="container" role="main">
         {% block content %}{% endblock %}
@@ -54,7 +71,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; {{ current_year }} {% trans "Ettore Ponzio. All Rights Reserved." %}</p>
+        <p>&copy; {% trans "2024 Ettore Ponzio. All Rights Reserved." %}</p>
     </footer>
 </body>
 </html>

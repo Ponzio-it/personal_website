@@ -142,3 +142,24 @@ form button.btn {
 form button.btn:hover {
     background-color: #0056b3;
 }
+/* File list */
+
+.files-list {
+    list-style: none;
+    padding: 0;
+}
+
+.files-list li {
+    margin: 5px 0;
+}
+
+.folder a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.folder a:hover {
+    text-decoration: underline;
+}
+

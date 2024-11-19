@@ -18,4 +18,5 @@ urlpatterns = [
     path('projects/<int:pk>/review/', ReviewCreateView.as_view(), name='project_review'),
     path('linkedin/', views.redirect_to_linkedin, name='linkedin'),
     path('github/', views.redirect_to_github, name='github'),
+    path('folders/<int:pk>/', views.FolderDetailView.as_view(), name='folder_detail'),
 ]

@@ -6,9 +6,10 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.generic import DetailView, CreateView
 from django.http import FileResponse, Http404
-from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section
+from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section, Folder
 from .form  import ReviewForm, ContactForm
 from django.core.mail import send_mail
+from datetime import datetime
 
 # Home page view
 def home(request):
@@ -143,6 +144,18 @@ class ProjectDetailView(DetailView):
         context['reviews'] = self.object.reviews.filter(status='approved')
         return context
 
+class FolderDetailView(DetailView):
+    """
+    View for displaying details of a single folder, including its files.
+    """
+    model = Folder
+    template_name = 'portfolio/folder_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add files related to the folder to the context
+        context['files'] = self.object.files.all()
+        return context
 
 class ReviewCreateView(CreateView):
     """

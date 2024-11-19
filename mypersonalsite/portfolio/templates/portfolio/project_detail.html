@@ -21,18 +21,7 @@
             <div class="folders-list">
                 {% for folder in project.folders.all %}
                     <div class="folder">
-                        <h3>{{ folder.name }}</h3>
-                        <ul class="files-list">
-                            {% for file in folder.files.all %}
-                                <li>
-                                    {% if file.is_private %}
-                                        <strong>{{ file.name }}</strong> (Private)
-                                    {% else %}
-                                        <a href="{{ file.file.url }}" target="_blank" rel="noopener noreferrer">{{ file.name }}</a>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        <h3><a href="{% url 'portfolio:folder_detail' folder.id %}">{{ folder.name }}</a></h3>
                     </div>
                 {% endfor %}
             </div>
@@ -61,6 +50,6 @@
             <a href="{% url 'portfolio:project_review' project.id %}" class="btn-review">Leave a Review</a>
         </p>
     </section>
-
+    <p><a href="{% url 'portfolio:projects'%}">Back to Project</a></p>
 </article>
 {% endblock %}

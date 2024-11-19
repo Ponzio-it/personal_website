@@ -1,41 +1,84 @@
 {% extends 'portfolio/base.html' %}
+{% load static %}
 
 {% block title %}Contact - My Portfolio{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/contact.css' %}">
+{% endblock %}
 
 {% block content %}
     <!-- Page Meta Description for SEO -->
     <meta name="description" content="Get in touch with me via email or through the contact form.">
 
-    <article>
+    <article class="contact-page">
         <header>
-            <h1>Contact Me</h1>
+            <h1 class="page-title">Get in Touch</h1>
+            <p class="page-subtitle">
+                Fill out the form below to send me a message, or reach out using the contact details provided.
+            </p>
         </header>
-
-        {% if contact_info %}
-            <section aria-labelledby="contact-info">
-                <h2 id="contact-info">Contact Information</h2>
-                <!-- Clickable email link -->
-                <p>Email: <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+    
+        <div class="contact-container">
+            <!-- Contact Information Section -->
+            <section class="contact-info" aria-labelledby="contact-info-heading">
+                <h2 id="contact-info-heading" class="section-heading">Contact Information</h2>
+                {% if contact_info %}
+                    <p><strong>Email:</strong> <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+                {% else %}
+                    <p>Contact information is currently unavailable.</p>
+                {% endif %}
             </section>
-        {% else %}
-            <p>Contact information is not available at the moment.</p>
-        {% endif %}
-
-        <!-- Contact Form Section -->
-        <section aria-labelledby="contact-form">
-            <h2 id="contact-form">Send Me a Message</h2>
-
-            <!-- Success message -->
-            {% if success %}
-                <p>Your message has been sent successfully. Thank you for reaching out!</p>
-            {% endif %}
-
-            <!-- Contact form -->
-            <form method="post" novalidate>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+    
+            <!-- Contact Form Section -->
+            <section class="contact-form" aria-labelledby="contact-form-heading">
+                <h2 id="contact-form-heading" class="section-heading">Send Me a Message</h2>
+    
+                <!-- Success Message -->
+                {% if success %}
+                    <div class="success-message">
+                        Your message has been sent successfully. Thank you for reaching out!
+                    </div>
+                {% endif %}
+    
+                <!-- Contact Form -->
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                            <div class="form-error">{{ form.first_name.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="form-group">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                            <div class="form-error">{{ form.last_name.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="form-group">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="form-error">{{ form.email.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <div class="form-group">
+                        {{ form.message.label_tag }}
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                            <div class="form-error">{{ form.message.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+    
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </section>
+        </div>
     </article>
 {% endblock %}
