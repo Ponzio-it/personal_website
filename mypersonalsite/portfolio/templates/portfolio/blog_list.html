@@ -1,46 +1,70 @@
+<!-- portfolio/templates/portfolio/blog_list.html -->
 {% extends 'portfolio/base.html' %}
 {% load static %}
+{% load i18n %}
+
 {% block title %}Blog{% endblock %}
+
+{% block meta_description %}
+<meta name="description" content="Browse insightful blog posts about projects, experiences, and more. Stay updated with the latest articles.">
+{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/blog_list.css' %}">
 {% endblock %}
 
 {% block content %}
-<article class="blog-list">
-    <!-- SEO Meta Description -->
-    <meta name="description" content="Browse insightful blog posts about projects, experiences, and more. Stay updated with the latest articles.">
+<article class="blog-list-page">
     <header>
-        <h1>Blog</h1>
-        <!-- Search Bar -->
-        <form method="get" action="" class="search-form" role="search">
+        <h1 class="page-title">Blog</h1>
+
+        <!-- Search Form -->
+        <form method="get" action="" class="search-form" role="search" aria-label="Search blog posts">
             <label for="search" class="visually-hidden">Search</label>
             <input type="text" id="search" name="q" value="{{ query|default:'' }}" placeholder="Search blog posts..." aria-label="Search blog posts">
             <button type="submit">Search</button>
         </form>
     </header>
-    
+
     <!-- Categories -->
-    <section class="categories">
-        {% for category in categories %}
-        <a href="?category={{ category.slug }}" class="category">{{ category.name }}</a>
-        {% endfor %}
-    </section>
+    {% if categories %}
+    <nav class="categories" aria-label="Blog Categories">
+        <ul class="category-list">
+            {% for category in categories %}
+            <li class="category-item">
+                <a href="?category={{ category.slug }}" class="category-link">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% endif %}
 
     <!-- Blog Posts -->
-    <section class="posts">
-        {% for post in posts %}
-        <article class="post">
-            {% if post.featured_image %}
-            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-thumbnail">
-            {% endif %}
-            <h2><a href="{% url 'portfolio:blog_detail' post.slug %}">{{ post.title }}</a></h2>
-            <p class="excerpt">{{ post.excerpt }}</p>
-            <p class="meta">By {{ post.author }} on {{ post.publication_date }}</p>
-        </article>
-        {% empty %}
+    <section class="posts" aria-labelledby="posts-heading">
+        <h2 id="posts-heading" class="section-heading">Blog Posts</h2>
+        {% if posts %}
+        <div class="posts-grid">
+            {% for post in posts %}
+            <article class="post-card">
+                {% if post.featured_image %}
+                <a href="{% url 'portfolio:blog_detail' post.slug %}">
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-thumbnail">
+                </a>
+                {% endif %}
+                <div class="post-content">
+                    <h3 class="post-title">
+                        <a href="{% url 'portfolio:blog_detail' post.slug %}">{{ post.title }}</a>
+                    </h3>
+                    <p class="post-meta">By {{ post.author }} on {{ post.publication_date|date:"F d, Y" }}</p>
+                    <p class="post-excerpt">{{ post.excerpt|truncatewords:30 }}</p>
+                    <a href="{% url 'portfolio:blog_detail' post.slug %}" class="read-more">Read More</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
         <p>No posts found.</p>
-        {% endfor %}
+        {% endif %}
     </section>
 </article>
 {% endblock %}

@@ -1,30 +1,40 @@
+<!-- portfolio/templates/portfolio/folder_detail.html -->
 {% extends 'portfolio/base.html' %}
 {% load static %}
-{% block title %}{{ folder.name }} - Files{% endblock %}
+{% load i18n %}
+
+{% block title %}{{ folder.name }} - Folder Details{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'portfolio/css/education.css' %}">
+    <link rel="stylesheet" href="{% static 'portfolio/css/folder_detail.css' %}">
 {% endblock %}
 
 {% block content %}
-<article>
+<article class="folder-detail-page">
     <header>
-        <h1>{{ folder.name }}</h1>
-        <p>Files in this folder:</p>
+        <h1 class="folder-title">{{ folder.name }}</h1>
+        {% if folder.description %}
+            <p class="folder-description">{{ folder.description }}</p>
+        {% endif %}
     </header>
 
-    <ul class="files-list">
-        {% for file in files %}
-            <li>
-                {% if file.is_private %}
-                    <strong>{{ file.name }}</strong> (Private)
-                {% else %}
-                    <a href="{{ file.file.url }}" target="_blank" rel="noopener noreferrer">{{ file.name }}</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <!-- Files in Folder -->
+    <section class="files-section" aria-labelledby="files-heading">
+        <h2 id="files-heading" class="section-heading">Files</h2>
+        {% if files %}
+            <ul class="files-list">
+                {% for file in files %}
+                    <li class="file-item">
+                        <a href="{{ file.file.url }}" target="_blank">{{ file.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No files available in this folder.</p>
+        {% endif %}
+    </section>
 
-    <p><a href="{% url 'portfolio:project_detail' folder.project.id %}">Back to Folders</a></p>
+    <!-- Back to Project Link -->
+    <p><a href="{% url 'portfolio:project_detail' folder.project.id %}" class="back-link">Back to Project Details</a></p>
 </article>
 {% endblock %}

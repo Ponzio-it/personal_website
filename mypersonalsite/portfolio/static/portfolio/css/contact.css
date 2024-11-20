@@ -1,8 +1,25 @@
+/* CSS Variables for Colors */
+:root {
+    --primary-color: #007BFF;
+    --primary-color-dark: #0056b3;
+    --secondary-color: #0A192F;
+    --background-color: #f4f4f9;
+    --text-color: #0A192F;
+    --light-text-color: #555;
+    --border-color: #ddd;
+    --error-color: #E74C3C;
+    --success-bg-color: #D4EDDA;
+    --success-text-color: #155724;
+    --input-bg-color: #f9f9f9;
+    --white-color: #ffffff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* General Page Styling */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f9;
-    color: #0A192F;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
 }
@@ -24,40 +41,44 @@ body {
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: 30px;
-    color: #555;
+    color: var(--light-text-color);
+}
+
+/* Section Headings */
+.section-heading {
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
 }
 
 /* Contact Container */
 .contact-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.contact-info {
-    background-color: #ffffff;
+.contact-info,
+.contact-form {
+    flex: 1 1 300px;
+    background-color: var(--white-color);
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
 }
 
 .contact-info a {
-    color: #007BFF;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
 }
 
 .contact-info a:hover {
     text-decoration: underline;
-}
-
-.contact-form {
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Form Styling */
@@ -68,23 +89,27 @@ body {
 label {
     font-size: 1rem;
     font-weight: bold;
-    color: #0A192F;
+    color: var(--text-color);
     display: block;
     margin-bottom: 5px;
 }
 
-input, textarea {
+input[type="text"],
+input[type="email"],
+textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1rem;
-    background-color: #f9f9f9;
+    background-color: var(--input-bg-color);
     transition: border-color 0.3s ease;
 }
 
-input:focus, textarea:focus {
-    border-color: #007BFF;
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: var(--primary-color);
     outline: none;
 }
 
@@ -94,25 +119,25 @@ textarea {
 }
 
 .form-error {
-    color: #E74C3C;
+    color: var(--error-color);
     font-size: 0.9rem;
     margin-top: 5px;
 }
 
 /* Success Message */
 .success-message {
-    background-color: #D4EDDA;
-    color: #155724;
+    background-color: var(--success-bg-color);
+    color: var(--success-text-color);
     padding: 15px;
-    border: 1px solid #C3E6CB;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
 /* Submit Button */
 .btn-submit {
-    background-color: #007BFF;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     padding: 10px 15px;
     font-size: 1rem;
     border: none;
@@ -122,12 +147,12 @@ textarea {
 }
 
 .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color-dark);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .contact-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 }

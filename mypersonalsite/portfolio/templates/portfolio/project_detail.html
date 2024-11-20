@@ -1,10 +1,12 @@
+<!-- portfolio/templates/portfolio/project_detail.html -->
 {% extends 'portfolio/base.html' %}
-{% load static %} 
+{% load static %}
+{% load i18n %}
 
 {% block title %}{{ project.title }} - Project Details{% endblock %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'portfolio/css/project.css' %}">
+    <link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -17,14 +19,27 @@
     <!-- Folders and Files -->
     <section class="folders-section" aria-labelledby="folders-heading">
         <h2 id="folders-heading" class="section-heading">Folders and Files</h2>
-        {% if project.folders.all %}
-            <div class="folders-list">
-                {% for folder in project.folders.all %}
-                    <div class="folder">
-                        <h3><a href="{% url 'portfolio:folder_detail' folder.id %}">{{ folder.name }}</a></h3>
-                    </div>
+        {% if folders %}
+            <ul class="folders-list">
+                {% for folder in folders %}
+                    <li class="folder-item">
+                        <h3 class="folder-name">
+                            <a href="{% url 'portfolio:folder_detail' folder.id %}">{{ folder.name }}</a>
+                        </h3>
+                        {% if folder.files.all %}
+                            <ul class="files-list">
+                                {% for file in folder.files.all %}
+                                    <li class="file-item">
+                                        <a href="{{ file.file.url }}" target="_blank">{{ file.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No files in this folder.</p>
+                        {% endif %}
+                    </li>
                 {% endfor %}
-            </div>
+            </ul>
         {% else %}
             <p>No folders or files available for this project.</p>
         {% endif %}
@@ -36,9 +51,9 @@
         {% if reviews %}
             <ul class="reviews-list">
                 {% for review in reviews %}
-                    <li class="review">
-                        <p><strong>{{ review.reviewer_name }}:</strong> {{ review.content }}</p>
-                        <p><small>Submitted on {{ review.created_at|date:"Y-m-d" }}</small></p>
+                    <li class="review-item">
+                        <p class="review-content"><strong>{{ review.reviewer_name }}:</strong> {{ review.content }}</p>
+                        <p class="review-date"><small>Submitted on {{ review.created_at|date:"F d, Y" }}</small></p>
                     </li>
                 {% endfor %}
             </ul>
@@ -47,9 +62,9 @@
         {% endif %}
 
         <p>
-            <a href="{% url 'portfolio:project_review' project.id %}" class="btn-review">Leave a Review</a>
+            <a href="{% url 'portfolio:project_review' project.id %}" class="btn btn-review">Leave a Review</a>
         </p>
     </section>
-    <p><a href="{% url 'portfolio:projects'%}">Back to Project</a></p>
+    <p><a href="{% url 'portfolio:projects'%}" class="back-link">Back to Projects</a></p>
 </article>
 {% endblock %}

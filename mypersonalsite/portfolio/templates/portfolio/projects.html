@@ -1,7 +1,9 @@
+<!-- portfolio/templates/portfolio/projects.html -->
 {% extends 'portfolio/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Projects - My Portfolio{% endblock %}
+{% block title %}{% trans "Projects - My Portfolio" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/project.css' %}">
@@ -16,15 +18,19 @@
 
     <section class="projects-grid" aria-labelledby="projects-heading">
         <h2 id="projects-heading" class="section-heading">Projects</h2>
-        <div class="grid">
-            {% for project in projects %}
-                <div class="project-card">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.description|truncatewords:20 }}</p>
-                    <a href="{% url 'portfolio:project_detail' project.id %}" class="btn">View Project</a>
-                </div>
-            {% endfor %}
-        </div>
+        {% if projects %}
+            <div class="grid">
+                {% for project in projects %}
+                    <div class="project-card">
+                        <h3 class="project-card-title">{{ project.title }}</h3>
+                        <p class="project-card-description">{{ project.description|truncatewords:20 }}</p>
+                        <a href="{% url 'portfolio:project_detail' project.id %}" class="btn">View Project</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No projects available at the moment.</p>
+        {% endif %}
     </section>
 </article>
 {% endblock %}

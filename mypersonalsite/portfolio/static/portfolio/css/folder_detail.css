@@ -8,9 +8,10 @@
     --light-text-color: #555;
     --border-color: #ddd;
     --white-color: #ffffff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* General Styles */
+/* General Page Styling */
 body {
     font-family: 'Roboto', sans-serif;
     color: var(--text-color);
@@ -19,87 +20,58 @@ body {
     padding: 0;
 }
 
-.blog-detail-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.post-header {
+/* Page Titles */
+.folder-title {
     text-align: center;
-    margin-bottom: 30px;
-}
-
-.post-title {
     font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 10px;
     color: var(--secondary-color);
 }
 
-.post-meta {
-    font-size: 0.9rem;
+.folder-description {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
     color: var(--light-text-color);
 }
 
-.featured-image {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-    border-radius: 10px;
-}
-
-.post-content {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-color);
-}
-
-.post-content p {
-    margin-bottom: 1em;
-}
-
-.post-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.post-content h2, .post-content h3, .post-content h4 {
-    color: var(--secondary-color);
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-
-/* Related Posts */
-.related-posts {
+/* Section Headings */
+.section-heading {
+    font-size: 2rem;
     margin-top: 40px;
-}
-
-.related-posts .section-heading {
-    font-size: 1.8rem;
     margin-bottom: 20px;
     color: var(--secondary-color);
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
 }
 
-.related-posts-list {
+/* Files Section */
+.files-section {
+    margin-top: 20px;
+}
+
+.files-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.related-post-item {
+.file-item {
     margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--white-color);
 }
 
-.related-post-item a {
+.file-item a {
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
-.related-post-item a:hover {
+.file-item a:hover {
     text-decoration: underline;
 }
 

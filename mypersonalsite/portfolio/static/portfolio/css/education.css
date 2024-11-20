@@ -1,8 +1,22 @@
-    /* General Page Styling */
+ /* CSS Variables for Colors */
+:root {
+    --primary-color: #007bff;
+    --primary-color-dark: #0069d9;
+    --secondary-color: #0A192F;
+    --background-color: #f4f4f9;
+    --text-color: #0A192F;
+    --light-text-color: #555;
+    --border-color: #ddd;
+    --white-color: #ffffff;
+    --hover-background-color: #f0f8ff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Page Styling */
 body {
     font-family: 'Roboto', sans-serif;
-    color: #0A192F;
-    background-color: #f4f4f9;
+    color: var(--text-color);
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
 }
@@ -25,72 +39,194 @@ body {
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: 30px;
-    color: #555;
+    color: var(--light-text-color);
+}
+
+/* Section Headings */
+.section-heading {
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
 }
 
 /* Skills Section */
+.skills-section {
+    margin-bottom: 30px;
+}
+
 .skills-list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.skills-list li a {
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
+.skills-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.skills-list li input[type="checkbox"] {
+    display: none;
+}
+
+.skills-list li label {
+    display: block;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    background-color: #ffffff;
-    color: #0A192F;
-    transition: background-color 0.3s ease;
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+    transition: var(--background-color) 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.skills-list li a:hover {
-    background-color: #007bff;
-    color: #ffffff;
+.skills-list li label:hover {
+    background-color: var(--hover-background-color);
+    border-color: var(--primary-color);
 }
 
-.active-skill {
-    background-color: #007bff;
-    color: #ffffff;
+.skills-list li input[type="checkbox"]:checked + label {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-color: var(--primary-color);
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 15px;
+}
+
+.filter-button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--background-color) 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: var(--primary-color-dark);
 }
 
 .clear-filter {
-    margin-top: 10px;
-    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: var(--white-color);
+    color: var(--primary-color);
     text-decoration: none;
-    color: #007bff;
+    cursor: pointer;
+    transition: var(--background-color) 0.3s ease, color 0.3s ease;
+}
+
+.clear-filter:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
 }
 
 /* Certificates Grid */
+.certificates-section {
+    margin-bottom: 30px;
+}
+
 .certificates-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
 .certificate-card {
-    background-color: #ffffff;
+    background-color: var(--white-color);
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
+}
+
+.certificate-card h3 {
+    margin-top: 0;
+    color: var(--secondary-color);
+}
+
+.certificate-card p {
+    margin: 10px 0;
+}
+
+.certificate-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.certificate-card a:hover {
+    text-decoration: underline;
 }
 
 /* Education and Experience Sections */
-.education-list, .experience-list {
+.education-section,
+.experience-section {
+    margin-bottom: 30px;
+}
+
+.education-list,
+.experience-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.education-item, .experience-item {
+.education-item,
+.experience-item {
     margin-bottom: 20px;
-    background-color: #ffffff;
-    padding: 15px;
-    border: 1px solid #ddd;
+    background-color: var(--white-color);
+    padding: 20px;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
+}
+
+.education-item h3,
+.experience-item h3 {
+    margin-top: 0;
+    color: var(--secondary-color);
+}
+
+.education-item .institution,
+.experience-item .company {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.education-item .time-period,
+.experience-item .time-period {
+    font-style: italic;
+    color: var(--light-text-color);
+    margin: 5px 0;
+}
+
+.education-item p,
+.experience-item p {
+    margin: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .section-heading {
+        font-size: 1.5rem;
+    }
 }

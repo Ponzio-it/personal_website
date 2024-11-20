@@ -11,93 +11,104 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Page Meta Description for SEO -->
-    <meta name="description" content="{% trans 'Explore my educational background, skills, certifications, and job experience.' %}">
+<article class="education-page">
+    <header>
+        <h1 class="page-title">My Education & Experience</h1>
+        <p class="page-subtitle">Explore my educational background, certifications, and job experiences. Filter by skills to see related details.</p>
+    </header>
 
-    <article class="education-page">
-        <header>
-            <h1 class="page-title">My Education & Experience</h1>
-            <p class="page-subtitle">Explore my educational background, certifications, and job experiences. Filter by skills to see related details.</p>
-        </header>
-    
-        <!-- Skills Section -->
-        <section class="skills-section" aria-labelledby="skills-heading">
-            <h2 id="skills-heading" class="section-heading">Skills</h2>
+    <!-- Skills Section -->
+    <section class="skills-section" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" class="section-heading">Skills</h2>
+        <form method="get">
             <ul class="skills-list">
                 {% for skill in skills %}
-                    <li>
-                        <a href="?skill={{ skill.id }}" class="{% if selected_skill and skill.id == selected_skill.id %}active-skill{% endif %}">
-                            {{ skill.name }}
-                        </a>
-                    </li>
+                <li>
+                    <input type="checkbox" id="skill-{{ skill.id }}" name="skill" value="{{ skill.id }}" {% if selected_skills and skill in selected_skills %}checked{% endif %}>
+                    <label for="skill-{{ skill.id }}">{{ skill.name }}</label>
+                </li>
                 {% endfor %}
             </ul>
-    
-            {% if selected_skill %}
-                <div class="selected-skill-info">
-                    <p>Showing results for: <strong>{{ selected_skill.name }}</strong></p>
-                    <a href="{% url 'portfolio:education' %}" class="clear-filter">Clear filter</a>
-                </div>
-            {% endif %}
-        </section>
-    
-        <!-- Certificates Section -->
-        <section class="certificates-section" aria-labelledby="certificates-heading">
-            <h2 id="certificates-heading" class="section-heading">Certificates</h2>
-            {% if certificates %}
-                <div class="certificates-grid">
-                    {% for certificate in certificates %}
-                        <div class="certificate-card">
-                            <h3>{{ certificate.title }}</h3>
-                            <p>{{ certificate.description }}</p>
-                            {% if certificate.link %}
-                                <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer">View Certificate</a>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>No certificates available.</p>
-            {% endif %}
-        </section>
-    
-        <!-- Education Section -->
-        <section class="education-section" aria-labelledby="education-heading">
-            <h2 id="education-heading" class="section-heading">Educational Background</h2>
-            {% if education_history %}
-                <ul class="education-list">
-                    {% for education in education_history %}
-                        <li class="education-item">
-                            <h3>{{ education.degree }} in {{ education.field_of_study }}</h3>
-                            <p><strong>{{ education.institution }}</strong></p>
-                            <p><time datetime="{{ education.start_date|date:'Y-m' }}">{{ education.start_date|date:"F Y" }}</time> - 
-                            <time datetime="{{ education.end_date|date:'Y-m' }}">{{ education.end_date|date:"F Y" }}</time></p>
-                            <p>{{ education.description }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No educational background available.</p>
-            {% endif %}
-        </section>
-    
-        <!-- Job Experience Section -->
-        <section class="experience-section" aria-labelledby="experience-heading">
-            <h2 id="experience-heading" class="section-heading">Job Experience</h2>
-            {% if job_experiences %}
-                <ul class="experience-list">
-                    {% for job in job_experiences %}
-                        <li class="experience-item">
-                            <h3>{{ job.title }} at {{ job.company }}</h3>
-                            <p><time datetime="{{ job.start_date|date:'Y-m-d' }}">{{ job.start_date|date:"F Y" }}</time> - 
-                            <time datetime="{{ job.end_date|default_if_none:'Present'|date:'Y-m-d' }}">{{ job.end_date|default:"Present"|date:"F Y" }}</time></p>
-                            <p>{{ job.description }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No job experiences found.</p>
-            {% endif %}
-        </section>
-    </article>
+            <div class="form-actions">
+                <button type="submit" class="filter-button">Filter</button>
+                {% if selected_skills %}
+                <a href="{% url 'portfolio:education' %}" class="clear-filter">Clear filter</a>
+                {% endif %}
+            </div>
+        </form>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates-section" aria-labelledby="certificates-heading">
+        <h2 id="certificates-heading" class="section-heading">Certificates</h2>
+        {% if certificates %}
+        <div class="certificates-grid">
+            {% for certificate in certificates %}
+            <div class="certificate-card">
+                <h3>{{ certificate.title }}</h3>
+                {% if certificate.description %}
+                <p>{{ certificate.description }}</p>
+                {% endif %}
+                {% if certificate.link %}
+                <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer">View Certificate</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No certificates available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section" aria-labelledby="education-heading">
+        <h2 id="education-heading" class="section-heading">Educational Background</h2>
+        {% if education_history %}
+        <ul class="education-list">
+            {% for education in education_history %}
+            <li class="education-item">
+                <h3>{{ education.degree }} in {{ education.field_of_study }}</h3>
+                <p class="institution"><strong>{{ education.institution }}</strong></p>
+                <p class="time-period">
+                    <time datetime="{{ education.start_date|date:'Y-m' }}">{{ education.start_date|date:"F Y" }}</time> -
+                    <time datetime="{{ education.end_date|date:'Y-m' }}">{{ education.end_date|date:"F Y" }}</time>
+                </p>
+                {% if education.description %}
+                <p>{{ education.description }}</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No educational background available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Job Experience Section -->
+    <section class="experience-section" aria-labelledby="experience-heading">
+        <h2 id="experience-heading" class="section-heading">Job Experience</h2>
+        {% if job_experiences %}
+        <ul class="experience-list">
+            {% for job in job_experiences %}
+            <li class="experience-item">
+                <h3>{{ job.title }} at {{ job.company }}</h3>
+                <p class="time-period">
+                    <time datetime="{{ job.start_date|date:'Y-m-d' }}">{{ job.start_date|date:"F Y" }}</time> -
+                    {% if job.end_date %}
+                    <time datetime="{{ job.end_date|date:'Y-m-d' }}">{{ job.end_date|date:"F Y" }}</time>
+                    {% else %}
+                    Present
+                    {% endif %}
+                </p>
+                {% if job.description %}
+                <p>{{ job.description }}</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No job experiences found.</p>
+        {% endif %}
+    </section>
+</article>
 {% endblock %}
