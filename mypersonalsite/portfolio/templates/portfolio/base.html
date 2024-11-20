@@ -44,11 +44,11 @@
                     <li><a href="{% url 'portfolio:education' %}">{% trans "Experiences" %}</a></li>
                     <li><a href="{% url 'portfolio:projects' %}">{% trans "Projects" %}</a></li>
                     <li><a href="{% url 'portfolio:contact' %}">{% trans "Contact Me" %}</a></li>
-                    <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
-                    <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>
-                    <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
                     <li><a href="{% url 'portfolio:blog_list' %}">{% trans "Blog" %}</a></li>
-                    
+                    <li><a href="{% url 'portfolio:linkedin' %}" target="_blank">{% trans "LinkedIn" %}</a></li>
+                    <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>                    
+                    <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
+
                     <!-- Conditional Language Switch -->
                     {% if LANGUAGE_CODE == "en" %}
                         <li><a href="/it/">Italiano</a></li>
