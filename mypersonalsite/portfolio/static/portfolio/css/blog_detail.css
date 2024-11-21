@@ -1,3 +1,5 @@
+/* blog_detail.css */
+
 /* CSS Variables */
 :root {
     --primary-color: #007bff;
@@ -64,7 +66,9 @@ body {
     border-radius: 5px;
 }
 
-.post-content h2, .post-content h3, .post-content h4 {
+.post-content h2,
+.post-content h3,
+.post-content h4 {
     color: var(--secondary-color);
     margin-top: 1.5em;
     margin-bottom: 0.5em;
@@ -87,10 +91,14 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;             /* Added */
+    flex-wrap: wrap;           /* Added */
+    gap: 10px;                 /* Added */
 }
 
 .related-post-item {
     margin-bottom: 10px;
+    flex: 1 1 calc(50% - 20px); /* Adjusted for responsiveness */
 }
 
 .related-post-item a {
@@ -113,4 +121,37 @@ body {
 
 .back-link:hover {
     text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .post-title {
+        font-size: 1.5rem;
+    }
+
+    .related-post-item {
+        flex: 1 1 100%; /* Full width on small screens */
+    }
+
+    .related-posts .section-heading {
+        font-size: 1.5rem;
+    }
+
+    .post-content {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-title {
+        font-size: 1.3rem;
+    }
+
+    .post-content {
+        font-size: 0.9rem;
+    }
+
+    .blog-detail-page {
+        padding: 15px;
+    }
 }

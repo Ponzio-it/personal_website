@@ -1,3 +1,5 @@
+/* blog_list.css */
+
 /* CSS Variables */
 :root {
     --primary-color: #007bff;
@@ -31,15 +33,17 @@ body {
 .search-form {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Added for responsiveness */
     margin-bottom: 20px;
 }
 
 .search-form input[type="text"] {
     padding: 10px;
     border: 1px solid var(--border-color);
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     width: 300px;
     font-size: 1rem;
+    margin-bottom: 10px; /* Added for spacing on small screens */
 }
 
 .search-form button {
@@ -47,12 +51,18 @@ body {
     border: none;
     background-color: var(--primary-color);
     color: var(--white-color);
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .search-form button:hover {
     background-color: var(--primary-color-dark);
+}
+
+.search-form input[type="text"],
+.search-form button {
+    margin: 5px; /* Added spacing between elements */
 }
 
 /* Categories */
@@ -65,8 +75,9 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: inline-flex;
-    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Adjusted for responsiveness */
     gap: 10px;
 }
 
@@ -82,6 +93,7 @@ body {
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .category-link:hover {
@@ -93,6 +105,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
+    padding: 0 20px; /* Added padding for small screens */
 }
 
 .post-card {
@@ -152,6 +165,7 @@ body {
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .read-more:hover {
@@ -159,12 +173,76 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .posts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .post-title {
+        font-size: 1.4rem;
+    }
+}
+
 @media (max-width: 768px) {
     .search-form input[type="text"] {
-        width: 200px;
+        width: 100%;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .category-link {
+        font-size: 0.85rem;
+        padding: 6px 10px;
     }
 
     .post-title {
         font-size: 1.3rem;
+    }
+
+    .post-content {
+        padding: 10px;
+    }
+
+    .read-more {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-list-page .page-title {
+        font-size: 1.8rem;
+    }
+
+    .post-title {
+        font-size: 1.2rem;
+    }
+
+    .post-meta {
+        font-size: 0.8rem;
+    }
+
+    .post-excerpt {
+        font-size: 0.9rem;
+    }
+
+    .category-link {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    .read-more {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    .posts-grid {
+        padding: 0 10px;
+    }
+
+    .post-card {
+        border-radius: 5px;
     }
 }

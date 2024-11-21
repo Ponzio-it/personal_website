@@ -13,31 +13,31 @@
 {% block content %}
 <article class="contact-page">
     <header>
-        <h1 class="page-title">Get in Touch</h1>
+        <h1 class="page-title">{% trans "Get in Touch" %}</h1>
         <p class="page-subtitle">
-            Fill out the form below to send me a message, or reach out using the contact details provided.
+            {% trans "Fill out the form below to send me a message, or reach out using the contact details provided." %}
         </p>
     </header>
 
     <div class="contact-container">
         <!-- Contact Information Section -->
         <section class="contact-info" aria-labelledby="contact-info-heading">
-            <h2 id="contact-info-heading" class="section-heading">Contact Information</h2>
+            <h2 id="contact-info-heading" class="section-heading">{% trans "Contact Information" %}</h2>
             {% if contact_info %}
-                <p><strong>Email:</strong> <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+                <p><strong>{% trans "Email:" %}</strong> <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
             {% else %}
-                <p>Contact information is currently unavailable.</p>
+                <p>{% trans "Contact information is currently unavailable." %}</p>
             {% endif %}
         </section>
 
         <!-- Contact Form Section -->
         <section class="contact-form" aria-labelledby="contact-form-heading">
-            <h2 id="contact-form-heading" class="section-heading">Send Me a Message</h2>
+            <h2 id="contact-form-heading" class="section-heading">{% trans "Send Me a Message" %}</h2>
 
             <!-- Success Message -->
             {% if success %}
                 <div class="success-message" role="alert">
-                    Your message has been sent successfully. Thank you for reaching out!
+                    {% trans "Your message has been sent successfully. Thank you for reaching out!" %}
                 </div>
             {% endif %}
 
@@ -45,7 +45,7 @@
             <form method="post" novalidate>
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="id_first_name">First Name</label>
+                    <label for="id_first_name">{% trans "First Name" %}</label>
                     {{ form.first_name }}
                     {% if form.first_name.errors %}
                         <div class="form-error">{{ form.first_name.errors|join:", " }}</div>
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="id_last_name">Last Name</label>
+                    <label for="id_last_name">{% trans "Last Name" %}</label>
                     {{ form.last_name }}
                     {% if form.last_name.errors %}
                         <div class="form-error">{{ form.last_name.errors|join:", " }}</div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="id_email">Email</label>
+                    <label for="id_email">{% trans "Email" %}</label>
                     {{ form.email }}
                     {% if form.email.errors %}
                         <div class="form-error">{{ form.email.errors|join:", " }}</div>
@@ -69,14 +69,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="id_message">Message</label>
+                    <label for="id_message">{% trans "Message" %}</label>
                     {{ form.message }}
                     {% if form.message.errors %}
                         <div class="form-error">{{ form.message.errors|join:", " }}</div>
                     {% endif %}
                 </div>
 
-                <button type="submit" class="btn-submit">Send Message</button>
+                <button type="submit" class="btn-submit">{% trans "Send Message" %}</button>
             </form>
         </section>
     </div>

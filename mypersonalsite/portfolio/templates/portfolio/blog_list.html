@@ -3,10 +3,10 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}Blog{% endblock %}
+{% block title %}{% trans "Blog" %}{% endblock %}
 
 {% block meta_description %}
-<meta name="description" content="Browse insightful blog posts about projects, experiences, and more. Stay updated with the latest articles.">
+<meta name="description" content="{% trans 'Browse insightful blog posts about projects, experiences, and more. Stay updated with the latest articles.' %}">
 {% endblock %}
 
 {% block styles %}
@@ -16,19 +16,19 @@
 {% block content %}
 <article class="blog-list-page">
     <header>
-        <h1 class="page-title">Blog</h1>
+        <h1 class="page-title">{% trans "Blog" %}</h1>
 
         <!-- Search Form -->
-        <form method="get" action="" class="search-form" role="search" aria-label="Search blog posts">
-            <label for="search" class="visually-hidden">Search</label>
-            <input type="text" id="search" name="q" value="{{ query|default:'' }}" placeholder="Search blog posts..." aria-label="Search blog posts">
-            <button type="submit">Search</button>
+        <form method="get" action="" class="search-form" role="search" aria-label="{% trans 'Search blog posts' %}">
+            <label for="search" class="visually-hidden">{% trans "Search" %}</label>
+            <input type="text" id="search" name="q" value="{{ query|default:'' }}" placeholder="{% trans 'Search blog posts...' %}" aria-label="{% trans 'Search blog posts' %}">
+            <button type="submit">{% trans "Search" %}</button>
         </form>
     </header>
 
     <!-- Categories -->
     {% if categories %}
-    <nav class="categories" aria-label="Blog Categories">
+    <nav class="categories" aria-label="{% trans 'Blog Categories' %}">
         <ul class="category-list">
             {% for category in categories %}
             <li class="category-item">
@@ -41,7 +41,7 @@
 
     <!-- Blog Posts -->
     <section class="posts" aria-labelledby="posts-heading">
-        <h2 id="posts-heading" class="section-heading">Blog Posts</h2>
+        <h2 id="posts-heading" class="section-heading">{% trans "Blog Posts" %}</h2>
         {% if posts %}
         <div class="posts-grid">
             {% for post in posts %}
@@ -55,15 +55,15 @@
                     <h3 class="post-title">
                         <a href="{% url 'portfolio:blog_detail' post.slug %}">{{ post.title }}</a>
                     </h3>
-                    <p class="post-meta">By {{ post.author }} on {{ post.publication_date|date:"F d, Y" }}</p>
+                    <p class="post-meta">{% trans "By" %} {{ post.author }} {% trans "on" %} {{ post.publication_date|date:"F d, Y" }}</p>
                     <p class="post-excerpt">{{ post.excerpt|truncatewords:30 }}</p>
-                    <a href="{% url 'portfolio:blog_detail' post.slug %}" class="read-more">Read More</a>
+                    <a href="{% url 'portfolio:blog_detail' post.slug %}" class="read-more">{% trans "Read More" %}</a>
                 </div>
             </article>
             {% endfor %}
         </div>
         {% else %}
-        <p>No posts found.</p>
+        <p>{% trans "No posts found." %}</p>
         {% endif %}
     </section>
 </article>

@@ -12,24 +12,26 @@
 {% block content %}
 <article class="projects-page">
     <header>
-        <h1 class="page-title">My Projects</h1>
-        <p class="page-subtitle">Explore my portfolio of public projects, including their details, related folders, and files.</p>
+        <h1 class="page-title">{% trans "My Projects" %}</h1>
+        <p class="page-subtitle">
+            {% trans "Explore my portfolio of public projects, including their details, related folders, and files." %}
+        </p>
     </header>
 
     <section class="projects-grid" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="section-heading">Projects</h2>
+        <h2 id="projects-heading" class="section-heading">{% trans "Projects" %}</h2>
         {% if projects %}
             <div class="grid">
                 {% for project in projects %}
                     <div class="project-card">
                         <h3 class="project-card-title">{{ project.title }}</h3>
                         <p class="project-card-description">{{ project.description|truncatewords:20 }}</p>
-                        <a href="{% url 'portfolio:project_detail' project.id %}" class="btn">View Project</a>
+                        <a href="{% url 'portfolio:project_detail' project.id %}" class="btn">{% trans "View Project" %}</a>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
-            <p>No projects available at the moment.</p>
+            <p>{% trans "No projects available at the moment." %}</p>
         {% endif %}
     </section>
 </article>

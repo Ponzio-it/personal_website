@@ -3,7 +3,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ folder.name }} - Folder Details{% endblock %}
+{% block title %}{{ folder.name }} - {% trans "Folder Details" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/folder_detail.css' %}">
@@ -20,7 +20,7 @@
 
     <!-- Files in Folder -->
     <section class="files-section" aria-labelledby="files-heading">
-        <h2 id="files-heading" class="section-heading">Files</h2>
+        <h2 id="files-heading" class="section-heading">{% trans "Files" %}</h2>
         {% if files %}
             <ul class="files-list">
                 {% for file in files %}
@@ -30,11 +30,11 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No files available in this folder.</p>
+            <p>{% trans "No files available in this folder." %}</p>
         {% endif %}
     </section>
 
     <!-- Back to Project Link -->
-    <p><a href="{% url 'portfolio:project_detail' folder.project.id %}" class="back-link">Back to Project Details</a></p>
+    <p><a href="{% url 'portfolio:project_detail' folder.project.id %}" class="back-link">{% trans "Back to Project Details" %}</a></p>
 </article>
 {% endblock %}

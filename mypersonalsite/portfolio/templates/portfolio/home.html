@@ -2,7 +2,9 @@
 
 {% extends 'portfolio/base.html' %}
 {% load static %}
-{% block title %}Home - My Portfolio{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "Home - My Portfolio" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/home.css' %}">
@@ -13,11 +15,13 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-text">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Explore my projects, skills, and professional experiences. Let's build something amazing together!</p>
+            <h1>{% trans "Welcome to My Portfolio" %}</h1>
+            <p>
+                {% trans "Explore my projects, skills, and professional experiences. Let's build something amazing together!" %}
+            </p>
         </div>
         <div class="hero-image">
-            <img src="{% static 'portfolio/images/profile.jpeg' %}" alt="Profile Image">
+            <img src="{% static 'portfolio/images/profile.jpeg' %}" alt="{% trans 'Profile Image' %}">
         </div>
     </section>
 

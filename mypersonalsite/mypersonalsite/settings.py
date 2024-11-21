@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Register the 'portfolio' app
-    'portfolio', 
+    'portfolio',
 ]
 
 MIDDLEWARE = [
@@ -142,9 +142,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Backend for sending emails
-EMAIL_HOST = 'smtp.office365.com' 
+EMAIL_HOST = 'smtp.sendgrid.net' 
 EMAIL_PORT = 587  
 EMAIL_USE_TLS = True  
-EMAIL_HOST_USER = 'your-email@example.com'
-EMAIL_HOST_PASSWORD = 'your-password-placeholder'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER 
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+DEFAULT_FROM_EMAIL =  'ponzioettore@outlook.com'

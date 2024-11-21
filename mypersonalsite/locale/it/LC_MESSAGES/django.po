@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-15 12:12+0100\n"
+"POT-Creation-Date: 2024-11-21 12:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,80 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: mypersonalsite/settings.py:121
-msgid "English"
-msgstr "Inglese"
 
-#: mypersonalsite/settings.py:122
-msgid "Italian"
-msgstr "Italiano"
+#: portfolio/form.py:15 portfolio/templates/portfolio/base.html:13
+msgid "Your Name"
+msgstr "Il Tuo Nome"
+
+#: portfolio/form.py:16
+#, fuzzy
+#| msgid "Your Name"
+msgid "Your Review"
+msgstr "Il Tuo Nome"
+
+#: portfolio/form.py:17
+msgid "Would you recommend this project?"
+msgstr "Raccomenderesti questo progetto?"
+
+#: portfolio/form.py:20
+msgid "Enter your full name."
+msgstr "Inserisci il tuo nome"
+
+#: portfolio/form.py:21
+msgid "Write your honest feedback about the project."
+msgstr "Scrivi un feedback onesto riguardo il progetto"
+
+#: portfolio/form.py:22
+msgid "Select Yes or No."
+msgstr "Seleziona Si o No"
+
+#: portfolio/form.py:32 portfolio/form.py:33
+#: portfolio/templates/portfolio/contact.html:48
+#, fuzzy
+#| msgid "Your Name"
+msgid "First Name"
+msgstr "Il Tuo Nome"
+
+#: portfolio/form.py:34
+msgid "Enter your first name."
+msgstr "Inserisci il tuo Nome"
+
+#: portfolio/form.py:38 portfolio/form.py:39
+#: portfolio/templates/portfolio/contact.html:56
+msgid "Last Name"
+msgstr "Cognome"
+
+#: portfolio/form.py:40
+msgid "Enter your last name."
+msgstr "Inserisci il tuo Cognome"
+
+#: portfolio/form.py:43
+#, fuzzy
+#| msgid "Your Name"
+msgid "Your Email"
+msgstr "Il Tuo Nome"
+
+#: portfolio/form.py:44 portfolio/templates/portfolio/contact.html:64
+msgid "Email"
+msgstr ""
+
+#: portfolio/form.py:45
+msgid "Enter a valid email address."
+msgstr "Inserisci un indirizzo email valido"
+
+#: portfolio/form.py:48
+#, fuzzy
+#| msgid "Your Name"
+msgid "Your Message"
+msgstr "Il Tuo Nome"
+
+#: portfolio/form.py:49 portfolio/templates/portfolio/contact.html:72
+msgid "Message"
+msgstr "Messaggio"
+
+#: portfolio/form.py:50
+msgid "Enter your message here."
+msgstr "Inserisci il tuo messaggio qui."
 
 #: portfolio/templates/portfolio/base.html:9
 #: portfolio/templates/portfolio/base.html:16
@@ -38,113 +105,405 @@ msgstr ""
 "Una vetrina dei miei progetti, formazione ed esperienze professionali. "
 "Scopri il mio portfolio e connettiti con me."
 
-#: portfolio/templates/portfolio/base.html:13
-msgid "Your Name"
-msgstr "Il Tuo Nome"
-
 #: portfolio/templates/portfolio/base.html:17
 msgid "A showcase of my projects, education, and professional experiences."
 msgstr "Una vetrina dei miei progetti, formazione ed esperienze professionali."
 
-#: portfolio/templates/portfolio/base.html:33
+#: portfolio/templates/portfolio/base.html:35
 msgid "Main Navigation"
 msgstr "Navigazione Principale"
 
-#: portfolio/templates/portfolio/base.html:35
+#: portfolio/templates/portfolio/base.html:43
 msgid "Home"
 msgstr "Home"
 
-#: portfolio/templates/portfolio/base.html:36
+#: portfolio/templates/portfolio/base.html:44
 msgid "Experiences"
 msgstr "Esperienze"
 
-#: portfolio/templates/portfolio/base.html:37
+#: portfolio/templates/portfolio/base.html:45
+#: portfolio/templates/portfolio/projects.html:22
 msgid "Projects"
 msgstr "Progetti"
 
-#: portfolio/templates/portfolio/base.html:38
+#: portfolio/templates/portfolio/base.html:46
 msgid "Contact Me"
 msgstr "Contattami"
 
-#: portfolio/templates/portfolio/base.html:39
+#: portfolio/templates/portfolio/base.html:47
+#: portfolio/templates/portfolio/blog_list.html:6
+#: portfolio/templates/portfolio/blog_list.html:19
+msgid "Blog"
+msgstr ""
+
+#: portfolio/templates/portfolio/base.html:48
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: portfolio/templates/portfolio/base.html:40
+#: portfolio/templates/portfolio/base.html:49
 msgid "GitHub"
 msgstr "GitHub"
 
-#: portfolio/templates/portfolio/base.html:41
-msgid "Open CV"
-msgstr "Curriculum Vitae"
+#: portfolio/templates/portfolio/base.html:50
+msgid "Curriculum Vitae"
+msgstr ""
 
-#: portfolio/templates/portfolio/base.html:55
-msgid "Ettore Ponzio. All Rights Reserved."
+#: portfolio/templates/portfolio/base.html:75
+#, fuzzy
+#| msgid "Ettore Ponzio. All Rights Reserved."
+msgid "2024 Ettore Ponzio. All Rights Reserved."
 msgstr "Ettore Ponzio. Tutti i Diritti Riservati."
 
-#: portfolio/templates/portfolio/education.html:6
+#: portfolio/templates/portfolio/blog_detail.html:32
+#: portfolio/templates/portfolio/blog_list.html:58
+msgid "By"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_detail.html:32
+#: portfolio/templates/portfolio/blog_list.html:58
+msgid "on"
+msgstr "il"
+
+#: portfolio/templates/portfolio/blog_detail.html:40
+msgid ""
+"\n"
+"        Here is the blog content:\n"
+"        "
+msgstr ""
+"\n"
+"        Questo è il contenuto del blog:\n"
+"        "
+
+#: portfolio/templates/portfolio/blog_detail.html:49
+msgid "Related Posts"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_detail.html:60
+msgid "Back to Blog List"
+msgstr "Ritorna al Blog"
+
+#: portfolio/templates/portfolio/blog_list.html:9
+msgid ""
+"Browse insightful blog posts about projects, experiences, and more. Stay "
+"updated with the latest articles."
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:22
+#: portfolio/templates/portfolio/blog_list.html:24
+msgid "Search blog posts"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:23
+#: portfolio/templates/portfolio/blog_list.html:25
+msgid "Search"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:24
+msgid "Search blog posts..."
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:31
+msgid "Blog Categories"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:44
+msgid "Blog Posts"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:60
+msgid "Read More"
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:66
+#, fuzzy
+#| msgid "No job experiences found."
+msgid "No posts found."
+msgstr "Nessuna esperienza lavorativa trovata."
+
+#: portfolio/templates/portfolio/contact.html:7
+#, fuzzy
+#| msgid "My Portfolio"
+msgid "Contact - My Portfolio"
+msgstr "Il Mio Portfolio"
+
+#: portfolio/templates/portfolio/contact.html:16
+msgid "Get in Touch"
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:18
+msgid ""
+"Fill out the form below to send me a message, or reach out using the contact "
+"details provided."
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:25
+msgid "Contact Information"
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:27
+msgid "Email:"
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:29
+msgid "Contact information is currently unavailable."
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:35
+msgid "Send Me a Message"
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:40
+msgid "Your message has been sent successfully. Thank you for reaching out!"
+msgstr ""
+
+#: portfolio/templates/portfolio/contact.html:79
+msgid "Send Message"
+msgstr ""
+
+#: portfolio/templates/portfolio/education.html:7
 msgid "Education and Experience"
 msgstr "Formazione ed Esperienza"
 
-#: portfolio/templates/portfolio/education.html:10
+#: portfolio/templates/portfolio/education.html:16
+#, fuzzy
+#| msgid "My Education and Experience"
+msgid "My Education & Experience"
+msgstr "La Mia Formazione ed Esperienza"
+
+#: portfolio/templates/portfolio/education.html:18
+#, fuzzy
+#| msgid ""
+#| "Explore my educational background, skills, certifications, and job "
+#| "experience."
 msgid ""
-"Explore my educational background, skills, certifications, and job "
-"experience."
+"Explore my educational background, certifications, and job experiences. "
+"Filter by skills to see related details."
 msgstr ""
 "Esplora il mio background educativo, le competenze, le certificazioni e "
 "l'esperienza lavorativa."
 
-#: portfolio/templates/portfolio/education.html:14
-msgid "My Education and Experience"
-msgstr "La Mia Formazione ed Esperienza"
-
-#: portfolio/templates/portfolio/education.html:19
+#: portfolio/templates/portfolio/education.html:24
 msgid "Skills"
 msgstr "Competenze"
 
-#: portfolio/templates/portfolio/education.html:30
-#, python-format
-msgid "Showing results for skill: %(skill_name)s"
-msgstr "Mostrando risultati per competenza: %(skill_name)s"
+#: portfolio/templates/portfolio/education.html:35
+msgid "Filter"
+msgstr ""
 
-#: portfolio/templates/portfolio/education.html:31
+#: portfolio/templates/portfolio/education.html:37
 msgid "Clear filter"
 msgstr "Cancella filtro"
 
-#: portfolio/templates/portfolio/education.html:38
+#: portfolio/templates/portfolio/education.html:45
 msgid "Certificates"
 msgstr "Certificati"
 
-#: portfolio/templates/portfolio/education.html:44
-msgid "Course Link"
-msgstr "Link al Corso"
+#: portfolio/templates/portfolio/education.html:55
+#, fuzzy
+#| msgid "Certificates"
+msgid "View Certificate"
+msgstr "Certificati"
 
-#: portfolio/templates/portfolio/education.html:50
-msgid "No certificates available at the moment."
+#: portfolio/templates/portfolio/education.html:61
+#, fuzzy
+#| msgid "No certificates available at the moment."
+msgid "No certificates available."
 msgstr "Nessun certificato disponibile al momento."
 
-#: portfolio/templates/portfolio/education.html:56
+#: portfolio/templates/portfolio/education.html:67
 msgid "Educational Background"
 msgstr "Background Educativo"
 
-#: portfolio/templates/portfolio/education.html:61
-#, python-format
-msgid "%(degree)s in %(field)s"
-msgstr "%(degree)s in %(field)s"
+#: portfolio/templates/portfolio/education.html:72
+msgid "in"
+msgstr ""
 
-#: portfolio/templates/portfolio/education.html:70
-msgid "No educational background available at the moment."
+#: portfolio/templates/portfolio/education.html:85
+#, fuzzy
+#| msgid "No educational background available at the moment."
+msgid "No educational background available."
 msgstr "Nessun background educativo disponibile al momento."
 
-#: portfolio/templates/portfolio/education.html:76
+#: portfolio/templates/portfolio/education.html:91
 msgid "Job Experience"
 msgstr "Esperienza Lavorativa"
 
-#: portfolio/templates/portfolio/education.html:81
-#, python-format
-msgid "%(title)s at %(company)s"
-msgstr "%(title)s presso %(company)s"
+#: portfolio/templates/portfolio/education.html:96
+msgid "at"
+msgstr ""
 
-#: portfolio/templates/portfolio/education.html:89
+#: portfolio/templates/portfolio/education.html:102
+msgid "Present"
+msgstr ""
+
+#: portfolio/templates/portfolio/education.html:112
 msgid "No job experiences found."
 msgstr "Nessuna esperienza lavorativa trovata."
+
+#: portfolio/templates/portfolio/folder_detail.html:6
+msgid "Folder Details"
+msgstr ""
+
+#: portfolio/templates/portfolio/folder_detail.html:23
+msgid "Files"
+msgstr ""
+
+#: portfolio/templates/portfolio/folder_detail.html:33
+#, fuzzy
+#| msgid "No certificates available at the moment."
+msgid "No files available in this folder."
+msgstr "Nessun certificato disponibile al momento."
+
+#: portfolio/templates/portfolio/folder_detail.html:38
+#: portfolio/templates/portfolio/review_form.html:33
+msgid "Back to Project Details"
+msgstr ""
+
+#: portfolio/templates/portfolio/home.html:7
+#, fuzzy
+#| msgid "My Portfolio"
+msgid "Home - My Portfolio"
+msgstr "Il Mio Portfolio"
+
+#: portfolio/templates/portfolio/home.html:18
+#, fuzzy
+#| msgid "My Portfolio"
+msgid "Welcome to My Portfolio"
+msgstr "Il Mio Portfolio"
+
+#: portfolio/templates/portfolio/home.html:20
+#, fuzzy
+#| msgid ""
+#| "A showcase of my projects, education, and professional experiences. "
+#| "Discover my portfolio and connect with me."
+msgid ""
+"Explore my projects, skills, and professional experiences. Let's build "
+"something amazing together!"
+msgstr ""
+"Una vetrina dei miei progetti, formazione ed esperienze professionali. "
+"Scopri il mio portfolio e connettiti con me."
+
+#: portfolio/templates/portfolio/home.html:24
+msgid "Profile Image"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:6
+#, fuzzy
+#| msgid "Projects"
+msgid "Project Details"
+msgstr "Progetti"
+
+#: portfolio/templates/portfolio/project_detail.html:21
+msgid "Folders and Files"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:38
+msgid "No files in this folder."
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:44
+#, fuzzy
+#| msgid "No certificates available at the moment."
+msgid "No folders or files available for this project."
+msgstr "Nessun certificato disponibile al momento."
+
+#: portfolio/templates/portfolio/project_detail.html:50
+msgid "Reviews"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:59
+msgid "Submitted on"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:65
+msgid "No reviews available yet. Be the first to leave a review!"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:69
+msgid "Leave a Review"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:72
+#, fuzzy
+#| msgid "Projects"
+msgid "Back to Projects"
+msgstr "Progetti"
+
+#: portfolio/templates/portfolio/projects.html:6
+#, fuzzy
+#| msgid "My Portfolio"
+msgid "Projects - My Portfolio"
+msgstr "Il Mio Portfolio"
+
+#: portfolio/templates/portfolio/projects.html:15
+#, fuzzy
+#| msgid "Projects"
+msgid "My Projects"
+msgstr "Progetti"
+
+#: portfolio/templates/portfolio/projects.html:17
+msgid ""
+"Explore my portfolio of public projects, including their details, related "
+"folders, and files."
+msgstr ""
+
+#: portfolio/templates/portfolio/projects.html:29
+#, fuzzy
+#| msgid "Projects"
+msgid "View Project"
+msgstr "Progetti"
+
+#: portfolio/templates/portfolio/projects.html:34
+#, fuzzy
+#| msgid "No certificates available at the moment."
+msgid "No projects available at the moment."
+msgstr "Nessun certificato disponibile al momento."
+
+#: portfolio/templates/portfolio/review_form.html:6
+#: portfolio/templates/portfolio/review_form.html:16
+msgid "Submit a Review for"
+msgstr ""
+
+#: portfolio/templates/portfolio/review_form.html:31
+msgid "Submit Review"
+msgstr ""
+
+#: portfolio/views.py:87
+#, python-brace-format
+msgid ""
+"Message from {first_name} {last_name} ({email}):\n"
+"\n"
+"{message}"
+msgstr ""
+
+#: portfolio/views.py:97
+msgid "Contact Form Submission"
+msgstr ""
+
+#: portfolio/views.py:133
+msgid "The requested CV could not be found."
+msgstr ""
+
+#~ msgid "English"
+#~ msgstr "Inglese"
+
+#~ msgid "Italian"
+#~ msgstr "Italiano"
+
+#~ msgid "Open CV"
+#~ msgstr "Curriculum Vitae"
+
+#, python-format
+#~ msgid "Showing results for skill: %(skill_name)s"
+#~ msgstr "Mostrando risultati per competenza: %(skill_name)s"
+
+#~ msgid "Course Link"
+#~ msgstr "Link al Corso"
+
+#, python-format
+#~ msgid "%(degree)s in %(field)s"
+#~ msgstr "%(degree)s in %(field)s"
+
+#, python-format
+#~ msgid "%(title)s at %(company)s"
+#~ msgstr "%(title)s presso %(company)s"

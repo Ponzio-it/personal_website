@@ -1,5 +1,3 @@
-# portfolio/views.py
-
 import os
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
@@ -10,7 +8,7 @@ from .models import Project, ContactInfo, Certificate, Education, Review, Skill,
 from .form  import ReviewForm, ContactForm
 from django.core.mail import send_mail
 from django.db.models import Q
-
+from django.utils.translation import gettext as _ 
 
 # Home page view
 def home(request):
@@ -47,7 +45,6 @@ def education(request):
         'selected_skill': selected_skills,
     }
     return render(request, 'portfolio/education.html', context)
-    
 
 # Projects page view with dynamic data
 def projects(request):
@@ -86,16 +83,22 @@ def contact(request):
             message = form.cleaned_data['message']
 
             # Compose the email message
-            full_message = (
-                f"Message from {first_name} {last_name} ({email}):\n\n{message}"
+            full_message = _(
+                "Message from {first_name} {last_name} ({email}):\n\n{message}"
+            ).format(
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                message=message,
             )
 
             # Send the email to the site owner's email address
             send_mail(
-                subject='Contact Form Submission',
+                subject=_("Contact Form Submission"),
                 message=full_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[contact_info.email],
+                fail_silently=False,
             )
 
             # Render the template with a success message
@@ -127,8 +130,7 @@ def open_cv(request):
         return FileResponse(open(file_path, 'rb'), content_type='application/pdf')
     except FileNotFoundError:
         # If the file is not found, raise a 404 error
-        raise Http404("The requested CV could not be found.")
-
+        raise Http404(_("The requested CV could not be found."))
 
 class ProjectDetailView(DetailView):
     """
@@ -179,7 +181,7 @@ class ReviewCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['project'] = get_object_or_404(Project, pk=self.kwargs['pk'])
         return context
-    
+
 def redirect_to_linkedin(request):
     """Redirects to the LinkedIn profile."""
     return redirect("https://www.linkedin.com/in/ettore-ponzio")
@@ -191,20 +193,6 @@ def redirect_to_github(request):
 def blog_list(request):
     """
     View to display the list of blog posts.
-
-    Features:
-    - Captures a search query from the request.
-    - Filters blog posts by the query if provided.
-    - Orders posts by publication date (newest first).
-    - Includes all categories for filtering.
-
-    Context:
-        posts: Filtered and ordered blog posts.
-        categories: All available categories.
-        query: The search query entered by the user (if any).
-
-    Template:
-        blog/blog_list.html
     """
     query = request.GET.get('q')  # Capture the search query from the URL
     posts = BlogPost.objects.all().order_by('-publication_date')
@@ -223,22 +211,9 @@ def blog_list(request):
 
     return render(request, 'portfolio/blog_list.html', context)
 
-
 def blog_detail(request, slug):
     """
     View to display the details of a single blog post.
-
-    Features:
-    - Retrieves the blog post based on the provided slug.
-    - Fetches up to 3 related posts sharing the same categories,
-      excluding the current post.
-
-    Context:
-        post: The requested blog post.
-        related_posts: A queryset of related blog posts.
-
-    Template:
-        blog/blog_detail.html
     """
     post = get_object_or_404(BlogPost, slug=slug)
     related_posts = BlogPost.objects.filter(

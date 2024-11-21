@@ -28,20 +28,25 @@
 <article class="blog-detail-page">
     <header class="post-header">
         <h1 class="post-title">{{ post.title }}</h1>
-        <p class="post-meta">By {{ post.author }} on {{ post.publication_date|date:"F d, Y" }}</p>
+        <p class="post-meta">
+            {% trans "By" %} {{ post.author }} {% trans "on" %} {{ post.publication_date|date:"F d, Y" }}
+        </p>
         {% if post.featured_image %}
         <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="featured-image">
         {% endif %}
     </header>
 
     <section class="post-content">
+        {% blocktrans %}
+        Here is the blog content:
+        {% endblocktrans %}
         {{ post.content|safe }}
     </section>
 
     <!-- Related Posts -->
     {% if related_posts %}
     <section class="related-posts" aria-labelledby="related-posts-heading">
-        <h2 id="related-posts-heading" class="section-heading">Related Posts</h2>
+        <h2 id="related-posts-heading" class="section-heading">{% trans "Related Posts" %}</h2>
         <ul class="related-posts-list">
             {% for related_post in related_posts %}
             <li class="related-post-item">
@@ -52,6 +57,6 @@
     </section>
     {% endif %}
 
-    <p><a href="{% url 'portfolio:blog_list' %}" class="back-link">Back to Blog List</a></p>
+    <p><a href="{% url 'portfolio:blog_list' %}" class="back-link">{% trans "Back to Blog List" %}</a></p>
 </article>
 {% endblock %}

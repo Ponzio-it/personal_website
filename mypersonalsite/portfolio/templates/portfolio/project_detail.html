@@ -3,7 +3,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ project.title }} - Project Details{% endblock %}
+{% block title %}{{ project.title }} - {% trans "Project Details" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}">
@@ -18,7 +18,7 @@
 
     <!-- Folders and Files -->
     <section class="folders-section" aria-labelledby="folders-heading">
-        <h2 id="folders-heading" class="section-heading">Folders and Files</h2>
+        <h2 id="folders-heading" class="section-heading">{% trans "Folders and Files" %}</h2>
         {% if folders %}
             <ul class="folders-list">
                 {% for folder in folders %}
@@ -35,36 +35,40 @@
                                 {% endfor %}
                             </ul>
                         {% else %}
-                            <p>No files in this folder.</p>
+                            <p>{% trans "No files in this folder." %}</p>
                         {% endif %}
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No folders or files available for this project.</p>
+            <p>{% trans "No folders or files available for this project." %}</p>
         {% endif %}
     </section>
 
     <!-- Reviews -->
     <section class="reviews-section" aria-labelledby="reviews-heading">
-        <h2 id="reviews-heading" class="section-heading">Reviews</h2>
+        <h2 id="reviews-heading" class="section-heading">{% trans "Reviews" %}</h2>
         {% if reviews %}
             <ul class="reviews-list">
                 {% for review in reviews %}
                     <li class="review-item">
-                        <p class="review-content"><strong>{{ review.reviewer_name }}:</strong> {{ review.content }}</p>
-                        <p class="review-date"><small>Submitted on {{ review.created_at|date:"F d, Y" }}</small></p>
+                        <p class="review-content">
+                            <strong>{{ review.reviewer_name }}:</strong> {{ review.content }}
+                        </p>
+                        <p class="review-date">
+                            <small>{% trans "Submitted on" %} {{ review.created_at|date:"F d, Y" }}</small>
+                        </p>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No reviews available yet. Be the first to leave a review!</p>
+            <p>{% trans "No reviews available yet. Be the first to leave a review!" %}</p>
         {% endif %}
 
         <p>
-            <a href="{% url 'portfolio:project_review' project.id %}" class="btn btn-review">Leave a Review</a>
+            <a href="{% url 'portfolio:project_review' project.id %}" class="btn btn-review">{% trans "Leave a Review" %}</a>
         </p>
     </section>
-    <p><a href="{% url 'portfolio:projects'%}" class="back-link">Back to Projects</a></p>
+    <p><a href="{% url 'portfolio:projects' %}" class="back-link">{% trans "Back to Projects" %}</a></p>
 </article>
 {% endblock %}

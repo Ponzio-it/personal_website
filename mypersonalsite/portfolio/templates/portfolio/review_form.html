@@ -3,7 +3,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}Submit a Review for {{ project.title }}{% endblock %}
+{% block title %}{% trans "Submit a Review for" %} {{ project.title }}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/review_form.css' %}">
@@ -12,7 +12,9 @@
 {% block content %}
 <article class="review-form-page">
     <header>
-        <h1 class="page-title">Submit a Review for {{ project.title }}</h1>
+        <h1 class="page-title">
+            {% trans "Submit a Review for" %} {{ project.title }}
+        </h1>
     </header>
 
     <form method="post" class="review-form" novalidate>
@@ -26,8 +28,8 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit" class="btn btn-submit">Submit Review</button>
+        <button type="submit" class="btn btn-submit">{% trans "Submit Review" %}</button>
     </form>
-    <p><a href="{% url 'portfolio:project_detail' project.id %}" class="back-link">Back to Project Details</a></p>
+    <p><a href="{% url 'portfolio:project_detail' project.id %}" class="back-link">{% trans "Back to Project Details" %}</a></p>
 </article>
 {% endblock %}
