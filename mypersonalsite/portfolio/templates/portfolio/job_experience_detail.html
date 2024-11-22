@@ -1,0 +1,32 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ job_experience.title }} - {% trans "Job Experience Detail" %}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/job_experience_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="detail-page">
+    <h1 class="page-title">{{ job_experience.title }} {% trans "at" %} {{ job_experience.company }}</h1>
+    <section class="key-info">
+        <p class="company"><strong>{% trans "Company:" %}</strong> {{ job_experience.company }}</p>
+        <p><strong>{% trans "Start Date:" %}</strong> {{ job_experience.start_date|date:"F Y" }}</p>
+        <p><strong>{% trans "End Date:" %}</strong> 
+            {% if job_experience.end_date %}
+                {{ job_experience.end_date|date:"F Y" }}
+            {% else %}
+                {% trans "Present" %}
+            {% endif %}
+        </p>
+    </section>
+    <section class="description">
+        <h2 class="section-heading">{% trans "Description" %}</h2>
+        <p>{{ job_experience.description }}</p>
+    </section>
+    <a href="{% url 'portfolio:education' %}" class="btn-back">{% trans "Back to Job Experience" %}</a>
+</article>
+
+{% endblock %}

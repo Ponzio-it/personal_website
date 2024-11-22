@@ -220,6 +220,23 @@ body {
     margin: 10px 0;
 }
 
+.btn-detail {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-detail:hover {
+    background-color: var(--primary-color-dark);
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .page-title {

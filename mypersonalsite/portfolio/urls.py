@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import ProjectDetailView, ReviewCreateView
+from .views import ProjectDetailView, ReviewCreateView, ViewEducationDetail, ViewJobExperienceDetail
 
 app_name = 'portfolio'
 
@@ -28,4 +28,8 @@ urlpatterns = [
     # Blog URLs
     path('blog/', views.blog_list, name='blog_list'),
     path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
+
+    #Eductaion and Job Experiences detail
+    path('education/<int:pk>/', ViewEducationDetail.as_view(), name='education_detail'),
+    path('job_experience/<int:pk>/', ViewJobExperienceDetail.as_view(), name='job_experience_detail'),
 ]

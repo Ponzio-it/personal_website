@@ -117,3 +117,21 @@ body {
 .back-link:hover {
     text-decoration: underline;
 }
+
+/* Messages Block Styling */
+.messages {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--white-color);
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+

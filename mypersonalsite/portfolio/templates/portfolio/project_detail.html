@@ -15,6 +15,18 @@
         <h1 class="project-title">{{ project.title }}</h1>
         <p class="project-description">{{ project.description }}</p>
     </header>
+    
+    <!-- Message Block-->
+    {% if messages %}
+    <div class="messages" role="alert" aria-live="assertive">
+        <span class="sr-only">{% trans "Notification:" %}</span> <!-- Accessible context for screen readers -->
+        {% for message in messages %}
+        <div class="message message-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <!-- Folders and Files -->
     <section class="folders-section" aria-labelledby="folders-heading">
@@ -26,17 +38,11 @@
                         <h3 class="folder-name">
                             <a href="{% url 'portfolio:folder_detail' folder.id %}">{{ folder.name }}</a>
                         </h3>
-                        {% if folder.files.all %}
-                            <ul class="files-list">
-                                {% for file in folder.files.all %}
-                                    <li class="file-item">
-                                        <a href="{{ file.file.url }}" target="_blank">{{ file.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p>{% trans "No files in this folder." %}</p>
-                        {% endif %}
+                    </h3>
+                    <p class="file-count">
+                        {% trans "Files in Folder:" %} {{ folder.files.count }}
+                    </p>
+                    <a href="{% url 'portfolio:folder_detail' folder.id %}" class="view-files-button">{% trans "View Files" %}</a>
                     </li>
                 {% endfor %}
             </ul>

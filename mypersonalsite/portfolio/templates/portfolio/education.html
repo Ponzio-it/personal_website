@@ -75,9 +75,7 @@
                     <time datetime="{{ education.start_date|date:'Y-m' }}">{{ education.start_date|date:"F Y" }}</time> -
                     <time datetime="{{ education.end_date|date:'Y-m' }}">{{ education.end_date|date:"F Y" }}</time>
                 </p>
-                {% if education.description %}
-                <p>{{ education.description }}</p>
-                {% endif %}
+                <a href="{% url 'portfolio:education_detail' education.id %}" class="btn-detail">{% trans "View Details" %}</a>
             </li>
             {% endfor %}
         </ul>
@@ -102,9 +100,7 @@
                     {% trans "Present" %}
                     {% endif %}
                 </p>
-                {% if job.description %}
-                <p>{{ job.description }}</p>
-                {% endif %}
+                <a href="{% url 'portfolio:job_experience_detail' job.id %}" class="btn-detail">{% trans "View Details" %}</a>
             </li>
             {% endfor %}
         </ul>

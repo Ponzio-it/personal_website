@@ -60,6 +60,8 @@ class ContactInfo(models.Model):
     """Model to store site-wide contact information."""
 
     email = models.EmailField(help_text="Email address for contacting the site owner.")
+    linkedin_url = models.URLField(max_length=200,blank=True,null=True,help_text="LinkedIn profile URL of the site owner.")
+    github_url = models.URLField(max_length=200,blank=True,null=True,help_text="GitHub profile URL of the site owner.")
 
     def __str__(self):
         """Return the email as the string representation."""

@@ -9,6 +9,7 @@ from .form  import ReviewForm, ContactForm
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.utils.translation import gettext as _ 
+from django.contrib import messages
 
 # Home page view
 def home(request):
@@ -29,13 +30,13 @@ def education(request):
     if skill_ids:
         selected_skills = Skill.objects.filter(id__in=skill_ids)
         certificates = Certificate.objects.filter(skills__id__in=skill_ids).distinct()
-        education_history = Education.objects.filter(skills__id__in=skill_ids).distinct()
-        job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids).order_by('-end_date').distinct()
+        education_history = Education.objects.filter(skills__id__in=skill_ids).only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').distinct()
+        job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids).only('title', 'company', 'start_date', 'end_date').order_by('-end_date').distinct()
     else:
         selected_skills = []
         certificates = Certificate.objects.all()
-        education_history = Education.objects.order_by('-end_date')
-        job_experiences = JobExperience.objects.order_by('-end_date')
+        education_history = Education.objects.only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').order_by('-end_date')
+        job_experiences = JobExperience.objects.only('title', 'company', 'start_date', 'end_date').order_by('-end_date')
 
     context = {
         'skills': skills,
@@ -174,8 +175,21 @@ class ReviewCreateView(CreateView):
         form.instance.project = get_object_or_404(Project, pk=self.kwargs['pk'])
         form.instance.status = 'pending'
         form.save()
-        return redirect(reverse('portfolio:project_detail', args=[self.kwargs['pk']]))
-    
+
+        # Send email notification to admin
+        send_mail(
+            subject=_('New Review Submission Pending Approval'),
+            message=_(f"A new review has been submitted for the project: {form.instance.project.title}. Please review and approve it."),
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.ADMIN_EMAIL],
+            fail_silently=False,
+        )
+
+        # Add a popup message for the user
+        messages.info(self.request, _("Your review has been submitted and is pending approval. Thank you!"))
+
+        return redirect(reverse('portfolio:project_detail', args=[self.kwargs['pk']])) 
+
     def get_context_data(self, **kwargs):
         # Pass the project to the template context
         context = super().get_context_data(**kwargs)
@@ -226,3 +240,29 @@ def blog_detail(request, slug):
     }
 
     return render(request, 'portfolio/blog_detail.html', context)
+
+class ViewEducationDetail(DetailView):
+    """
+    View for rendering detailed information about a specific education entry.
+    """
+    model = Education
+    template_name = 'portfolio/education_detail.html'
+    context_object_name = 'education'
+
+class ViewJobExperienceDetail(DetailView):
+    """
+    View for rendering detailed information about a specific job experience entry.
+    """
+    model = JobExperience
+    template_name = 'portfolio/job_experience_detail.html'
+    context_object_name = 'job_experience'
+
+def folders_view(request):
+    """
+    View to render the folders list with file counts.
+    """
+    folders = Folder.objects.prefetch_related('files')  # Prefetch related files
+    context = {
+        'folders': folders,
+    }
+    return render(request, 'portfolio/project_detail.html', context)

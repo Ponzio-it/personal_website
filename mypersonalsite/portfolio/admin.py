@@ -25,7 +25,9 @@ class ContactInfoAdmin(admin.ModelAdmin):
     """Admin view for managing ContactInfo model."""
 
     # Define fields to display in the admin list view
-    list_display = ('email',)
+    list_display = ('email','linkedin_url', 'github_url')
+    list_editable = ('linkedin_url', 'github_url')
+
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
