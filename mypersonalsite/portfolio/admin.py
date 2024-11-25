@@ -29,6 +29,20 @@ class ContactInfoAdmin(admin.ModelAdmin):
     list_editable = ('linkedin_url', 'github_url')
 
 
+#make possible add relationship to certificate, education and job experience when add Skills in admin
+
+class CertificateInline(admin.TabularInline):  # Use StackedInline for more detailed forms
+    model = Certificate.skills.through  # Access the ManyToMany relationship table
+    extra = 1  # Number of empty forms to display
+
+class EducationInline(admin.TabularInline):
+    model = Education.skills.through
+    extra = 1
+
+class JobExperienceInline(admin.TabularInline):
+    model = JobExperience.skills.through
+    extra = 1
+
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
     '''
@@ -36,8 +50,10 @@ class SkillAdmin(admin.ModelAdmin):
     skills and displays related certificates and education entries
     directly in the admin list view for easy access.'''
 
-    list_display = ('name', 'related_certificates', 'related_educations')
+    list_display = ('name', 'related_certificates', 'related_educations','related_job_experiences')
     search_fields = ('name',)
+    inlines = [CertificateInline, EducationInline, JobExperienceInline]
+
 
     def related_certificates(self, obj):
         return ", ".join([certificate.title for certificate in obj.certificates.all()])

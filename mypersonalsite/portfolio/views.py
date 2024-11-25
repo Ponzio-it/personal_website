@@ -27,23 +27,25 @@ def education(request):
 
     # Filter certificates and education by selected skill if provided
     skill_ids = request.GET.getlist('skill')
-    if skill_ids:
-        selected_skills = Skill.objects.filter(id__in=skill_ids)
+    selected_skills = Skill.objects.filter(id__in=skill_ids) if skill_ids else []
+
+    if skill_ids:        
         certificates = Certificate.objects.filter(skills__id__in=skill_ids).distinct()
         education_history = Education.objects.filter(skills__id__in=skill_ids).only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').distinct()
         job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids).only('title', 'company', 'start_date', 'end_date').order_by('-end_date').distinct()
-    else:
-        selected_skills = []
+    else:        
         certificates = Certificate.objects.all()
         education_history = Education.objects.only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').order_by('-end_date')
         job_experiences = JobExperience.objects.only('title', 'company', 'start_date', 'end_date').order_by('-end_date')
 
+    
     context = {
         'skills': skills,
+        'selected_skill': selected_skills,
         'certificates': certificates,
         'education_history': education_history,
         'job_experiences': job_experiences,
-        'selected_skill': selected_skills,
+        
     }
     return render(request, 'portfolio/education.html', context)
 
