@@ -48,12 +48,10 @@
             {% for certificate in certificates %}
             <div class="certificate-card">
                 <h3>{{ certificate.title }}</h3>
-                {% if certificate.description %}
-                <p>{{ certificate.description }}</p>
-                {% endif %}
-                {% if certificate.link %}
-                <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer">{% trans "View Certificate" %}</a>
-                {% endif %}
+                {% if certificate.field %}
+                <p>{{ certificate.field }}</p>
+                {% endif %}                
+                <a href="{% url 'portfolio:certificate_detail' certificate.id %}" class="btn-detail">{% trans "View Details" %}</a>                
             </div>
             {% endfor %}
         </div>

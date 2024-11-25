@@ -92,7 +92,9 @@ class Skill(models.Model):
 class Certificate(models.Model):
     """Model to store certificates with links to descriptions and course information."""
     title = models.CharField(max_length=255, help_text="The title of the certificate.")
+    field = models.CharField(max_length=255, blank=True, null=True, help_text="Optional field to specify the category or context of the certificate.")
     description = models.TextField(help_text="Description of the course.")
+    image = models.ImageField(upload_to='certificate_images/', blank=True, null=True, help_text="Upload an image for the certificate.")
     link = models.URLField(help_text="URL to the certificate or course information.")
     skills = models.ManyToManyField(Skill, related_name="certificates", blank=True, help_text="Skills related to this certificate.")
 

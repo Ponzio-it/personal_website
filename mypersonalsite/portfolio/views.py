@@ -30,11 +30,11 @@ def education(request):
     selected_skills = Skill.objects.filter(id__in=skill_ids) if skill_ids else []
 
     if skill_ids:        
-        certificates = Certificate.objects.filter(skills__id__in=skill_ids).distinct()
+        certificates = Certificate.objects.filter(skills__id__in=skill_ids).only('title','field').distinct()
         education_history = Education.objects.filter(skills__id__in=skill_ids).only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').distinct()
         job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids).only('title', 'company', 'start_date', 'end_date').order_by('-end_date').distinct()
     else:        
-        certificates = Certificate.objects.all()
+        certificates = Certificate.objects.only('title','field').all()
         education_history = Education.objects.only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').order_by('-end_date')
         job_experiences = JobExperience.objects.only('title', 'company', 'start_date', 'end_date').order_by('-end_date')
 
@@ -258,6 +258,14 @@ class ViewJobExperienceDetail(DetailView):
     model = JobExperience
     template_name = 'portfolio/job_experience_detail.html'
     context_object_name = 'job_experience'
+
+class ViewCertificateDetail(DetailView):
+    """
+    View for rendering detailed information about a specific certificate entry.
+    """
+    model = Certificate
+    template_name = 'portfolio/certificate_detail.html'
+    context_object_name = 'certificate'
 
 def folders_view(request):
     """

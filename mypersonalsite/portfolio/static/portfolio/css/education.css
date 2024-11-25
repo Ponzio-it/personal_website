@@ -157,20 +157,22 @@ body {
     color: var(--secondary-color);
 }
 
-.certificate-card p {
-    margin: 10px 0;
-}
-
-.certificate-card a {
+.btn-detail {
     display: inline-block;
-    margin-top: 10px;
-    color: var(--primary-color);
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
-.certificate-card a:hover {
-    text-decoration: underline;
+.btn-detail:hover {
+    background-color: var(--primary-color-dark);
 }
 
 /* Education and Experience Sections */
