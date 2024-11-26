@@ -86,6 +86,7 @@ class CertificateAdmin(admin.ModelAdmin):
     filter_horizontal = ('skills',)  # This enables a horizontal filter for selecting skills
 
 
+
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
     list_display = ('institution', 'degree', 'field_of_study', 'start_date', 'end_date')

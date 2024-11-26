@@ -20,7 +20,7 @@
 
         <!-- Search Form -->
         <form method="get" action="" class="search-form" role="search" aria-label="{% trans 'Search blog posts' %}">
-            <label for="search" class="visually-hidden">{% trans "Search" %}</label>
+            <label for="search" class="visually-hidden"></label>
             <input type="text" id="search" name="q" value="{{ query|default:'' }}" placeholder="{% trans 'Search blog posts...' %}" aria-label="{% trans 'Search blog posts' %}">
             <button type="submit">{% trans "Search" %}</button>
         </form>

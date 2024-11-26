@@ -85,13 +85,16 @@ body {
 /* Buttons */
 .btn {
     display: inline-block;
+    padding: 10px 20px;
     background-color: var(--primary-color);
     color: var(--white-color);
-    padding: 10px 15px;
-    text-decoration: none;
+    border: none;
     border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
     text-align: center;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .btn:hover {
