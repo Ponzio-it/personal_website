@@ -49,7 +49,7 @@
                     <li><a href="{% url 'portfolio:github' %}" target="_blank">{% trans "GitHub" %}</a></li>                    
                     <li><a href="{% url 'portfolio:open_cv' %}">{% trans "Curriculum Vitae" %}</a></li>
 
-                    <!-- Conditional Language Switch -->
+                    <!-- Conditional Language Switch 
                     {% if LANGUAGE_CODE == "en" %}
                         <li><a href="/it/">Italiano</a></li>
                     {% elif LANGUAGE_CODE == "it" %}
@@ -57,7 +57,7 @@
                     {% else %}
                         <li><a href="/en/">English</a></li>
                         <li><a href="/it/">Italiano</a></li>
-                    {% endif %}
+                    {% endif %} -->
                 </ul>
                 <!-- Include the JavaScript file -->
                 <script src="{% static 'portfolio/js/menu.js' %}" defer></script>

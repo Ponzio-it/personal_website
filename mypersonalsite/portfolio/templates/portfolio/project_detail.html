@@ -28,6 +28,20 @@
     </div>
     {% endif %}
 
+    <!-- PowerPoint Presentation Section -->
+    <section class="presentation-section" aria-labelledby="presentation-heading">
+        <h2 id="presentation-heading" class="section-heading">{% trans "Project Presentation" %}</h2>
+        {% if project.google_file_id %}
+            <p>
+                <a href="https://docs.google.com/presentation/d/{{ project.google_file_id }}" target="_blank" class="open-presentation-link">
+                    {% trans "Open Presentation in a New Tab" %}
+                </a>
+            </p>
+        {% else %}
+            <p>{% trans "No presentation available for this project." %}</p>
+        {% endif %}
+    </section>
+
     <!-- Folders and Files -->
     <section class="folders-section" aria-labelledby="folders-heading">
         <h2 id="folders-heading" class="section-heading">{% trans "Folders and Files" %}</h2>

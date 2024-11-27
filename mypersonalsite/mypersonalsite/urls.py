@@ -26,7 +26,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     #include the portfolio app URLs
     #path('', include('portfolio.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #to add media content 
 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),  # Admin URLs

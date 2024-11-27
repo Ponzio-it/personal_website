@@ -46,6 +46,55 @@ body {
     padding-bottom: 10px;
 }
 
+/* PowerPoint Presentation Section */
+.presentation-section {
+    padding: 20px;
+    margin: 30px auto;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--white-color);
+    box-shadow: var(--box-shadow);
+    max-width: 800px;
+    text-align: center;
+}
+
+/* Section Heading */
+.presentation-section .section-heading {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+/* Link to Open Presentation */
+.presentation-section .open-presentation-link {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: var(--white-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.presentation-section .open-presentation-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+/* Text for No Presentation Available */
+.presentation-section p {
+    color: var(--light-text-color);
+    font-size: 1.1rem;
+    margin: 20px 0 0;
+}
+
+
+
 /* Folders and Files */
 .folders-list {
     list-style: none;

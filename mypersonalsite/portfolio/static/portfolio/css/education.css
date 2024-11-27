@@ -14,7 +14,7 @@
 
 /* General Page Styling */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', 'sans-serif';
     color: var(--text-color);
     background-color: var(--background-color);
     margin: 0;
@@ -114,6 +114,7 @@ body {
     text-align: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif; 
 }
 
 .filter-button:hover {

@@ -132,7 +132,7 @@ class SectionAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     """
-    Custom admin configuration for Category model.
+    Custom admin configuration for Category model in blog.
     """
     list_display = ('name', 'slug')  # Display name and slug in the admin list
     prepopulated_fields = {'slug': ('name',)}  # Auto-fill slug based on name

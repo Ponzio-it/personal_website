@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 12:11+0100\n"
+"POT-Creation-Date: 2024-11-26 10:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgid "Select Yes or No."
 msgstr "Seleziona Si o No"
 
 #: portfolio/form.py:32 portfolio/form.py:33
-#: portfolio/templates/portfolio/contact.html:48
+#: portfolio/templates/portfolio/contact.html:50
 #, fuzzy
 #| msgid "Your Name"
 msgid "First Name"
@@ -56,7 +56,7 @@ msgid "Enter your first name."
 msgstr "Inserisci il tuo Nome"
 
 #: portfolio/form.py:38 portfolio/form.py:39
-#: portfolio/templates/portfolio/contact.html:56
+#: portfolio/templates/portfolio/contact.html:58
 msgid "Last Name"
 msgstr "Cognome"
 
@@ -70,7 +70,7 @@ msgstr "Inserisci il tuo Cognome"
 msgid "Your Email"
 msgstr "Il Tuo Nome"
 
-#: portfolio/form.py:44 portfolio/templates/portfolio/contact.html:64
+#: portfolio/form.py:44 portfolio/templates/portfolio/contact.html:66
 msgid "Email"
 msgstr ""
 
@@ -84,13 +84,23 @@ msgstr "Inserisci un indirizzo email valido"
 msgid "Your Message"
 msgstr "Il Tuo Nome"
 
-#: portfolio/form.py:49 portfolio/templates/portfolio/contact.html:72
+#: portfolio/form.py:49 portfolio/templates/portfolio/contact.html:74
 msgid "Message"
 msgstr "Messaggio"
 
 #: portfolio/form.py:50
 msgid "Enter your message here."
 msgstr "Inserisci il tuo messaggio qui."
+
+#: portfolio/models.py:164
+msgid "Title"
+msgstr ""
+
+#: portfolio/models.py:165
+#: portfolio/templates/portfolio/education_detail.html:20
+#: portfolio/templates/portfolio/job_experience_detail.html:26
+msgid "Description"
+msgstr ""
 
 #: portfolio/templates/portfolio/base.html:9
 #: portfolio/templates/portfolio/base.html:16
@@ -193,13 +203,12 @@ msgstr ""
 msgid "Search blog posts"
 msgstr ""
 
-#: portfolio/templates/portfolio/blog_list.html:23
-#: portfolio/templates/portfolio/blog_list.html:25
-msgid "Search"
-msgstr ""
-
 #: portfolio/templates/portfolio/blog_list.html:24
 msgid "Search blog posts..."
+msgstr ""
+
+#: portfolio/templates/portfolio/blog_list.html:25
+msgid "Search"
 msgstr ""
 
 #: portfolio/templates/portfolio/blog_list.html:31
@@ -219,6 +228,44 @@ msgstr ""
 #| msgid "No job experiences found."
 msgid "No posts found."
 msgstr "Nessuna esperienza lavorativa trovata."
+
+#: portfolio/templates/portfolio/certificate_detail.html:5
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate Detail"
+msgstr "Certificati"
+
+#: portfolio/templates/portfolio/certificate_detail.html:16
+msgid "Field:"
+msgstr ""
+
+#: portfolio/templates/portfolio/certificate_detail.html:17
+msgid "Description:"
+msgstr ""
+
+#: portfolio/templates/portfolio/certificate_detail.html:19
+#, fuzzy
+#| msgid "LinkedIn"
+msgid "Link:"
+msgstr "LinkedIn"
+
+#: portfolio/templates/portfolio/certificate_detail.html:25
+#, fuzzy
+#| msgid "Certificates"
+msgid "Certificate"
+msgstr "Certificati"
+
+#: portfolio/templates/portfolio/certificate_detail.html:32
+#, fuzzy
+#| msgid "Skills"
+msgid "Related Skills"
+msgstr "Competenze"
+
+#: portfolio/templates/portfolio/certificate_detail.html:41
+#, fuzzy
+#| msgid "Certificates"
+msgid "Back to Certificates"
+msgstr "Certificati"
 
 #: portfolio/templates/portfolio/contact.html:7
 #, fuzzy
@@ -244,19 +291,31 @@ msgstr ""
 msgid "Email:"
 msgstr ""
 
+#: portfolio/templates/portfolio/contact.html:28
+#, fuzzy
+#| msgid "LinkedIn"
+msgid "Linkedin:"
+msgstr "LinkedIn"
+
 #: portfolio/templates/portfolio/contact.html:29
+#, fuzzy
+#| msgid "GitHub"
+msgid "GitHub:"
+msgstr "GitHub"
+
+#: portfolio/templates/portfolio/contact.html:31
 msgid "Contact information is currently unavailable."
 msgstr ""
 
-#: portfolio/templates/portfolio/contact.html:35
+#: portfolio/templates/portfolio/contact.html:37
 msgid "Send Me a Message"
 msgstr ""
 
-#: portfolio/templates/portfolio/contact.html:40
+#: portfolio/templates/portfolio/contact.html:42
 msgid "Your message has been sent successfully. Thank you for reaching out!"
 msgstr ""
 
-#: portfolio/templates/portfolio/contact.html:79
+#: portfolio/templates/portfolio/contact.html:81
 msgid "Send Message"
 msgstr ""
 
@@ -298,47 +357,78 @@ msgstr "Cancella filtro"
 msgid "Certificates"
 msgstr "Certificati"
 
-#: portfolio/templates/portfolio/education.html:55
+#: portfolio/templates/portfolio/education.html:54
+#: portfolio/templates/portfolio/education.html:76
+#: portfolio/templates/portfolio/education.html:101
 #, fuzzy
-#| msgid "Certificates"
-msgid "View Certificate"
-msgstr "Certificati"
+#| msgid "Projects"
+msgid "View Details"
+msgstr "Progetti"
 
-#: portfolio/templates/portfolio/education.html:61
+#: portfolio/templates/portfolio/education.html:59
 #, fuzzy
 #| msgid "No certificates available at the moment."
 msgid "No certificates available."
 msgstr "Nessun certificato disponibile al momento."
 
-#: portfolio/templates/portfolio/education.html:67
+#: portfolio/templates/portfolio/education.html:65
 msgid "Educational Background"
 msgstr "Background Educativo"
 
-#: portfolio/templates/portfolio/education.html:72
+#: portfolio/templates/portfolio/education.html:70
+#: portfolio/templates/portfolio/education_detail.html:13
 msgid "in"
 msgstr ""
 
-#: portfolio/templates/portfolio/education.html:85
+#: portfolio/templates/portfolio/education.html:81
 #, fuzzy
 #| msgid "No educational background available at the moment."
 msgid "No educational background available."
 msgstr "Nessun background educativo disponibile al momento."
 
-#: portfolio/templates/portfolio/education.html:91
+#: portfolio/templates/portfolio/education.html:87
 msgid "Job Experience"
 msgstr "Esperienza Lavorativa"
 
-#: portfolio/templates/portfolio/education.html:96
+#: portfolio/templates/portfolio/education.html:92
+#: portfolio/templates/portfolio/job_experience_detail.html:13
 msgid "at"
 msgstr ""
 
-#: portfolio/templates/portfolio/education.html:102
+#: portfolio/templates/portfolio/education.html:98
+#: portfolio/templates/portfolio/job_experience_detail.html:21
 msgid "Present"
 msgstr ""
 
-#: portfolio/templates/portfolio/education.html:112
+#: portfolio/templates/portfolio/education.html:106
 msgid "No job experiences found."
 msgstr "Nessuna esperienza lavorativa trovata."
+
+#: portfolio/templates/portfolio/education_detail.html:5
+#, fuzzy
+#| msgid "Education and Experience"
+msgid "Education Detail"
+msgstr "Formazione ed Esperienza"
+
+#: portfolio/templates/portfolio/education_detail.html:15
+msgid "Institution:"
+msgstr ""
+
+#: portfolio/templates/portfolio/education_detail.html:16
+#: portfolio/templates/portfolio/job_experience_detail.html:16
+msgid "Start Date:"
+msgstr ""
+
+#: portfolio/templates/portfolio/education_detail.html:17
+#: portfolio/templates/portfolio/job_experience_detail.html:17
+msgid "End Date:"
+msgstr ""
+
+#: portfolio/templates/portfolio/education_detail.html:23
+#, fuzzy
+#| msgid "Projects"
+msgid "Back to Education"
+msgstr "Progetti"
 
 #: portfolio/templates/portfolio/folder_detail.html:6
 msgid "Folder Details"
@@ -387,43 +477,67 @@ msgstr ""
 msgid "Profile Image"
 msgstr ""
 
+#: portfolio/templates/portfolio/job_experience_detail.html:5
+#, fuzzy
+#| msgid "Job Experience"
+msgid "Job Experience Detail"
+msgstr "Esperienza Lavorativa"
+
+#: portfolio/templates/portfolio/job_experience_detail.html:15
+msgid "Company:"
+msgstr ""
+
+#: portfolio/templates/portfolio/job_experience_detail.html:29
+#, fuzzy
+#| msgid "Job Experience"
+msgid "Back to Job Experience"
+msgstr "Esperienza Lavorativa"
+
 #: portfolio/templates/portfolio/project_detail.html:6
 #, fuzzy
 #| msgid "Projects"
 msgid "Project Details"
 msgstr "Progetti"
 
-#: portfolio/templates/portfolio/project_detail.html:21
+#: portfolio/templates/portfolio/project_detail.html:22
+msgid "Notification:"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:33
 msgid "Folders and Files"
 msgstr ""
 
-#: portfolio/templates/portfolio/project_detail.html:38
-msgid "No files in this folder."
+#: portfolio/templates/portfolio/project_detail.html:43
+msgid "Files in Folder:"
 msgstr ""
 
-#: portfolio/templates/portfolio/project_detail.html:44
+#: portfolio/templates/portfolio/project_detail.html:45
+msgid "View Files"
+msgstr ""
+
+#: portfolio/templates/portfolio/project_detail.html:50
 #, fuzzy
 #| msgid "No certificates available at the moment."
 msgid "No folders or files available for this project."
 msgstr "Nessun certificato disponibile al momento."
 
-#: portfolio/templates/portfolio/project_detail.html:50
+#: portfolio/templates/portfolio/project_detail.html:56
 msgid "Reviews"
 msgstr ""
 
-#: portfolio/templates/portfolio/project_detail.html:59
+#: portfolio/templates/portfolio/project_detail.html:65
 msgid "Submitted on"
 msgstr ""
 
-#: portfolio/templates/portfolio/project_detail.html:65
+#: portfolio/templates/portfolio/project_detail.html:71
 msgid "No reviews available yet. Be the first to leave a review!"
 msgstr ""
 
-#: portfolio/templates/portfolio/project_detail.html:69
+#: portfolio/templates/portfolio/project_detail.html:75
 msgid "Leave a Review"
 msgstr ""
 
-#: portfolio/templates/portfolio/project_detail.html:72
+#: portfolio/templates/portfolio/project_detail.html:78
 #, fuzzy
 #| msgid "Projects"
 msgid "Back to Projects"
@@ -468,7 +582,7 @@ msgstr ""
 msgid "Submit Review"
 msgstr ""
 
-#: portfolio/views.py:87
+#: portfolio/views.py:90
 #, python-brace-format
 msgid ""
 "Message from {first_name} {last_name} ({email}):\n"
@@ -476,13 +590,33 @@ msgid ""
 "{message}"
 msgstr ""
 
-#: portfolio/views.py:97
+#: portfolio/views.py:100
 msgid "Contact Form Submission"
 msgstr ""
 
-#: portfolio/views.py:133
+#: portfolio/views.py:136
 msgid "The requested CV could not be found."
 msgstr ""
+
+#: portfolio/views.py:183
+msgid "New Review Submission Pending Approval"
+msgstr ""
+
+#: portfolio/views.py:184
+#, python-brace-format
+msgid ""
+"A new review has been submitted for the project: {form.instance.project."
+"title}. Please review and approve it."
+msgstr ""
+
+#: portfolio/views.py:191
+msgid "Your review has been submitted and is pending approval. Thank you!"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Certificates"
+#~ msgid "View Certificate"
+#~ msgstr "Certificati"
 
 #~ msgid "English"
 #~ msgstr "Inglese"

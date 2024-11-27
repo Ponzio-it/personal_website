@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError #use in ContactInfo
 from django.utils.text import slugify #use in Category
+from django.utils.translation import gettext_lazy as _
 
 class Project(models.Model):
     """
@@ -14,6 +15,7 @@ class Project(models.Model):
     public_url = models.URLField(blank=True, null=True, help_text="Public link, e.g., GitHub or live demo.")
     private_url = models.URLField(blank=True, null=True, help_text="Private link, e.g., Google Drive or restricted resource.")
     is_public = models.BooleanField(default=True, help_text="Flag to indicate if project is publicly visible.")
+    google_file_id = models.CharField(max_length=100,blank=True,null=True,help_text="Google File ID for embedding a presentation.")
 
     def __str__(self):
         return self.title
@@ -160,8 +162,8 @@ class JobExperience(models.Model):
 class Section(models.Model):
     """Model to represent personal description"""
 
-    title = models.CharField(max_length=200, help_text="Title of the section")
-    description = models.TextField(help_text="Description content for the section")
+    title = models.CharField(max_length=200, help_text="Title of the section", verbose_name=_("Title"))
+    description = models.TextField(help_text="Description content for the section", verbose_name=_("Description"))
 
     def __str__(self):
         return self.title
