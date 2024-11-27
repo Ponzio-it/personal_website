@@ -138,47 +138,83 @@ body {
     color: var(--white-color);
 }
 
+/* Carousel Container */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-color: var(--white-color); /* Matches the overall page theme */
+    border: 1px solid var(--border-color); /* Subtle border for definition */
+    border-radius: 10px; /* Rounded corners for modern look */
+    box-shadow: var(--box-shadow); /* Adds a soft shadow for depth */
+    padding: 20px;
+}
+
 /* Certificates Grid */
-.certificates-section {
-    margin-bottom: 30px;
-}
-
 .certificates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth slide effect */
+    padding: 0; /* Remove extra padding */
 }
 
+/* Certificates Card */
 .certificate-card {
+    flex: 0 0 calc((100% / 3) - 13.33px); /* Adjusted width */
+    margin-right: 20px; /* Space between cards */
+    box-sizing: border-box; /* Include padding and borders in the card's width */
     background-color: var(--white-color);
     padding: 20px;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
+    border-radius: 10px; /* Rounded corners to match the design */
+    box-shadow: var(--box-shadow); /* Soft shadow for card elevation */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+}
+/* Remove margin-right on the last card in each slide */
+.certificate-card:nth-child(3n) {
+    margin-right: 0;
 }
 
-.certificate-card h3 {
-    margin-top: 0;
-    color: var(--secondary-color);
+.certificate-card:hover {
+    transform: translateY(-5px); /* Slight hover effect for engagement */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
-.btn-detail {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
+/* Carousel Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color); /* Primary brand color */
     color: var(--white-color);
     border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    border-radius: 50%; /* Circular button for modern design */
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem; /* Make the icon visible */
     cursor: pointer;
+    z-index: 100;
+    box-shadow: var(--box-shadow); /* Subtle shadow for visibility */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-detail:hover {
-    background-color: var(--primary-color-dark);
+.carousel-btn:hover {
+    background-color: var(--primary-color-dark); /* Darker hover color */
+    transform: scale(1.1); /* Slight zoom effect */
 }
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+.carousel-btn:focus {
+    outline: 2px solid var(--hover-background-color); /* Accessible focus state */
+}
+
 
 /* Education and Experience Sections */
 .education-section,

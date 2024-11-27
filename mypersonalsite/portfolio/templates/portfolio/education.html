@@ -44,16 +44,20 @@
     <section class="certificates-section" aria-labelledby="certificates-heading">
         <h2 id="certificates-heading" class="section-heading">{% trans "Certificates" %}</h2>
         {% if certificates %}
-        <div class="certificates-grid">
-            {% for certificate in certificates %}
-            <div class="certificate-card">
-                <h3>{{ certificate.title }}</h3>
-                {% if certificate.field %}
-                <p>{{ certificate.field }}</p>
-                {% endif %}                
-                <a href="{% url 'portfolio:certificate_detail' certificate.id %}" class="btn-detail">{% trans "View Details" %}</a>                
+        <div class="carousel" aria-roledescription="carousel">
+            <div class="certificates-grid" id="certificates-carousel">
+                {% for certificate in certificates %}
+                <div class="certificate-card" data-slide-index="{{ forloop.counter0 }}">
+                    <h3>{{ certificate.title }}</h3>
+                    {% if certificate.field %}
+                    <p>{{ certificate.field }}</p>
+                    {% endif %}
+                    <a href="{% url 'portfolio:certificate_detail' certificate.id %}" class="btn-detail">{% trans "View Details" %}</a>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            <button class="carousel-btn prev" aria-label="{% trans 'Previous Certificates' %}">&#9664;</button>
+            <button class="carousel-btn next" aria-label="{% trans 'Next Certificates' %}">&#9654;</button>
         </div>
         {% else %}
         <p>{% trans "No certificates available." %}</p>
@@ -107,4 +111,8 @@
         {% endif %}
     </section>
 </article>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'portfolio/js/education-carousel.js' %}"></script>
 {% endblock %}
