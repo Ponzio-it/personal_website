@@ -150,3 +150,4 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = 'yourapikey'
 DEFAULT_FROM_EMAIL =  'exemple@outlook.com'
 ADMIN_EMAIL = 'example@outlook.com'
+
