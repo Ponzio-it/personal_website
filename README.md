@@ -2,7 +2,7 @@
 
 A responsive, interactive personal portfolio website designed to showcase projects, experiences, and skills for potential employers and clients. This website demonstrates technical expertise in web development and serves as a central hub for exploring my work. 
 
-Documentation: https://github.com/Ponzio-it/personal_website.wiki.git
+Documentation in the wiki section.
 
 ---
 
