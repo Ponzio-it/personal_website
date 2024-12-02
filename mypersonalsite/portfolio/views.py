@@ -4,23 +4,40 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.generic import DetailView, CreateView
 from django.http import FileResponse, Http404
-from .models import Project, ContactInfo, Certificate, Education, Review, Skill, JobExperience, Section, Folder, BlogPost, Category
-from .form  import ReviewForm, ContactForm
 from django.core.mail import send_mail
 from django.db.models import Q
-from django.utils.translation import gettext as _ 
+from django.utils.translation import gettext as _
 from django.contrib import messages
+
+from .models import (
+    Project,
+    ContactInfo,
+    Certificate,
+    Education,
+    Review,
+    Skill,
+    JobExperience,
+    Section,
+    Folder,
+    BlogPost,
+    Category,
+)
+from .form import ReviewForm, ContactForm
+
 
 # Home page view
 def home(request):
-    """Render the home page with dynamic sections."""
+    """
+    Render the home page with dynamic sections.
+    """
     sections = Section.objects.all()
     return render(request, 'portfolio/home.html', {'sections': sections})
+
 
 def education(request):
     """
     Render the Education page, displaying a list of skills, certificates,
-    and educational history, and job experiences. Filter entries by selected skill if provided.
+    educational history, and job experiences. Filter entries by selected skill if provided.
     """
     # Fetch all skills
     skills = Skill.objects.all()
@@ -29,25 +46,41 @@ def education(request):
     skill_ids = request.GET.getlist('skill')
     selected_skills = Skill.objects.filter(id__in=skill_ids) if skill_ids else []
 
-    if skill_ids:        
-        certificates = Certificate.objects.filter(skills__id__in=skill_ids).only('title','field').distinct()
-        education_history = Education.objects.filter(skills__id__in=skill_ids).only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').distinct()
-        job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids).only('title', 'company', 'start_date', 'end_date').order_by('-end_date').distinct()
-    else:        
-        certificates = Certificate.objects.only('title','field').all()
-        education_history = Education.objects.only('institution', 'degree', 'field_of_study', 'start_date', 'end_date').order_by('-end_date')
-        job_experiences = JobExperience.objects.only('title', 'company', 'start_date', 'end_date').order_by('-end_date')
+    if skill_ids:
+        certificates = (
+            Certificate.objects.filter(skills__id__in=skill_ids)
+            .only('title', 'field')
+            .distinct()
+        )
+        education_history = (
+            Education.objects.filter(skills__id__in=skill_ids)
+            .only('institution', 'degree', 'field_of_study', 'start_date', 'end_date')
+            .distinct()
+        )
+        job_experiences = (
+            JobExperience.objects.filter(skills__id__in=skill_ids)
+            .only('title', 'company', 'start_date', 'end_date')
+            .order_by('-end_date')
+            .distinct()
+        )
+    else:
+        certificates = Certificate.objects.only('title', 'field').all()
+        education_history = Education.objects.only(
+            'institution', 'degree', 'field_of_study', 'start_date', 'end_date'
+        ).order_by('-end_date')
+        job_experiences = JobExperience.objects.only(
+            'title', 'company', 'start_date', 'end_date'
+        ).order_by('-end_date')
 
-    
     context = {
         'skills': skills,
         'selected_skill': selected_skills,
         'certificates': certificates,
         'education_history': education_history,
         'job_experiences': job_experiences,
-        
     }
     return render(request, 'portfolio/education.html', context)
+
 
 # Projects page view with dynamic data
 def projects(request):
@@ -58,10 +91,9 @@ def projects(request):
     # Query all projects, including their related folders and files
     projects = Project.objects.prefetch_related('folders__files').filter(is_public=True)
 
-    context = {
-        'projects': projects
-    }
+    context = {'projects': projects}
     return render(request, 'portfolio/projects.html', context)
+
 
 def contact(request):
     """
@@ -117,16 +149,18 @@ def contact(request):
 
     # Render the contact page with the form
     return render(
-        request,
-        'portfolio/contact.html',
-        {'form': form, 'contact_info': contact_info},
+        request, 'portfolio/contact.html', {'form': form, 'contact_info': contact_info}
     )
 
 # Open CV page view
 def open_cv(request):
-    """Handle the download of the CV (PDF file)."""
+    """
+    Handle the download of the CV (PDF file).
+    """
     # Construct the full path to the PDF file in the static directory
-    file_path = os.path.join(settings.BASE_DIR, 'portfolio', 'static', 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf')
+    file_path = os.path.join(
+        settings.BASE_DIR, 'portfolio', 'static', 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf'
+    )
 
     # Try to open the file and return it as a FileResponse
     try:
@@ -134,6 +168,7 @@ def open_cv(request):
     except FileNotFoundError:
         # If the file is not found, raise a 404 error
         raise Http404(_("The requested CV could not be found."))
+
 
 class ProjectDetailView(DetailView):
     """
@@ -145,10 +180,10 @@ class ProjectDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Include only approved reviews in the context
-        # Prefetch related folders and files
         context['folders'] = self.object.folders.prefetch_related('files').all()
         context['reviews'] = self.object.reviews.filter(status='approved')
         return context
+
 
 class FolderDetailView(DetailView):
     """
@@ -162,6 +197,7 @@ class FolderDetailView(DetailView):
         # Add files related to the folder to the context
         context['files'] = self.object.files.all()
         return context
+
 
 class ReviewCreateView(CreateView):
     """
@@ -181,16 +217,21 @@ class ReviewCreateView(CreateView):
         # Send email notification to admin
         send_mail(
             subject=_('New Review Submission Pending Approval'),
-            message=_(f"A new review has been submitted for the project: {form.instance.project.title}. Please review and approve it."),
+            message=_(
+                f"A new review has been submitted for the project: {form.instance.project.title}. "
+                "Please review and approve it."
+            ),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[settings.ADMIN_EMAIL],
             fail_silently=False,
         )
 
         # Add a popup message for the user
-        messages.info(self.request, _("Your review has been submitted and is pending approval. Thank you!"))
+        messages.info(
+            self.request, _("Your review has been submitted and is pending approval. Thank you!")
+        )
 
-        return redirect(reverse('portfolio:project_detail', args=[self.kwargs['pk']])) 
+        return redirect(reverse('portfolio:project_detail', args=[self.kwargs['pk']]))
 
     def get_context_data(self, **kwargs):
         # Pass the project to the template context
@@ -198,13 +239,20 @@ class ReviewCreateView(CreateView):
         context['project'] = get_object_or_404(Project, pk=self.kwargs['pk'])
         return context
 
+
 def redirect_to_linkedin(request):
-    """Redirects to the LinkedIn profile."""
+    """
+    Redirects to the LinkedIn profile.
+    """
     return redirect("https://www.linkedin.com/in/ettore-ponzio")
 
+
 def redirect_to_github(request):
-    """Redirects to the GitHub profile."""
+    """
+    Redirects to the GitHub profile.
+    """
     return redirect("https://github.com/Ponzio-it")
+
 
 def blog_list(request):
     """
@@ -227,6 +275,7 @@ def blog_list(request):
 
     return render(request, 'portfolio/blog_list.html', context)
 
+
 def blog_detail(request, slug):
     """
     View to display the details of a single blog post.
@@ -243,6 +292,7 @@ def blog_detail(request, slug):
 
     return render(request, 'portfolio/blog_detail.html', context)
 
+
 class ViewEducationDetail(DetailView):
     """
     View for rendering detailed information about a specific education entry.
@@ -250,6 +300,7 @@ class ViewEducationDetail(DetailView):
     model = Education
     template_name = 'portfolio/education_detail.html'
     context_object_name = 'education'
+
 
 class ViewJobExperienceDetail(DetailView):
     """
@@ -259,6 +310,7 @@ class ViewJobExperienceDetail(DetailView):
     template_name = 'portfolio/job_experience_detail.html'
     context_object_name = 'job_experience'
 
+
 class ViewCertificateDetail(DetailView):
     """
     View for rendering detailed information about a specific certificate entry.
@@ -267,11 +319,14 @@ class ViewCertificateDetail(DetailView):
     template_name = 'portfolio/certificate_detail.html'
     context_object_name = 'certificate'
 
+
 def folders_view(request):
     """
     View to render the folders list with file counts.
     """
-    folders = Folder.objects.prefetch_related('files')  # Prefetch related files
+    # Prefetch related files for efficiency
+    folders = Folder.objects.prefetch_related('files')
+
     context = {
         'folders': folders,
     }
