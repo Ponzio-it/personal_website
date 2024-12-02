@@ -28,7 +28,7 @@ class ContactPageTests(TestCase):
         self.assertTemplateUsed(response, 'portfolio/contact.html')
         
         # Check that the 'not available' message is displayed
-        self.assertContains(response, "Contact information is not available at the moment.")
+        self.assertContains(response, "Contact information is currently unavailable.")
 
     def test_contact_page_with_contact_info(self):
         """

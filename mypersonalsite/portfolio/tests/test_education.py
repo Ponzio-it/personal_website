@@ -14,8 +14,8 @@ class EducationPageTests(TestCase):
 
     def test_education_page_with_no_data(self):
         response = self.client.get(self.url)
-        self.assertContains(response, "No certificates available at the moment.")
-        self.assertContains(response, "No educational background available at the moment.")
+        self.assertContains(response, "No certificates available.")
+        self.assertContains(response, "No educational background available.")
 
     def test_education_page_with_data(self):
         # Create sample data
