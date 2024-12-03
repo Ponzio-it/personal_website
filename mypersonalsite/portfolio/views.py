@@ -8,6 +8,9 @@ from django.core.mail import send_mail
 from django.db.models import Q
 from django.utils.translation import gettext as _
 from django.contrib import messages
+from django.templatetags.static import static
+
+
 
 from .models import (
     Project,
@@ -157,10 +160,17 @@ def open_cv(request):
     """
     Handle the download of the CV (PDF file).
     """
-    # Construct the full path to the PDF file in the static directory
-    file_path = os.path.join(
-        settings.BASE_DIR, 'portfolio', 'static', 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf'
-    )
+    # Determine the correct base path
+    if settings.DEBUG:
+        # In development, use STATICFILES_DIRS
+        base_path = settings.STATICFILES_DIRS[0]
+    else:
+        # In production, use STATIC_ROOT
+        base_path = settings.STATIC_ROOT
+
+    # Construct the full file path
+    file_path = os.path.join(base_path, 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf')
+
 
     # Try to open the file and return it as a FileResponse
     try:
