@@ -1,0 +1,108 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #0A192F;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: #ffffff;
+    text-align: center;
+}
+
+.hero-section .hero-text {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+}
+
+.hero-section .hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-section .hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.hero-section .hero-image {
+    flex: 1;
+    max-width: 40%;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-section .hero-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Dynamic Sections */
+.sections-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.dynamic-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.dynamic-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #0A192F;
+}
+
+.dynamic-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.dynamic-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+    }
+
+    .hero-section .hero-text, .hero-section .hero-image {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .hero-section .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .sections-container {
+        grid-template-columns: 1fr;
+    }
+}

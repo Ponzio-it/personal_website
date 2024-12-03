@@ -1,0 +1,93 @@
+/* Navigation Panel Styles */
+nav {
+    display: flex;
+    justify-content: space-between; /* Space between brand/logo and links */
+    align-items: center; /* Vertically centers items */
+    padding: 1em;
+    background-color: #333; /* Background color for the navbar */
+    color: #fff; /* Text color */
+    position: sticky; /* Makes the navbar stick to the top */
+    top: 0; /* Position at the top of the page */
+    z-index: 1000; /* Ensures it appears above other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Section */
+nav .logo {
+    font-size: 1.8rem; /* Slightly larger for better readability */
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Navigation Links */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5em; /* Increase spacing between links */
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem; /* Larger font for better readability */
+    padding: 0.7em 1.2em; /* Larger padding for touch-friendly design */
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 6px; /* Slightly rounder corners for a modern look */
+}
+
+nav a:hover {
+    background-color: #555; /* Hover background effect */
+    color: #ffdd57; /* Highlight color for hover */
+}
+
+/* Mobile Menu Button */
+nav .menu-toggle {
+    display: none; /* Hidden by default */
+    font-size: 2rem; /* Larger icon for better visibility */
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+    nav ul {
+        display: none; /* Hide navigation links by default */
+        flex-direction: column; /* Stack links vertically */
+        gap: 0; /* Remove gap between items */
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 100%; /* Position below the navbar */
+        left: 0;
+        padding: 1em 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    nav ul.active {
+        display: flex; /* Show navigation links when active */
+    }
+
+    nav a {
+        width: 100%; /* Make links full width */
+        text-align: center; /* Center-align text for better visibility */
+        font-size: 1.4rem; /* Larger font size for touch devices */
+        padding: 1em; /* Increase padding for easier touch interaction */
+    }
+
+    nav .menu-toggle {
+        display: block; /* Show menu toggle button */
+        font-size: 2.5rem; /* Bigger for more visibility */
+        padding: 0.5em; /* Add padding for easier tapping */
+    }
+}
+
+/* Enhancements for Accessibility */
+nav .menu-toggle:focus,
+nav a:focus {
+    outline: 2px solid #ffdd57; /* High-contrast focus outline for better accessibility */
+    outline-offset: 4px;
+}
