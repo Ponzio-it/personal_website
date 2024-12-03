@@ -126,7 +126,7 @@ def contact(request):
 def open_cv(request):
     """Handle the download of the CV (PDF file)."""
     # Construct the full path to the PDF file in the static directory
-    file_path = os.path.join(settings.BASE_DIR, 'portfolio', 'static', 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf')
+    file_path = os.path.join(settings.BASE_DIR, 'static', 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf')
 
     # Try to open the file and return it as a FileResponse
     try:
