@@ -1,3 +1,7 @@
 # Ignore compiled Python files
 *.pyc
 __pycache__/
+.env.base
+.env.dev
+.env.stage
+.env.production
