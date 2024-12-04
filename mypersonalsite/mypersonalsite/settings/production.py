@@ -3,7 +3,7 @@ from .base import *
 environ.Env.read_env(env_file='.env.production')
 
 DEBUG = False
-ALLOWED_HOSTS= ['personal-website-zkdg.onrender.com']
+ALLOWED_HOSTS= env['ALLOWED_HOST']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
