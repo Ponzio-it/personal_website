@@ -3,7 +3,7 @@ from .base import *
 environ.Env.read_env(env_file='.env.production')
 
 DEBUG = False
-ALLOWED_HOSTS= env['ALLOWED_HOST']
+ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
