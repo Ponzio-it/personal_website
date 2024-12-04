@@ -5,6 +5,7 @@ environ.Env.read_env(env_file='.env.production')
 DEBUG = False
 ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
 
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR/ 'staticfiles'
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
