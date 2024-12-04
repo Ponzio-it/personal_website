@@ -7,6 +7,8 @@ ALLOWED_HOSTS = []
 STATICFILES_DIRS = [BASE_DIR/ 'portfolio' / 'static']
 
 
+
+
 EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = env('EMAIL_HOST') 
 EMAIL_PORT = env.int('EMAIL_PORT')
