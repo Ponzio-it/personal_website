@@ -5,11 +5,13 @@ environ.Env.read_env(env_file='.env.production')
 DEBUG = False
 ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
 
+
 STATICFILES_DIRS = [BASE_DIR/ 'portfolio' / 'static']
 STATIC_ROOT = BASE_DIR/ 'mypersonalsite'/ 'staticfiles'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
-EMAIL_HOST = env('EMAIL_HOST') 
+EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT')
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')

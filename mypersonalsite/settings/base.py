@@ -127,7 +127,7 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 # Directory wher static files will be collected
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR.parent /'portfolio' / 'static'] #Point to static folder
 
 # Default primary key field type
