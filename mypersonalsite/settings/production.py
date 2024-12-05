@@ -6,7 +6,7 @@ DEBUG = False
 ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'portfolio' / 'static']
+STATICFILES_DIRS = []
 STATIC_ROOT = BASE_DIR / 'mypersonalsite'/ 'staticfiles'
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
