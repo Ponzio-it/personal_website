@@ -5,7 +5,7 @@ environ.Env.read_env(env_file='.env.production')
 DEBUG = False
 ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'portfolio' / 'static']
 STATIC_ROOT = BASE_DIR / 'mypersonalsite'/ 'staticfiles'
 
