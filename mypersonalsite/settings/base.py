@@ -1,7 +1,7 @@
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 import os
-import environ 
+import environ
 
 env = environ.Env(
     # Set casting, default values, and other settings

@@ -1,0 +1,292 @@
+ /* CSS Variables for Colors */
+:root {
+    --primary-color: #007bff;
+    --primary-color-dark: #0069d9;
+    --secondary-color: #0A192F;
+    --background-color: #f4f4f9;
+    --text-color: #0A192F;
+    --light-text-color: #555;
+    --border-color: #ddd;
+    --white-color: #ffffff;
+    --hover-background-color: #f0f8ff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Page Styling */
+body {
+    font-family: 'Roboto', 'sans-serif';
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.education-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Title and Subtitle */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text-color);
+}
+
+/* Section Headings */
+.section-heading {
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+/* Skills Section */
+.skills-section {
+    margin-bottom: 30px;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skills-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.skills-list li input[type="checkbox"] {
+    display: none;
+}
+
+.skills-list li label {
+    display: block;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+    transition: var(--background-color) 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.skills-list li label:hover {
+    background-color: var(--hover-background-color);
+    border-color: var(--primary-color);
+}
+
+.skills-list li input[type="checkbox"]:checked + label {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-color: var(--primary-color);
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 15px;
+}
+
+.filter-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif; 
+}
+
+.filter-button:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.clear-filter {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--background-color) 0.3s ease, color 0.3s ease;
+}
+
+.clear-filter:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+/* Carousel Container */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-color: var(--white-color); /* Matches the overall page theme */
+    border: 1px solid var(--border-color); /* Subtle border for definition */
+    border-radius: 10px; /* Rounded corners for modern look */
+    box-shadow: var(--box-shadow); /* Adds a soft shadow for depth */
+    padding: 20px;
+}
+
+/* Certificates Grid */
+.certificates-grid {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth slide effect */
+    padding: 0; /* Remove extra padding */
+}
+
+/* Certificates Card */
+.certificate-card {
+    flex: 0 0 calc((100% / 3) - 13.33px); /* Adjusted width */
+    margin-right: 20px; /* Space between cards */
+    box-sizing: border-box; /* Include padding and borders in the card's width */
+    background-color: var(--white-color);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Rounded corners to match the design */
+    box-shadow: var(--box-shadow); /* Soft shadow for card elevation */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+}
+/* Remove margin-right on the last card in each slide */
+.certificate-card:nth-child(3n) {
+    margin-right: 0;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px); /* Slight hover effect for engagement */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color); /* Primary brand color */
+    color: var(--white-color);
+    border: none;
+    border-radius: 50%; /* Circular button for modern design */
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem; /* Make the icon visible */
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: var(--box-shadow); /* Subtle shadow for visibility */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-color-dark); /* Darker hover color */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+.carousel-btn:focus {
+    outline: 2px solid var(--hover-background-color); /* Accessible focus state */
+}
+
+
+/* Education and Experience Sections */
+.education-section,
+.experience-section {
+    margin-bottom: 30px;
+}
+
+.education-list,
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.education-item,
+.experience-item {
+    margin-bottom: 20px;
+    background-color: var(--white-color);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+.education-item h3,
+.experience-item h3 {
+    margin-top: 0;
+    color: var(--secondary-color);
+}
+
+.education-item .institution,
+.experience-item .company {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.education-item .time-period,
+.experience-item .time-period {
+    font-style: italic;
+    color: var(--light-text-color);
+    margin: 5px 0;
+}
+
+.education-item p,
+.experience-item p {
+    margin: 10px 0;
+}
+
+.btn-detail {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-detail:hover {
+    background-color: var(--primary-color-dark);
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .section-heading {
+        font-size: 1.5rem;
+    }
+}

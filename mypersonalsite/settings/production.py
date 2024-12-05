@@ -6,9 +6,8 @@ DEBUG = False
 ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
 
 
-STATICFILES_DIRS = [BASE_DIR/ 'portfolio' / 'static']
-STATIC_ROOT = BASE_DIR/ 'mypersonalsite'/ 'staticfiles'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_DIRS = [BASE_DIR / 'portfolio' / 'static']
+STATIC_ROOT = BASE_DIR / 'mypersonalsite'/ 'staticfiles'
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = env('EMAIL_HOST')
