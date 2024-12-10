@@ -2,7 +2,7 @@ import os
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.urls import reverse
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
 from django.http import FileResponse, Http404
 from django.core.mail import send_mail
 from django.db.models import Q
@@ -269,6 +269,7 @@ def blog_list(request):
     View to display the list of blog posts.
     """
     query = request.GET.get('q')  # Capture the search query from the URL
+    selected_category = request.GET.get('category')  # Capture the selected category
     posts = BlogPost.objects.all().order_by('-publication_date')
     categories = Category.objects.all()
 
@@ -277,10 +278,15 @@ def blog_list(request):
             Q(title__icontains=query) | Q(content__icontains=query)
         )
 
+     # Filter by category if present
+    if selected_category:
+        posts = posts.filter(categories__slug=selected_category)
+
     context = {
         'posts': posts,
         'categories': categories,
         'query': query,
+        'selected_category': selected_category  # Pass to the template to highlight active category
     }
 
     return render(request, 'portfolio/blog_list.html', context)
@@ -341,3 +347,29 @@ def folders_view(request):
         'folders': folders,
     }
     return render(request, 'portfolio/project_detail.html', context)
+
+
+class ViewJobExperienceList(ListView):
+    """
+    View for listing all job experiences.
+    """
+    model = JobExperience
+    template_name = 'portfolio/job_experience_list.html'
+    context_object_name = 'job_experiences'
+
+class ViewEducationList(ListView):
+    """
+    View for listing all education.
+    """
+    model = Education
+    template_name = 'portfolio/education_list.html'
+    context_object_name = 'educations'
+
+class ViewCertificateList(ListView):
+    """
+    View for listing all certificate.
+    """
+    model = Certificate
+    template_name = 'portfolio/certificate_list.html'
+    context_object_name = 'certificates'
+    paginate_by = 10

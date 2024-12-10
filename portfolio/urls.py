@@ -6,6 +6,9 @@ from .views import (
     ViewEducationDetail,
     ViewJobExperienceDetail,
     ViewCertificateDetail,
+    ViewJobExperienceList,
+    ViewEducationList,
+    ViewCertificateList,
 )
 
 app_name = 'portfolio'
@@ -34,6 +37,11 @@ urlpatterns = [
     path('blog/', views.blog_list, name='blog_list'),
     path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
 
+    # Education, Certificate, and Job Experience list
+    path('job-experiences/', ViewJobExperienceList.as_view(), name='job_experience_list'),
+    path('education-background/', ViewEducationList.as_view(), name='education_list'),
+    path('certificates/', ViewCertificateList.as_view(), name='certificate_list'),
+    
     # Education, Certificate, and Job Experience details
     path('education/<int:pk>/', ViewEducationDetail.as_view(), name='education_detail'),
     path('job_experience/<int:pk>/', ViewJobExperienceDetail.as_view(), name='job_experience_detail'),

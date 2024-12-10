@@ -1,0 +1,174 @@
+/* CSS Variables for Colors */
+:root {
+    --primary-color: #007bff;
+    --primary-color-dark: #0069d9;
+    --secondary-color: #0A192F;
+    --background-color: #f4f4f9;
+    --text-color: #0A192F;
+    --light-text-color: #555;
+    --border-color: #ddd;
+    --white-color: #ffffff;
+    --hover-background-color: #f0f8ff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Page Styling */
+body {
+    font-family: 'Roboto', 'sans-serif';
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.education-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Title and Subtitle */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text-color);
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Education Section */
+.education-section {
+    margin-bottom: 30px;
+    max-width: 1000px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    padding: 20px; 
+}
+
+.education-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.education-item {
+    margin-bottom: 20px;
+    background-color: var(--white-color);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.education-item h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.education-item .institution {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.education-item .time-period {
+    font-style: italic;
+    color: var(--light-text-color);
+    margin: 5px 0;
+}
+
+.education-item p {
+    margin: 10px 0;
+    font-size: 1rem;
+    line-height: 1.5; 
+}
+
+.btn-detail {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn-detail:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.btn-detail:focus {
+    outline: 3px solid #ffdd57;
+    outline-offset: 4px;
+}
+
+/* 🔥 Responsive Design */
+@media (max-width: 768px) {
+    .education-section {
+        padding: 15px; 
+    }
+
+    .education-item {
+        padding: 15px; 
+        margin-bottom: 15px; 
+    }
+
+    .education-item h3 {
+        font-size: 1.3rem; 
+    }
+
+    .education-item p {
+        font-size: 0.95rem; 
+    }
+
+    .btn-detail {
+        display: block; 
+        width: 100%;
+        text-align: center;
+        font-size: 1rem; 
+        padding: 12px 0; 
+    }
+}
+
+@media (max-width: 480px) {
+    .education-section {
+        padding: 10px; 
+    }
+
+    .education-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .education-item h3 {
+        font-size: 1.2rem; 
+    }
+
+    .education-item p {
+        font-size: 0.9rem; 
+    }
+
+    .btn-detail {
+        font-size: 0.95rem; 
+        padding: 10px;
+    }
+}

@@ -1,0 +1,40 @@
+{% extends 'portfolio/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Job Experience" %}{% endblock %}
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/job_experience_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="job-experience-page">
+    <header>
+        <h1 class="page-title">{% trans "Job Experience" %}</h1>
+    </header>
+
+    {% if job_experiences %}
+    <ul class="experience-list">
+        {% for job in job_experiences %}
+        <li class="experience-item">
+            <h3>{{ job.title }} {% trans "at" %} {{ job.company }}</h3>
+            <p class="time-period">
+                <time datetime="{{ job.start_date|date:'Y-m-d' }}">{{ job.start_date|date:"F Y" }}</time> -
+                {% if job.end_date %}
+                <time datetime="{{ job.end_date|date:'Y-m-d' }}">{{ job.end_date|date:"F Y" }}</time>
+                {% else %}
+                {% trans "Present" %}
+                {% endif %}
+            </p>
+            <a href="{% url 'portfolio:job_experience_detail' job.id %}" class="btn-detail">{% trans "View Details" %}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>{% trans "No job experiences found." %}</p>
+    {% endif %}
+    <a href="{% url 'portfolio:education' %}" class="btn-detail">{% trans "Back to Experience Page" %}</a>
+</article>
+{% endblock %}

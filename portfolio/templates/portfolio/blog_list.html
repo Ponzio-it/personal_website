@@ -28,15 +28,19 @@
 
     <!-- Categories -->
     {% if categories %}
-    <nav class="categories" aria-label="{% trans 'Blog Categories' %}">
+    <section class="categories" aria-label="{% trans 'Blog Categories' %}">
         <ul class="category-list">
             {% for category in categories %}
             <li class="category-item">
-                <a href="?category={{ category.slug }}" class="category-link">{{ category.name }}</a>
+              <a
+                href="?category={{ category.slug }}{% if query %}&q={{ query }}{% endif %}" 
+                class="category-link {% if category.slug == selected_category %}active{% endif %}">
+                {{ category.name }}
+            </a>
             </li>
             {% endfor %}
         </ul>
-    </nav>
+    </section>
     {% endif %}
 
     <!-- Blog Posts -->

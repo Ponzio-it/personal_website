@@ -1,0 +1,40 @@
+{% extends 'portfolio/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Education" %}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/education_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="education-page">
+    <header>
+        <h1 class="page-title">{% trans "Education" %}</h1>
+    </header>
+
+    {% if educations %}
+    <ul class="education-list">
+        {% for ed in educations %}
+        <li class="education-item">
+            <h3>{{ ed.degree }} {% trans "at" %} {{ ed.institution }}</h3>
+            <p class="time-period">
+                <time datetime="{{ ed.start_date|date:'Y-m-d' }}">{{ ed.start_date|date:"F Y" }}</time> -
+                {% if ed.end_date %}
+                <time datetime="{{ ed.end_date|date:'Y-m-d' }}">{{ ed.end_date|date:"F Y" }}</time>
+                {% else %}
+                {% trans "Present" %}
+                {% endif %}
+            </p>
+            <a href="{% url 'portfolio:education_detail' ed.id %}" class="btn-detail">{% trans "View Details" %}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>{% trans "No education records found." %}</p>
+    {% endif %}
+   
+    <a href="{% url 'portfolio:education' %}" class="btn-detail">{% trans "Back to experience page" %}</a>
+</article>
+{% endblock %}

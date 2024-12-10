@@ -1,0 +1,35 @@
+{% extends 'portfolio/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Certificates" %}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/certificate_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="certificate-page">
+    <header>
+        <h1 class="page-title">{% trans "Certificates" %}</h1>
+    </header>
+
+    {% if certificates %}
+    <ul class="certificate-list">
+        {% for cert in certificates %}
+        <li class="certificate-item">
+            <h3>{{ cert.title }}</h3>
+            <p class="certificate-detail">
+                {{ cert.field }}
+            </p>
+            <a href="{% url 'portfolio:certificate_detail' cert.id %}" class="btn-detail">{% trans "View Details" %}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>{% trans "No certificates found." %}</p>
+    {% endif %}
+   
+    <a href="{% url 'portfolio:education_list' %}" class="btn-detail">{% trans "Back to Education Page" %}</a>
+</article>
+{% endblock %}

@@ -19,6 +19,19 @@
         </p>
     </header>
 
+    <!-- New dedicated section for the "View Job Experience" buttons -->
+    <section class="view-experience-section">
+        <a href="{% url 'portfolio:job_experience_list' %}" class="view-experience-button">
+            {% trans "View Job Experience" %}
+        </a>
+        <a href="{% url 'portfolio:education_list' %}" class="view-experience-button">
+            {% trans "View Education" %}
+        </a>
+        <a href="{% url 'portfolio:certificate_list' %}" class="view-experience-button">
+            {% trans "View Certificates" %}
+        </a>
+    </section>
+
     <!-- Skills Section -->
     <section class="skills-section" aria-labelledby="skills-heading">
         <h2 id="skills-heading" class="section-heading">{% trans "Skills" %}</h2>
