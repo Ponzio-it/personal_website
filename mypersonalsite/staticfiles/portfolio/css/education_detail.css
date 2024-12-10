@@ -83,7 +83,6 @@ body {
     margin-bottom: 15px;
 }
 
-
 /* Back Button */
 .detail-page .btn-back {
     display: inline-block;
@@ -97,13 +96,14 @@ body {
     text-align: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 .detail-page .btn-back:hover {
     background-color: var(--primary-color-dark);
 }
 
-/* Responsive Design */
+/* 🔥 Responsive Design */
 @media (max-width: 768px) {
     .detail-page .page-title {
         font-size: 1.8rem;
@@ -115,5 +115,14 @@ body {
 
     .detail-page .description {
         font-size: 0.9rem;
+    }
+
+    .detail-page .btn-back {
+        display: block; /* Ensures it takes the full width */
+        width: 100%; /* Full width on mobile */
+        padding: 15px 0; /* Larger padding for better tap target */
+        font-size: 1rem; /* Slightly smaller font for mobile */
+        text-align: center; /* Ensure the text is centered */
+        margin-top: 15px; /* Add space above the button */
     }
 }

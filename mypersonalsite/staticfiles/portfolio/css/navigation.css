@@ -57,7 +57,7 @@ nav .menu-toggle {
     nav ul {
         display: none; /* Hide navigation links by default */
         flex-direction: column; /* Stack links vertically */
-        gap: 0; /* Remove gap between items */
+        gap: 1rem; /* Add gap between items */
         width: 100%;
         background-color: #333;
         position: absolute;
@@ -75,7 +75,7 @@ nav .menu-toggle {
         width: 100%; /* Make links full width */
         text-align: center; /* Center-align text for better visibility */
         font-size: 1.4rem; /* Larger font size for touch devices */
-        padding: 1em; /* Increase padding for easier touch interaction */
+        padding: 1em 0; /* Increase padding for easier touch interaction */
     }
 
     nav .menu-toggle {

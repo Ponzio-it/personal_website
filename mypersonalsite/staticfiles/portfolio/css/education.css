@@ -33,6 +33,9 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 10px;
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .page-subtitle {
@@ -40,7 +43,56 @@ body {
     font-size: 1.2rem;
     margin-bottom: 30px;
     color: var(--light-text-color);
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
 }
+
+/* View Job Experience Section */
+.view-experience-section {
+    display: flex;
+    justify-content: space-between; /* Spreads the buttons evenly */
+    flex-wrap: wrap; /* Allows buttons to wrap on small screens */
+    gap: 20px; /* Adds spacing between buttons */
+    padding: 20px 0; /* Space around the buttons */
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--white-color); /* Ensure section stands out */
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow to separate section */
+}
+
+.view-experience-button {
+    display: inline-block;
+    padding: 15px 30px; /* Bigger button for better visibility */
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 8px; /* Slightly larger border radius for better appearance */
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.2rem; /* Slightly larger text for visibility */
+    cursor: pointer;
+    flex: 1; /* Ensures the buttons stretch evenly */
+    max-width: 30%; /* Ensures buttons stay side-by-side */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.view-experience-button:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.view-experience-button:focus {
+    outline: 3px solid #ffdd57; /* High-contrast outline for accessibility */
+    outline-offset: 4px;
+}
+
 
 /* Section Headings */
 .section-heading {
@@ -50,11 +102,17 @@ body {
     color: var(--secondary-color);
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Skills Section */
 .skills-section {
     margin-bottom: 30px;
+    max-width: 1000px; /* Consistent with carousel, education, experience */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .skills-list {
@@ -100,6 +158,9 @@ body {
 /* Form Actions */
 .form-actions {
     margin-top: 15px;
+    max-width: 1000px; /* Consistent with carousel, education, experience */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .filter-button {
@@ -143,11 +204,15 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: var(--white-color); /* Matches the overall page theme */
     border: 1px solid var(--border-color); /* Subtle border for definition */
     border-radius: 10px; /* Rounded corners for modern look */
     box-shadow: var(--box-shadow); /* Adds a soft shadow for depth */
     padding: 20px;
+    box-sizing: border-box; /*Ensure padding is included in the total widht */
 }
 
 /* Certificates Grid */
@@ -159,7 +224,7 @@ body {
 
 /* Certificates Card */
 .certificate-card {
-    flex: 0 0 calc((100% / 3) - 13.33px); /* Adjusted width */
+    flex: 0 0 calc((100% / 2) - 13.33px); /* Adjusted width */
     margin-right: 20px; /* Space between cards */
     box-sizing: border-box; /* Include padding and borders in the card's width */
     background-color: var(--white-color);
@@ -171,9 +236,9 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
 }
 /* Remove margin-right on the last card in each slide */
-.certificate-card:nth-child(3n) {
+/* .certificate-card:nth-child(3n) {
     margin-right: 0;
-}
+}*/
 
 .certificate-card:hover {
     transform: translateY(-5px); /* Slight hover effect for engagement */
@@ -220,6 +285,9 @@ body {
 .education-section,
 .experience-section {
     margin-bottom: 30px;
+    max-width: 1000px; /* Ensure it stays consistent with the carousel */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
 }
 
 .education-list,
@@ -284,9 +352,69 @@ body {
 @media (max-width: 768px) {
     .page-title {
         font-size: 2rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .section-heading {
         font-size: 1.5rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .skills-section, 
+    .form-actions {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .skills-list {
+        flex-direction: column;
+    }
+
+    .filter-button, 
+    .clear-filter {
+        width: 100%; 
+        text-align: center;
+    }
+
+    .carousel,
+    .education-section,
+    .experience-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .certificate-card {
+        flex: 0 0 100%; /* Make it 100% on small screens */
+        margin-bottom: 20px; /* Add some margin on smaller screens */
+    }
+
+    .carousel-btn {
+        width: 30px; 
+        height: 30px; 
+        font-size: 1rem; 
+    }
+    .view-experience-section {
+        flex-direction: column; /* Stack buttons vertically on mobile */
+        gap: 10px; /* Add space between the buttons */
+        padding-left: 10px; 
+        padding-right: 10px; 
+    }
+
+    .view-experience-button {
+        width: 100%; /* Full width on mobile */
+        font-size: 1rem; /* Smaller font size for smaller screens */
+        padding: 12px 0; /* Adjust padding for mobile */
+        max-width: 100%; /* Ensures buttons stack */
     }
 }
+
+
+

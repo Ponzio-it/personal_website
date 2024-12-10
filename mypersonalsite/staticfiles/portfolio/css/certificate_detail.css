@@ -132,6 +132,7 @@ body {
     text-align: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 .detail-page .btn-back:hover {
@@ -157,6 +158,12 @@ body {
     }
 
     .detail-page .btn-back {
-        font-size: 0.9rem;
+        display: block; /* Ensures it takes the full width */
+        width: 100%; /* Full width on mobile */
+        padding: 15px 0; /* Larger padding for better tap target */
+        font-size: 1rem; /* Slightly smaller font for mobile */
+        text-align: center; /* Ensure the text is centered */
+        margin-top: 15px; /* Add space above the button */
     }
 }
+

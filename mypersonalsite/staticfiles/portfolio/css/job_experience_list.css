@@ -1,0 +1,174 @@
+/* CSS Variables for Colors */
+:root {
+    --primary-color: #007bff;
+    --primary-color-dark: #0069d9;
+    --secondary-color: #0A192F;
+    --background-color: #f4f4f9;
+    --text-color: #0A192F;
+    --light-text-color: #555;
+    --border-color: #ddd;
+    --white-color: #ffffff;
+    --hover-background-color: #f0f8ff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* General Page Styling */
+body {
+    font-family: 'Roboto', 'sans-serif';
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.education-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Title and Subtitle */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--light-text-color);
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Experience Section */
+.experience-section {
+    margin-bottom: 30px;
+    max-width: 1000px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    padding: 20px; /* Added padding for better space on mobile */
+}
+
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-item {
+    margin-bottom: 20px;
+    background-color: var(--white-color);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    box-sizing: border-box;
+    transition: all 0.3s ease; /* Smooth transition on hover */
+}
+
+.experience-item h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.experience-item .company {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.experience-item .time-period {
+    font-style: italic;
+    color: var(--light-text-color);
+    margin: 5px 0;
+}
+
+.experience-item p {
+    margin: 10px 0;
+    font-size: 1rem;
+    line-height: 1.5; 
+}
+
+.btn-detail {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn-detail:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.btn-detail:focus {
+    outline: 3px solid #ffdd57;
+    outline-offset: 4px;
+}
+
+/* 🔥 Responsive Design */
+@media (max-width: 768px) {
+    .experience-section {
+        padding: 15px; /* Reduced padding for mobile */
+    }
+
+    .experience-item {
+        padding: 15px; /* Adjust padding for better fit on smaller screens */
+        margin-bottom: 15px; 
+    }
+
+    .experience-item h3 {
+        font-size: 1.3rem; /* Reduce font size for mobile */
+    }
+
+    .experience-item p {
+        font-size: 0.95rem; /* Slightly smaller font for mobile */
+    }
+
+    .btn-detail {
+        display: block; /* Make button full width on mobile */
+        width: 100%;
+        text-align: center;
+        font-size: 1rem; /* Slightly smaller button text */
+        padding: 12px 0; /* Adjust padding for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-section {
+        padding: 10px; 
+    }
+
+    .experience-item {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .experience-item h3 {
+        font-size: 1.2rem; /* Further reduce font size for smaller screens */
+    }
+
+    .experience-item p {
+        font-size: 0.9rem; 
+    }
+
+    .btn-detail {
+        font-size: 0.95rem; 
+        padding: 10px;
+    }
+}
