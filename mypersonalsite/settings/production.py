@@ -3,7 +3,7 @@ from .base import *
 environ.Env.read_env(env_file='.env.production')
 
 DEBUG = False
-ALLOWED_HOSTS= env('ALLOWED_HOST').split(',')
+ALLOWED_HOSTS= env("ALLOWED_HOST").split(',')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = []
