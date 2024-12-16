@@ -40,7 +40,7 @@
                 {% for skill in skills %}
                 <li>
                     <input type="checkbox" id="skill-{{ skill.id }}" name="skill" value="{{ skill.id }}" {% if selected_skills and skill in selected_skills %}checked{% endif %}>
-                    <label for="skill-{{ skill.id }}">{{ skill.name }}</label>
+                    <label for="skill-{{ skill.id }}">{{ skill.display_name }}</label>
                 </li>
                 {% endfor %}
             </ul>
@@ -61,9 +61,9 @@
             <div class="certificates-grid" id="certificates-carousel">
                 {% for certificate in certificates %}
                 <div class="certificate-card" data-slide-index="{{ forloop.counter0 }}">
-                    <h3>{{ certificate.title }}</h3>
-                    {% if certificate.field %}
-                    <p>{{ certificate.field }}</p>
+                    <h3>{{ certificate.display_title }}</h3>
+                    {% if certificate.display_field %}
+                    <p>{{ certificate.display_field }}</p>
                     {% endif %}
                     <a href="{% url 'portfolio:certificate_detail' certificate.id %}" class="btn-detail">{% trans "View Details" %}</a>
                 </div>
@@ -84,8 +84,8 @@
         <ul class="education-list">
             {% for education in education_history %}
             <li class="education-item">
-                <h3>{{ education.degree }} {% trans "in" %} {{ education.field_of_study }}</h3>
-                <p class="institution"><strong>{{ education.institution }}</strong></p>
+                <h3>{{ education.display_degree }} {% trans "in" %} {{ education.display_field_of_study }}</h3>
+                <p class="institution"><strong>{{ education.display_institution }}</strong></p>
                 <p class="time-period">
                     <time datetime="{{ education.start_date|date:'Y-m' }}">{{ education.start_date|date:"F Y" }}</time> -
                     <time datetime="{{ education.end_date|date:'Y-m' }}">{{ education.end_date|date:"F Y" }}</time>
@@ -106,7 +106,7 @@
         <ul class="experience-list">
             {% for job in job_experiences %}
             <li class="experience-item">
-                <h3>{{ job.title }} {% trans "at" %} {{ job.company }}</h3>
+                <h3>{{ job.display_title }} {% trans "at" %} {{ job.display_company }}</h3>
                 <p class="time-period">
                     <time datetime="{{ job.start_date|date:'Y-m-d' }}">{{ job.start_date|date:"F Y" }}</time> -
                     {% if job.end_date %}

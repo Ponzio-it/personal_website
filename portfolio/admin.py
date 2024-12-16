@@ -7,23 +7,25 @@ from .models import (
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'is_public')
-    search_fields = ('title', 'description')
+    """
+    Custom admin class for the Project model.
+    """
+    list_display = ('title_en', 'title_it', 'date', 'is_public')
+    search_fields = ('title_en', 'title_it', 'description_en', 'description_it')
     list_filter = ('is_public', 'date')
     ordering = ('-date',)
 
-
 @admin.register(Folder)
 class FolderAdmin(admin.ModelAdmin):
-    list_display = ('name', 'project')
-    search_fields = ('name',)
+    list_display = ('name_en', 'name_it', 'project')
+    search_fields = ('name_en', 'name_it')
     list_filter = ('project',)
 
 
 @admin.register(File)
 class FileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'folder', 'is_private')
-    search_fields = ('name',)
+    list_display = ('name_en', 'name_it', 'folder', 'is_private')
+    search_fields = ('name_en', 'name_it')
     list_filter = ('is_private', 'folder')
 
 
@@ -56,54 +58,49 @@ class SkillAdmin(admin.ModelAdmin):
     Custom admin class for Skill model. 
     Displays related certificates, educations, and job experiences.
     """
-    list_display = ('name', 'related_certificates', 'related_educations', 'related_job_experiences')
-    search_fields = ('name',)
+    list_display = ('name_en', 'name_it', 'related_certificates', 'related_educations', 'related_job_experiences')
+    search_fields = ('name_en', 'name_it')
     inlines = [CertificateInline, EducationInline, JobExperienceInline]
 
     def related_certificates(self, obj):
-        return ", ".join([certificate.title for certificate in obj.certificates.all()])
+        return ", ".join([certificate.title_en for certificate in obj.certificates.all()])
     related_certificates.short_description = "Certificates"
 
     def related_educations(self, obj):
-        return ", ".join([f"{education.degree} in {education.field_of_study}" for education in obj.educations.all()])
+        return ", ".join([f"{education.degree} in {education.field_of_study_en}" for education in obj.educations.all()])
     related_educations.short_description = "Education Entries"
 
     def related_job_experiences(self, obj):
-        return ", ".join([job.title for job in obj.job_experiences.all()])
+        return ", ".join([job.title_en for job in obj.job_experiences.all()])
     related_job_experiences.short_description = "Job Experiences"
 
 
 @admin.register(JobExperience)
 class JobExperienceAdmin(admin.ModelAdmin):
-    """
-    Admin class for managing JobExperience model.
-    """
-    list_display = ('title', 'company', 'start_date', 'end_date')
-    search_fields = ('title', 'company', 'description')
+    """Admin class for managing JobExperience model."""
+    list_display = ('title_en', 'title_it', 'company', 'start_date', 'end_date')
+    search_fields = ('title_en', 'title_it', 'company', 'description_en', 'description_it')
     list_filter = ('start_date', 'end_date')
     filter_horizontal = ('skills',)
 
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ('title', 'link')
-    search_fields = ('title',)
+    list_display = ('title_en', 'title_it', 'link')
+    search_fields = ('title_en', 'title_it')
     filter_horizontal = ('skills',)
 
 
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
-    list_display = ('institution', 'degree', 'field_of_study', 'start_date', 'end_date')
-    search_fields = ('institution', 'degree', 'field_of_study')
+    list_display = ('institution_en', 'institution_it', 'degree', 'field_of_study_en', 'start_date', 'end_date')
+    search_fields = ('institution_en', 'institution_it', 'degree', 'field_of_study_en', 'field_of_study_it')
     filter_horizontal = ('skills',)
 
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    """
-    Admin interface for managing user reviews.
-    Allows bulk approval or rejection.
-    """
+    """Admin interface for managing user reviews."""
     list_display = ('reviewer_name', 'project', 'recommendation', 'status', 'created_at')
     list_filter = ('status', 'recommendation')
     actions = ['approve_reviews', 'reject_reviews']
@@ -120,27 +117,24 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
     """Admin interface for managing personal description sections."""
-    list_display = ('title', 'description')
+    list_display = ('title_en', 'title_it', 'description_en', 'description_it')
+    search_fields = ('title_en', 'title_it', 'description_en', 'description_it')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    """
-    Admin configuration for Category model in blogs.
-    """
-    list_display = ('name', 'slug')
-    prepopulated_fields = {'slug': ('name',)}
-    search_fields = ('name',)
+    """Admin configuration for Category model in blogs."""
+    list_display = ('name_en', 'name_it', 'slug')
+    prepopulated_fields = {'slug': ('name_en',)}
+    search_fields = ('name_en', 'name_it')
 
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    """
-    Admin configuration for BlogPost model.
-    """
-    list_display = ('title', 'author', 'publication_date')
+    """Admin configuration for BlogPost model."""
+    list_display = ('title_en', 'title_it', 'author', 'publication_date')
     list_filter = ('categories', 'publication_date')
-    search_fields = ('title', 'content')
-    prepopulated_fields = {'slug': ('title',)}
+    search_fields = ('title_en', 'title_it', 'content_en', 'content_it')
+    prepopulated_fields = {'slug': ('title_en',)}
     date_hierarchy = 'publication_date'
     filter_horizontal = ('categories',)

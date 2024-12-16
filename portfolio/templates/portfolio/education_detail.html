@@ -10,18 +10,40 @@
 
 {% block content %}
 <article class="detail-page">
-    <h1 class="page-title">{{ education.degree }} {% trans "in" %} {{ education.field_of_study }}</h1>
+    <h1 class="page-title">{{ education.degree }} {% trans "in" %} {{ education.display_field_of_study }}</h1>
+
+    <!-- Key Information Section -->
     <section class="key-info">
-        <p class="institution"><strong>{% trans "Institution:" %}</strong> {{ education.institution }}</p>
-        <p><strong>{% trans "Start Date:" %}</strong> {{ education.start_date|date:"F Y" }}</p>
-        <p><strong>{% trans "End Date:" %}</strong> {{ education.end_date|date:"F Y" }}</p>
+        <p class="institution">
+            <strong>{% trans "Institution:" %}</strong> {{ education.display_institution }}
+        </p>
+        <p>
+            <strong>{% trans "Start Date:" %}</strong> {{ education.start_date|date:"F Y" }}
+        </p>
+        <p>
+            <strong>{% trans "End Date:" %}</strong> 
+            {% if education.end_date %}
+                {{ education.end_date|date:"F Y" }}
+            {% else %}
+                {% trans "Present" %}
+            {% endif %}
+        </p>
     </section>
+
+    <!-- Description Section -->
     <section class="description">
         <h2 class="section-heading">{% trans "Description" %}</h2>
-        <p>{{ education.description }}</p>
+        <p>{{ education.display_description }}</p>
     </section>
-    <a href="{% url 'portfolio:education_list' %}" class="btn-back">{% trans "Back to education list" %}</a>
-    <a href="{% url 'portfolio:education' %}" class="btn-back">{% trans "Back to Experience page" %}</a>
-</article>
 
+    <!-- Navigation Buttons -->
+    <div class="navigation-buttons">
+        <a href="{% url 'portfolio:education_list' %}" class="btn-back">
+            {% trans "Back to education list" %}
+        </a>
+        <a href="{% url 'portfolio:education' %}" class="btn-back">
+            {% trans "Back to Experience page" %}
+        </a>
+    </div>
+</article>
 {% endblock %}

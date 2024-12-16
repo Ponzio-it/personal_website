@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ job_experience.title }} - {% trans "Job Experience Detail" %}{% endblock %}
+{% block title %}{{ job_experience.display_title }} - {% trans "Job Experience Detail" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/job_experience_detail.css' %}">
@@ -10,7 +10,7 @@
 
 {% block content %}
 <article class="detail-page">
-    <h1 class="page-title">{{ job_experience.title }} {% trans "at" %} {{ job_experience.company }}</h1>
+    <h1 class="page-title">{{ job_experience.display_title }} {% trans "at" %} {{ job_experience.company }}</h1>
     <section class="key-info">
         <p class="company"><strong>{% trans "Company:" %}</strong> {{ job_experience.company }}</p>
         <p><strong>{% trans "Start Date:" %}</strong> {{ job_experience.start_date|date:"F Y" }}</p>
@@ -24,7 +24,7 @@
     </section>
     <section class="description">
         <h2 class="section-heading">{% trans "Description" %}</h2>
-        <p>{{ job_experience.description }}</p>
+        <p>{{ job_experience.display_description }}</p>
     </section>
     <a href="{% url 'portfolio:job_experience_list' %}" class="btn-back">{% trans "Back to Job Experience" %}</a>
     <a href="{% url 'portfolio:education' %}" class="btn-back">{% trans "Back to Experience page" %}</a>

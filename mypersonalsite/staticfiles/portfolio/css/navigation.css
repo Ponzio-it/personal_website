@@ -52,6 +52,37 @@ nav .menu-toggle {
     cursor: pointer;
 }
 
+/* Language Switcher Form */
+.language-form {
+    margin-left: auto; /* Push it to the right */
+}
+
+.language-switcher {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: background-color 0.3s ease;
+}
+
+.language-switcher:hover {
+    background-color: #2980b9;
+}
+
+.language-switcher:focus {
+    outline: none;
+    border: 2px solid #2980b9;
+}
+
+.language-switcher option {
+    color: #000;
+}
+
 /* Responsive Navigation */
 @media (max-width: 768px) {
     nav ul {
@@ -83,7 +114,16 @@ nav .menu-toggle {
         font-size: 2.5rem; /* Bigger for more visibility */
         padding: 0.5em; /* Add padding for easier tapping */
     }
-}
+
+    .language-form {
+        order: 2;
+        margin-left: 0;
+    }
+
+    .menu-toggle + .language-form {
+        margin-left: auto;
+    }
+}    
 
 /* Enhancements for Accessibility */
 nav .menu-toggle:focus,

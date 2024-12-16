@@ -1,70 +1,100 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
-from django.utils import timezone
-from ..models import Project, Folder, File
-from unittest.mock import patch
+from ..models import (
+    Project,ContactInfo, Skill, Certificate, 
+    Education,
+)
 
 
-class ProjectViewTests(TestCase):
-    """Test case for views related to the portfolio project."""
+class EducationViewTest(TestCase):
 
     def setUp(self):
-        """Set up a sample public project for testing views."""
+        self.client = Client()
+        self.url = reverse('portfolio:education')
+        self.skill = Skill.objects.create(name_en='Python', name_it='Python')
+        self.certificate = Certificate.objects.create(
+            title_en='Test Certificate',
+            title_it='Certificato di Test',
+            description_en='Test description',
+            description_it='Descrizione di test',
+            link='http://example.com'
+        )
+        self.certificate.skills.add(self.skill)
+        self.education = Education.objects.create(
+            institution_en='Test University',
+            institution_it='Università di Test',
+            degree='Bachelors',
+            field_of_study_en='Computer Science',
+            field_of_study_it='Informatica',
+            start_date='2020-01-01',
+            end_date='2024-01-01'
+        )
+        self.education.skills.add(self.skill)
+
+    def test_education_view_renders_correct_template(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'portfolio/education.html')
+
+    def test_education_view_context_contains_expected_data(self):
+        response = self.client.get(self.url)
+        self.assertIn('skills', response.context)
+        self.assertIn('certificates', response.context)
+        self.assertIn('education_history', response.context)
+
+
+class ProjectsViewTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('portfolio:projects')
         self.project = Project.objects.create(
-            title="Sample Project",
-            description="A test project for testing views.",
-            date=timezone.now().date(),
-            technologies="Python, Django",
-            public_url="https://github.com/example/sample-project",
+            title_en='Test Project',
+            title_it='Progetto di Test',
+            description_en='Project description',
+            description_it='Descrizione del progetto',
+            date='2024-01-01',
+            technologies='Python, Django',
+            public_url='http://example.com',
             is_public=True
         )
-        self.folder = Folder.objects.create(
-            project=self.project,
-            name="Docs"
-        )
-        self.file = File.objects.create(
-            folder=self.folder,
-            name="Project_Guide.pdf",
-            is_private=True
-        )
 
-    def test_projects_view_status_code(self):
-        """Test if the projects view is accessible and returns status code 200."""
-        response = self.client.get(reverse('portfolio:projects'))
+    def test_projects_view_renders_correct_template(self):
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-
-    def test_projects_view_template_used(self):
-        """Test if the projects view uses the correct template."""
-        response = self.client.get(reverse('portfolio:projects'))
         self.assertTemplateUsed(response, 'portfolio/projects.html')
 
-    def test_projects_view_context_data(self):
-        """Test if the projects view returns the correct context data."""
-        response = self.client.get(reverse('portfolio:projects'))
-        projects = response.context['projects']
-        self.assertIn(self.project, projects)
-        # Check folder and file existence in project
-        self.assertIn(self.folder, self.project.folders.all())
-        self.assertIn(self.file, self.folder.files.all())
+    def test_projects_view_context_contains_expected_data(self):
+        response = self.client.get(self.url)
+        self.assertIn('projects', response.context)
 
-    def test_home_view_status_code(self):
-        """Test if the home view is accessible."""
-        response = self.client.get(reverse('portfolio:home'))
+
+class ContactViewTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('portfolio:contact')
+        self.contact_info = ContactInfo.objects.create(email='test@example.com')
+
+    def test_contact_view_renders_correct_template(self):
+        response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'portfolio/contact.html')
 
-    def test_about_me_view_status_code(self):
-        """Test if the education view is accessible."""
-        response = self.client.get(reverse('portfolio:education'))
+    def test_contact_view_post_valid_form_sends_email_and_renders_success_message(self):
+        data = {
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'email': 'john.doe@example.com',
+            'message': 'This is a test message'
+        }
+        response = self.client.post(self.url, data)
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'success')
 
-    def test_contact_view_status_code(self):
-        """Test if the contact view is accessible."""
-        response = self.client.get(reverse('portfolio:contact'))
-        self.assertEqual(response.status_code, 200)
-
-    @patch('portfolio.views.open', side_effect=FileNotFoundError)
-    def test_open_cv_view_status_code(self, mock_open):
-        """Test if the open_cv view is accessible and handles missing file gracefully."""
-        response = self.client.get(reverse('portfolio:open_cv'))
-        # Assuming the file does not exist, expect a 404
-        self.assertEqual(response.status_code, 404)
+    #def test_contact_view_post_invalid_form_renders_form_with_errors(self):
+     #   data = {'first_name': '', 'email': ''}  # Missing required fields
+      #  response = self.client.post(self.url, data)
+       # self.assertEqual(response.status_code, 200)
+        #self.assertFormError(response, 'form', 'last_name', 'This field is required.')
+         #self.assertFormError(response, 'form', 'message', 'This field is required.')

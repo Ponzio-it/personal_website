@@ -18,9 +18,9 @@
     <ul class="certificate-list">
         {% for cert in certificates %}
         <li class="certificate-item">
-            <h3>{{ cert.title }}</h3>
+            <h3>{{ cert.display_title }}</h3>
             <p class="certificate-detail">
-                {{ cert.field }}
+                {{ cert.display_field }}
             </p>
             <a href="{% url 'portfolio:certificate_detail' cert.id %}" class="btn-detail">{% trans "View Details" %}</a>
         </li>
@@ -30,6 +30,6 @@
     <p>{% trans "No certificates found." %}</p>
     {% endif %}
    
-    <a href="{% url 'portfolio:education_list' %}" class="btn-detail">{% trans "Back to Education Page" %}</a>
+    <a href="{% url 'portfolio:education' %}" class="btn-detail">{% trans "Back to Experience Page" %}</a>
 </article>
 {% endblock %}

@@ -35,7 +35,7 @@
               <a
                 href="?category={{ category.slug }}{% if query %}&q={{ query }}{% endif %}" 
                 class="category-link {% if category.slug == selected_category %}active{% endif %}">
-                {{ category.name }}
+                {{ category.display_name }}
             </a>
             </li>
             {% endfor %}
@@ -52,15 +52,15 @@
             <article class="post-card">
                 {% if post.featured_image %}
                 <a href="{% url 'portfolio:blog_detail' post.slug %}">
-                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="post-thumbnail">
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.display_title }}" class="post-thumbnail">
                 </a>
                 {% endif %}
                 <div class="post-content">
                     <h3 class="post-title">
-                        <a href="{% url 'portfolio:blog_detail' post.slug %}">{{ post.title }}</a>
+                        <a href="{% url 'portfolio:blog_detail' post.slug %}">{{ post.display_title }}</a>
                     </h3>
                     <p class="post-meta">{% trans "By" %} {{ post.author }} {% trans "on" %} {{ post.publication_date|date:"F d, Y" }}</p>
-                    <p class="post-excerpt">{{ post.excerpt|truncatewords:30 }}</p>
+                    <p class="post-excerpt">{{ post.display_content|truncatewords:30 }}</p>
                     <a href="{% url 'portfolio:blog_detail' post.slug %}" class="read-more">{% trans "Read More" %}</a>
                 </div>
             </article>

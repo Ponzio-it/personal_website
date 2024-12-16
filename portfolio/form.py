@@ -4,8 +4,8 @@ from .models import Review
 
 
 class ReviewForm(forms.ModelForm):
-    """
-    Form for users to submit a review for a project.
+    """ 
+    Form for users to submit a review for a project. 
     """
     class Meta:
         model = Review
@@ -22,29 +22,43 @@ class ReviewForm(forms.ModelForm):
         }
 
 
+
 class ContactForm(forms.Form):
-    """
-    Form to collect contact details from users.
+    """ 
+    Form to collect contact details from users. 
     """
     first_name = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'placeholder': _('First Name')}),
+        widget=forms.TextInput(attrs={
+            'placeholder': _('First Name'),
+            'class': 'form-control'
+        }),
         label=_('First Name'),
         help_text=_("Enter your first name."),
     )
     last_name = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'placeholder': _('Last Name')}),
+        widget=forms.TextInput(attrs={
+            'placeholder': _('Last Name'),
+            'class': 'form-control'
+        }),
         label=_('Last Name'),
         help_text=_("Enter your last name."),
     )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'placeholder': _('Your Email')}),
+        widget=forms.EmailInput(attrs={
+            'placeholder': _('Your Email'),
+            'class': 'form-control'
+        }),
         label=_('Email'),
         help_text=_("Enter a valid email address."),
     )
     message = forms.CharField(
-        widget=forms.Textarea(attrs={'placeholder': _('Your Message')}),
+        widget=forms.Textarea(attrs={
+            'placeholder': _('Your Message'),
+            'class': 'form-control',
+            'rows': 4
+        }),
         label=_('Message'),
         help_text=_("Enter your message here."),
     )

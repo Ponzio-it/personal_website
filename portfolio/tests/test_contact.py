@@ -2,23 +2,18 @@
 
 from django.test import TestCase
 from django.urls import reverse
-from ..models import ContactInfo
+from portfolio.models import ContactInfo
+
 
 class ContactPageTests(TestCase):
     """Test cases for the contact page."""
 
     def setUp(self):
-        """
-        Setup a test client and optionally create a ContactInfo instance
-        to be used in multiple tests.
-        """
+        """Set up the URL for the contact page."""
         self.contact_url = reverse('portfolio:contact')  # Assuming 'contact' is the name of the URL
 
     def test_contact_page_without_contact_info(self):
-        """
-        Test the contact page when there is no contact information available.
-        The page should display a message indicating the lack of contact information.
-        """
+        """Test the contact page when there is no contact information available."""
         response = self.client.get(self.contact_url)
         
         # Check that the page loads correctly with a 200 status code
@@ -31,10 +26,7 @@ class ContactPageTests(TestCase):
         self.assertContains(response, "Contact information is currently unavailable.")
 
     def test_contact_page_with_contact_info(self):
-        """
-        Test the contact page when contact information is available.
-        The page should display the email, LinkedIn, and GitHub information.
-        """
+        """Test the contact page when contact information is available."""
         # Create a ContactInfo instance
         ContactInfo.objects.create(
             email='test@example.com',
@@ -56,8 +48,6 @@ class ContactPageTests(TestCase):
         self.assertContains(response, 'mailto:test@example.com')
 
     def test_contact_page_template_used(self):
-        """
-        Ensure the contact page uses the correct template.
-        """
+        """Ensure the contact page uses the correct template."""
         response = self.client.get(self.contact_url)
         self.assertTemplateUsed(response, 'portfolio/contact.html')

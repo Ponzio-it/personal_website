@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 
 # URL configuration for the project
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
     #path('admin/', admin.site.urls),
     #include the portfolio app URLs
     #path('', include('portfolio.urls')),

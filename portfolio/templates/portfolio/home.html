@@ -29,8 +29,8 @@
     <section class="sections-container">
         {% for section in sections %}
         <div class="dynamic-section">
-            <h2>{{ section.title }}</h2>
-            <p>{{ section.description }}</p>
+            <h2>{{ section.display_title }}</h2>
+            <p>{{ section.display_description }}</p>
         </div>
         {% endfor %}
     </section>

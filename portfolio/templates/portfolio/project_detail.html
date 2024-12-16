@@ -3,7 +3,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ project.title }} - {% trans "Project Details" %}{% endblock %}
+{% block title %}{{ project.display_title }} - {% trans "Project Details" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/project_detail.css' %}">
@@ -12,8 +12,8 @@
 {% block content %}
 <article class="project-detail-page">
     <header>
-        <h1 class="project-title">{{ project.title }}</h1>
-        <p class="project-description">{{ project.description }}</p>
+        <h1 class="project-title">{{ project.display_title }}</h1>
+        <p class="project-description">{{ project.display_description }}</p>
     </header>
     
     <!-- Message Block-->
@@ -50,7 +50,7 @@
                 {% for folder in folders %}
                     <li class="folder-item">
                         <h3 class="folder-name">
-                            <a href="{% url 'portfolio:folder_detail' folder.id %}">{{ folder.name }}</a>
+                            <a href="{% url 'portfolio:folder_detail' folder.id %}">{{ folder.display_name }}</a>
                         </h3>
                     </h3>
                     <p class="file-count">

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Register the 'portfolio' app
     'portfolio',
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,10 @@ ROOT_URLCONF = 'mypersonalsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+            #BASE_DIR / 'portfolio/templates',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,13 +109,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en"
-
-TIME_ZONE = 'Europe/Rome'
 
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+LANGUAGE_CODE = "en"
+
+TIME_ZONE = 'Europe/Rome'
 
 # Add available languages
 LANGUAGES = [

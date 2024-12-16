@@ -4,17 +4,24 @@ from django.urls import reverse
 from portfolio.models import Project, Review
 from django.utils import timezone
 
+
 class ReviewAdminTest(TestCase):
     def setUp(self):
         # Set up admin user and login
-        self.admin_user = User.objects.create_superuser(username='admin', password='admin123', email='admin@example.com')
+        self.admin_user = User.objects.create_superuser(
+            username='admin', 
+            password='admin123', 
+            email='admin@example.com'
+        )
         self.client = Client()
         self.client.login(username='admin', password='admin123')
 
         # Create a project and a review for testing admin actions
         self.project = Project.objects.create(
-            title="Admin Test Project",
-            description="Project for testing admin actions.",
+            title_en="Admin Test Project",
+            title_it="Progetto di Test Amministratore",
+            description_en="Project for testing admin actions.",
+            description_it="Progetto per testare le azioni dell'amministratore.",
             date=timezone.now().date(),
             technologies="Django, Testing",
             public_url="https://github.com/example/admin-test-project",
@@ -29,7 +36,7 @@ class ReviewAdminTest(TestCase):
         )
 
     def test_approve_review_action(self):
-        # Approve the review through admin action
+        """Test that the admin can approve a review using the admin action."""
         url = reverse('admin:portfolio_review_changelist')
         response = self.client.post(url, {'action': 'approve_reviews', '_selected_action': [self.review.pk]})
         
@@ -40,7 +47,7 @@ class ReviewAdminTest(TestCase):
         self.assertEqual(self.review.status, 'approved')
 
     def test_reject_review_action(self):
-        # Reject the review through admin action
+        """Test that the admin can reject a review using the admin action."""
         url = reverse('admin:portfolio_review_changelist')
         response = self.client.post(url, {'action': 'reject_reviews', '_selected_action': [self.review.pk]})
         

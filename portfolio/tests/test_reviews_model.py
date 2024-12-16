@@ -2,12 +2,15 @@ from django.test import TestCase
 from django.utils import timezone
 from portfolio.models import Project, Review
 
+
 class ReviewModelTest(TestCase):
     def setUp(self):
         # Create a sample project to associate with the review
         self.project = Project.objects.create(
-            title="Test Project",
-            description="Description for test project.",
+            title_en="Test Project",
+            title_it="Progetto di Test",
+            description_en="Description for test project.",
+            description_it="Descrizione per il progetto di test.",
             date=timezone.now().date(),
             technologies="Django, Python",
             public_url="https://github.com/example/test-project",
@@ -15,6 +18,7 @@ class ReviewModelTest(TestCase):
         )
 
     def test_review_creation(self):
+        """Test that a review can be created and its fields are set correctly."""
         # Create a review instance
         review = Review.objects.create(
             project=self.project,
@@ -23,6 +27,7 @@ class ReviewModelTest(TestCase):
             recommendation=True,
             status='pending'  # Default status set to 'pending'
         )
+        
         # Check if review is created and fields are set correctly
         self.assertEqual(review.project, self.project)
         self.assertEqual(review.reviewer_name, "John Doe")

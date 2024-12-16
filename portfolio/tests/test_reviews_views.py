@@ -3,12 +3,15 @@ from django.test import TestCase
 from portfolio.models import Project, Review
 from django.utils import timezone
 
+
 class ProjectDetailViewTest(TestCase):
     def setUp(self):
         # Create a project and reviews associated with it
         self.project = Project.objects.create(
-            title="Sample Project",
-            description="Description for sample project.",
+            title_en="Sample Project",
+            title_it="Progetto di esempio",
+            description_en="Description for sample project.",
+            description_it="Descrizione per il progetto di esempio.",
             date=timezone.now().date(),
             technologies="Django, Python",
             public_url="https://github.com/example/sample-project",
@@ -31,9 +34,8 @@ class ProjectDetailViewTest(TestCase):
         )
 
     def test_only_approved_reviews_displayed(self):
-        # Get the project detail page
+        """Test that only approved reviews are displayed on the project detail page."""
         response = self.client.get(reverse('portfolio:project_detail', args=[self.project.pk]))
-        # Check that only the approved review is in the response context
         reviews = response.context['reviews']
         self.assertIn(self.approved_review, reviews)
         self.assertNotIn(self.pending_review, reviews)
@@ -43,8 +45,10 @@ class ReviewCreateViewTest(TestCase):
     def setUp(self):
         # Create a project to associate with the review
         self.project = Project.objects.create(
-            title="Test Project for Review",
-            description="Description for review test project.",
+            title_en="Test Project for Review",
+            title_it="Progetto di test per la revisione",
+            description_en="Description for review test project.",
+            description_it="Descrizione per il progetto di test della revisione.",
             date=timezone.now().date(),
             technologies="Django, Python",
             public_url="https://github.com/example/test-project-review",
@@ -52,7 +56,7 @@ class ReviewCreateViewTest(TestCase):
         )
 
     def test_review_submission(self):
-        # Test form data for a new review
+        """Test that a review can be submitted and saved with a 'pending' status."""
         form_data = {
             'reviewer_name': "New Reviewer",
             'content': "Great project!",

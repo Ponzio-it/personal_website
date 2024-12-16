@@ -1,24 +1,30 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
-from ..models import BlogPost, Category
+from portfolio.models import BlogPost, Category
 
 
 class BlogViewTest(TestCase):
     def setUp(self):
-        # Set up categories and blog posts
-        self.category = Category.objects.create(name="Technology")
+        """Set up categories and blog posts for testing the blog views."""
+        self.category = Category.objects.create(
+            name_en="Technology", 
+            name_it="Tecnologia"
+        )
         
         image = SimpleUploadedFile(
             "test_image.jpg",
             b"file_content",
             content_type="image/jpeg"
         )
+        
         self.post = BlogPost.objects.create(
-            title="Sample Blog Post",
-            content="This is a sample blog post content.",
-            author="John Doe",
-            featured_image=image,
+            title_en="Sample Blog Post", 
+            title_it="Post del blog di esempio", 
+            content_en="This is a sample blog post content.", 
+            content_it="Questo è un contenuto di esempio per il post del blog.", 
+            author="John Doe", 
+            featured_image=image
         )
         self.post.categories.add(self.category)
 
@@ -43,6 +49,7 @@ class BlogViewTest(TestCase):
         self.assertTemplateUsed(response, 'portfolio/blog_detail.html')
         self.assertContains(response, "Sample Blog Post")
         self.assertContains(response, "This is a sample blog post content.")
+
 
 class BlogEdgeCaseTest(TestCase):
     def test_blog_detail_view_nonexistent_post(self):

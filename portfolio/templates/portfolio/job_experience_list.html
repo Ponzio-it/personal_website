@@ -19,7 +19,7 @@
     <ul class="experience-list">
         {% for job in job_experiences %}
         <li class="experience-item">
-            <h3>{{ job.title }} {% trans "at" %} {{ job.company }}</h3>
+            <h3>{{ job.display_title }} {% trans "at" %} {{ job.company }}</h3>
             <p class="time-period">
                 <time datetime="{{ job.start_date|date:'Y-m-d' }}">{{ job.start_date|date:"F Y" }}</time> -
                 {% if job.end_date %}

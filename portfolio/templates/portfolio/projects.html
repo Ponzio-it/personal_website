@@ -24,9 +24,9 @@
             <div class="grid">
                 {% for project in projects %}
                     <div class="project-card">
-                        <h3 class="project-card-title">{{ project.title }}</h3>
+                        <h3 class="project-card-title">{{ project.display_title }}</h3>
                         <p class="project-card-tech">{% trans "Technologies used:" %} {{project.technologies}} </p>
-                        <p class="project-card-description">{{ project.description|truncatewords:20 }}</p>
+                        <p class="project-card-description">{{ project.display_description|truncatewords:20 }}</p>
                         <a href="{% url 'portfolio:project_detail' project.id %}" class="btn">{% trans "View Project" %}</a>
                     </div>
                 {% endfor %}

@@ -18,7 +18,7 @@
     <ul class="education-list">
         {% for ed in educations %}
         <li class="education-item">
-            <h3>{{ ed.degree }} {% trans "at" %} {{ ed.institution }}</h3>
+            <h3>{{ ed.degree }} {% trans "at" %} {{ ed.display_institution }}</h3>
             <p class="time-period">
                 <time datetime="{{ ed.start_date|date:'Y-m-d' }}">{{ ed.start_date|date:"F Y" }}</time> -
                 {% if ed.end_date %}

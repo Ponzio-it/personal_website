@@ -3,14 +3,14 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.display_title }}{% endblock %}
 
 {% block meta_description %}
 <meta name="description" content="{{ post.excerpt }}">
 {% endblock %}
 
 {% block meta_og %}
-<meta property="og:title" content="{{ post.title }}">
+<meta property="og:title" content="{{ post.display_title }}">
 <meta property="og:description" content="{{ post.excerpt }}">
 {% if post.featured_image %}
 <meta property="og:image" content="{{ post.featured_image.url }}">
@@ -27,12 +27,12 @@
 {% block content %}
 <article class="blog-detail-page">
     <header class="post-header">
-        <h1 class="post-title">{{ post.title }}</h1>
+        <h1 class="post-title">{{ post.display_title }}</h1>
         <p class="post-meta">
             {% trans "By" %} {{ post.author }} {% trans "on" %} {{ post.publication_date|date:"F d, Y" }}
         </p>
         {% if post.featured_image %}
-        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="featured-image">
+        <img src="{{ post.featured_image.url }}" alt="{{ post.display_title }}" class="featured-image">
         {% endif %}
     </header>
 
@@ -40,7 +40,7 @@
         {% blocktrans %}
         Here is the blog content:
         {% endblocktrans %}
-        {{ post.content|safe }}
+        {{ post.display_content|safe }}
     </section>
 
     <!-- Related Posts -->
@@ -50,7 +50,7 @@
         <ul class="related-posts-list">
             {% for related_post in related_posts %}
             <li class="related-post-item">
-                <a href="{% url 'portfolio:blog_detail' related_post.slug %}">{{ related_post.title }}</a>
+                <a href="{% url 'portfolio:blog_detail' related_post.slug %}">{{ related_post.display_title }}</a>
             </li>
             {% endfor %}
         </ul>

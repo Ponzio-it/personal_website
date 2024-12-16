@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ certificate.title }} - {% trans "Certificate Detail" %}{% endblock %}
+{% block title %}{{ certificate.display_title }} - {% trans "Certificate Detail" %}{% endblock %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'portfolio/css/certificate_detail.css' %}">
@@ -10,11 +10,11 @@
 
 {% block content %}
 <article class="detail-page">
-    <h1 class="page-title">{{ certificate.title }}</h1>
+    <h1 class="page-title">{{ certificate.display_title }}</h1>
     
     <section class="key-info">
-        <p><strong>{% trans "Field:" %}</strong> {{ certificate.field }}</p>
-        <p><strong>{% trans "Description:" %}</strong> {{ certificate.description }}</p>
+        <p><strong>{% trans "Field:" %}</strong> {{ certificate.display_field }}</p>
+        <p><strong>{% trans "Description:" %}</strong> {{ certificate.display_description }}</p>
         {% if certificate.link %}
         <p><strong>{% trans "Link:" %}</strong> <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer">{{ certificate.link }}</a></p>
         {% endif %}
@@ -23,21 +23,21 @@
     {% if certificate.image %}
     <section class="image">
         <h2 class="section-heading">{% trans "Certificate" %}</h2>
-        <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" class="certificate-image">
+        <img src="{{ certificate.image.url }}" alt="{{ certificate.display_title }}" class="certificate-image">
     </section>
     {% endif %}
     
-    {% if certificate.skills.exists %}
+    {% if skills %}
     <section class="skills">
         <h2 class="section-heading">{% trans "Related Skills" %}</h2>
         <ul class="skills-list">
-            {% for skill in certificate.skills.all %}
-            <li>{{ skill.name }}</li>
+            {% for skill in skills %}
+            <li>{{ skill.display_name }}</li>
             {% endfor %}
         </ul>
     </section>
     {% endif %}
-    <a href="{% url 'portfolio:education_list' %}" class="btn-back">{% trans "Back to certificate list" %}</a>
+    <a href="{% url 'portfolio:certificate_list' %}" class="btn-back">{% trans "Back to certificate list" %}</a>
     <a href="{% url 'portfolio:education' %}" class="btn-back">{% trans "Back to experience page" %}</a>
 </article>
 
