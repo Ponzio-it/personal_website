@@ -1,5 +1,5 @@
 /* Navigation Panel Styles */
-nav {
+.nav-container {
     display: flex;
     justify-content: space-between; /* Space between brand/logo and links */
     align-items: center; /* Vertically centers items */
@@ -24,7 +24,7 @@ nav .logo {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 1.5em; /* Increase spacing between links */
+    gap: 2 em; /* Increase spacing between links */
     margin: 0;
     padding: 0;
 }
@@ -55,14 +55,16 @@ nav .menu-toggle {
 /* Language Switcher Form */
 .language-form {
     margin-left: auto; /* Push it to the right */
+    order: 3; /* Ensure the language form is always last */
 }
 
 .language-switcher {
-    background-color: #3498db;
+    background-color: #007bff;
     color: #fff;
     font-size: 16px;
     padding: 10px 15px;
     border: none;
+    font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
     appearance: none;
@@ -79,7 +81,7 @@ nav .menu-toggle {
     border: 2px solid #2980b9;
 }
 
-.language-switcher option {
+nav .language-switcher option {
     color: #000;
 }
 
@@ -117,13 +119,13 @@ nav .menu-toggle {
 
     .language-form {
         order: 2;
-        margin-left: 0;
-    }
-
-    .menu-toggle + .language-form {
         margin-left: auto;
     }
-}    
+
+    nav .menu-toggle + .language-form {
+        margin-left: auto;
+    }
+}
 
 /* Enhancements for Accessibility */
 nav .menu-toggle:focus,

@@ -274,7 +274,7 @@ msgstr ""
 #: portfolio/models.py:191 portfolio/models.py:192
 #: portfolio/templates/portfolio/contact.html:25
 msgid "Contact Information"
-msgstr ""
+msgstr "Informazioni di contatto"
 
 #: portfolio/models.py:199
 msgid "The name of the skill in English (e.g., Python, Data Analysis)."
@@ -743,7 +743,7 @@ msgstr "2024 Ettore Ponzio. Tutti i Diritti Riservati."
 #: portfolio/templates/portfolio/blog_detail.html:32
 #: portfolio/templates/portfolio/blog_list.html:62
 msgid "By"
-msgstr ""
+msgstr "Da"
 
 #: portfolio/templates/portfolio/blog_detail.html:32
 #: portfolio/templates/portfolio/blog_list.html:62
@@ -805,15 +805,15 @@ msgstr "Dettaglio dei certificati"
 
 #: portfolio/templates/portfolio/certificate_detail.html:16
 msgid "Field:"
-msgstr "Argomenti"
+msgstr "Argomenti:"
 
 #: portfolio/templates/portfolio/certificate_detail.html:17
 msgid "Description:"
-msgstr "Descrizione"
+msgstr "Descrizione:"
 
 #: portfolio/templates/portfolio/certificate_detail.html:19
 msgid "Link:"
-msgstr "LinkedIn"
+msgstr "Link:"
 
 #: portfolio/templates/portfolio/certificate_detail.html:32
 msgid "Related Skills"
@@ -897,7 +897,7 @@ msgstr "Formazione ed Esperienza"
 
 #: portfolio/templates/portfolio/education.html:16
 msgid "My Education & Experience"
-msgstr "La Mia Formazione ed Esperienza"
+msgstr "Formazione ed Esperienza"
 
 #: portfolio/templates/portfolio/education.html:18
 msgid ""
@@ -1034,7 +1034,7 @@ msgid ""
 "Explore my projects, skills, and professional experiences. Let's build "
 "something amazing together!"
 msgstr ""
-"Esplora i miei progetti, le mie competenze e le mie esperienze professionali."
+"Esplora i miei progetti, competenze e esperienze professionali."
 "Costruiamo qualcosa di straordinario insieme!"
 
 #: portfolio/templates/portfolio/home.html:24
