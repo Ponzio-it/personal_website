@@ -79,6 +79,12 @@ body {
     border-radius: 5px;
     background-color: var(--white-color);
     transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .presentation-section .open-presentation-link:hover {
@@ -92,8 +98,6 @@ body {
     font-size: 1.1rem;
     margin: 20px 0 0;
 }
-
-
 
 /* Folders and Files */
 .folders-list {
@@ -257,5 +261,25 @@ body {
     .message {
         padding: 8px 10px;
         border-radius: 3px;
+    }
+
+    .presentation-section {
+        padding: 15px;
+    }
+
+    .presentation-section .section-heading {
+        font-size: 1.8rem; /* Slightly smaller heading for smaller screens */
+    }
+
+    .presentation-section .open-presentation-link {
+        font-size: 1rem; /* Smaller font size for smaller screens */
+        padding: 8px 10px; /* Less padding to make the button more compact */
+        display: block; /* Makes the button span the full width */
+        width: 100%; /* Takes full width of the container */
+        margin: 10px auto; /* Centers the button */
+    }
+
+    .presentation-section p {
+        font-size: 1rem; /* Slightly smaller paragraph text for smaller screens */
     }
 }
