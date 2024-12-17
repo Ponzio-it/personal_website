@@ -24,9 +24,9 @@
         <section class="contact-info" aria-labelledby="contact-info-heading">
             <h2 id="contact-info-heading" class="section-heading">{% trans "Contact Information" %}</h2>
             {% if contact_info %}
-                <p><strong>{% trans "Email:" %}</strong> <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
-                <p><strong>{% trans "Linkedin:" %}</strong> <a href="{{ contact_info.linkedin_url }}" target="_blank">{{ contact_info.linkedin_url }}</a></p>
-                <p><strong>{% trans "GitHub:" %}</strong><a href="{{ contact_info.github_url }}" target="_blank">{{ contact_info.github_url }}</a></p>
+                <p><strong>{% trans "Email: " %}</strong> <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+                <p><strong>{% trans "Linkedin: " %}</strong> <a href="{{ contact_info.linkedin_url }}" target="_blank">{{ contact_info.linkedin_url }}</a></p>
+                <p><strong>{% trans "GitHub: " %}</strong><a href="{{ contact_info.github_url }}" target="_blank">{{ contact_info.github_url }}</a></p>
             {% else %}
                 <p>{% trans "Contact information is currently unavailable." %}</p>
             {% endif %}

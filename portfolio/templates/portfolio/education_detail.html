@@ -10,7 +10,7 @@
 
 {% block content %}
 <article class="detail-page">
-    <h1 class="page-title">{{ education.degree }} {% trans "in" %} {{ education.display_field_of_study }}</h1>
+    <h1 class="page-title">{{ education.get_degree_display }} {% trans "in" %} {{ education.display_field_of_study }}</h1>
 
     <!-- Key Information Section -->
     <section class="key-info">

@@ -84,7 +84,7 @@
         <ul class="education-list">
             {% for education in education_history %}
             <li class="education-item">
-                <h3>{{ education.display_degree }} {% trans "in" %} {{ education.display_field_of_study }}</h3>
+                <h3>{{ education.get_degree_display }} {% trans "in" %} {{ education.display_field_of_study }}</h3>
                 <p class="institution"><strong>{{ education.display_institution }}</strong></p>
                 <p class="time-period">
                     <time datetime="{{ education.start_date|date:'Y-m' }}">{{ education.start_date|date:"F Y" }}</time> -

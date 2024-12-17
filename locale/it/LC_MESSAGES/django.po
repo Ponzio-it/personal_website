@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-16 11:28+0100\n"
+"POT-Creation-Date: 2024-12-17 09:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: portfolio/form.py:14 portfolio/templates/portfolio/base.html:15
 msgid "Your Name"
-msgstr "Il Tuo Nome"
+msgstr "Il tuo nome:"
 
 #: portfolio/form.py:15
 msgid "Your Review"
-msgstr "Il Tuo Nome"
+msgstr "La tua recensione"
 
 #: portfolio/form.py:16
 msgid "Would you recommend this project?"
@@ -31,7 +31,7 @@ msgstr "Raccomenderesti questo progetto?"
 
 #: portfolio/form.py:19
 msgid "Enter your full name."
-msgstr "Inserisci il tuo nome"
+msgstr "Inserisci il tuo nome."
 
 #: portfolio/form.py:20
 msgid "Write your honest feedback about the project."
@@ -44,11 +44,11 @@ msgstr "Seleziona Si o No"
 #: portfolio/form.py:33 portfolio/form.py:36
 #: portfolio/templates/portfolio/contact.html:50
 msgid "First Name"
-msgstr "Il Tuo Nome"
+msgstr "Il tuo nome"
 
 #: portfolio/form.py:37
 msgid "Enter your first name."
-msgstr "Inserisci il tuo Nome"
+msgstr "Inserisci il tuo nome."
 
 #: portfolio/form.py:42 portfolio/form.py:45
 #: portfolio/templates/portfolio/contact.html:58
@@ -61,7 +61,7 @@ msgstr "Inserisci il tuo Cognome"
 
 #: portfolio/form.py:50
 msgid "Your Email"
-msgstr "Il Tuo Nome"
+msgstr "Email"
 
 #: portfolio/form.py:53 portfolio/models.py:160
 #: portfolio/templates/portfolio/contact.html:66
@@ -74,7 +74,7 @@ msgstr "Inserisci un indirizzo email valido"
 
 #: portfolio/form.py:58
 msgid "Your Message"
-msgstr "Il Tuo Nome"
+msgstr "Messaggio"
 
 #: portfolio/form.py:62 portfolio/templates/portfolio/contact.html:74
 msgid "Message"
@@ -188,7 +188,7 @@ msgstr ""
 #: portfolio/models.py:87 portfolio/models.py:130 portfolio/models.py:200
 #: portfolio/models.py:482
 msgid "Name (EN)"
-msgstr "Il Tuo Nome"
+msgstr "Nome"
 
 #: portfolio/models.py:91
 msgid "Name of the folder in Italian, e.g., 'Documentazione'."
@@ -197,7 +197,7 @@ msgstr ""
 #: portfolio/models.py:92 portfolio/models.py:135 portfolio/models.py:205
 #: portfolio/models.py:487
 msgid "Name (IT)"
-msgstr "Il Tuo Nome"
+msgstr "Nome"
 
 #: portfolio/models.py:95
 msgid "Detailed description of the folder in English."
@@ -469,7 +469,7 @@ msgstr ""
 
 #: portfolio/models.py:363
 msgid "Reviewer Name"
-msgstr "Il Tuo Nome"
+msgstr "Nome del recensore"
 
 #: portfolio/models.py:366
 msgid "Content of the review."
@@ -505,11 +505,11 @@ msgstr ""
 
 #: portfolio/models.py:392
 msgid "Review"
-msgstr "Il Tuo Nome"
+msgstr "t"
 
 #: portfolio/models.py:393 portfolio/templates/portfolio/project_detail.html:70
 msgid "Reviews"
-msgstr "Raccomandazioni"
+msgstr "Recensioni"
 
 #: portfolio/models.py:400
 msgid "Job title in English (e.g., Software Developer)"
@@ -808,8 +808,10 @@ msgid "Field:"
 msgstr "Argomenti:"
 
 #: portfolio/templates/portfolio/certificate_detail.html:17
+#, fuzzy
+#| msgid "Description"
 msgid "Description:"
-msgstr "Descrizione:"
+msgstr "Descrizione"
 
 #: portfolio/templates/portfolio/certificate_detail.html:19
 msgid "Link:"
@@ -867,6 +869,8 @@ msgid "Email:"
 msgstr ""
 
 #: portfolio/templates/portfolio/contact.html:28
+#, fuzzy
+#| msgid "Linkedi#:"
 msgid "Linkedin:"
 msgstr "LinkedIn"
 
@@ -977,6 +981,8 @@ msgid "Education Detail"
 msgstr "Formazione ed Esperienza"
 
 #: portfolio/templates/portfolio/education_detail.html:18
+#, fuzzy
+#| msgid "Institutio#:"
 msgid "Institution:"
 msgstr "Ente:"
 
@@ -1034,8 +1040,8 @@ msgid ""
 "Explore my projects, skills, and professional experiences. Let's build "
 "something amazing together!"
 msgstr ""
-"Esplora i miei progetti, competenze e esperienze professionali."
-"Costruiamo qualcosa di straordinario insieme!"
+"Esplora i miei progetti, competenze e esperienze professionali. Costruiamo "
+"qualcosa di straordinario insieme!"
 
 #: portfolio/templates/portfolio/home.html:24
 msgid "Profile Image"
@@ -1058,6 +1064,8 @@ msgid "Project Details"
 msgstr "Progetti"
 
 #: portfolio/templates/portfolio/project_detail.html:22
+#, fuzzy
+#| msgid "Notificatio#:"
 msgid "Notification:"
 msgstr "Notifiche:"
 
@@ -1095,11 +1103,11 @@ msgstr "Iniziato il"
 
 #: portfolio/templates/portfolio/project_detail.html:85
 msgid "No reviews available yet. Be the first to leave a review!"
-msgstr "Nessuna raccomandazione disponibile. Sii il primo!"
+msgstr "Nessuna recensione disponibile. Sii il primo!"
 
 #: portfolio/templates/portfolio/project_detail.html:89
 msgid "Leave a Review"
-msgstr "Aggiungi raccomandazione"
+msgstr "Aggiungi recensione"
 
 #: portfolio/templates/portfolio/project_detail.html:92
 msgid "Back to Projects"
@@ -1136,11 +1144,11 @@ msgstr "Nessun certificato disponibile al momento."
 #: portfolio/templates/portfolio/review_form.html:6
 #: portfolio/templates/portfolio/review_form.html:16
 msgid "Submit a Review for"
-msgstr "Rilascia una raccomandazione per"
+msgstr "Rilascia una recensione per"
 
 #: portfolio/templates/portfolio/review_form.html:31
 msgid "Submit Review"
-msgstr "Aggiungi raccomandazione"
+msgstr "Aggiungi recensione"
 
 #: portfolio/views.py:156
 #, python-brace-format
@@ -1160,7 +1168,7 @@ msgstr "Il CV richiesto non può essere trovato."
 
 #: portfolio/views.py:297
 msgid "New Review Submission Pending Approval"
-msgstr "Nuova raccomandazione in attesa di approvazione"
+msgstr "Nuova recensione in attesa di approvazione"
 
 #: portfolio/views.py:298
 #, python-brace-format
@@ -1172,8 +1180,10 @@ msgstr ""
 #: portfolio/views.py:308
 msgid "Your review has been submitted and is pending approval. Thank you!"
 msgstr ""
-"La tua raccomandazione è stata aggiunta ed è in attesa di approvazione. "
-"Grazie!"
+"La tua recensione è stata aggiunta ed è in attesa di approvazione. Grazie!"
+
+#~ msgid "Descriptio#:"
+#~ msgstr "Descrizione:"
 
 #~ msgid "Back to Education Page"
 #~ msgstr "Ritorna agli Studi"

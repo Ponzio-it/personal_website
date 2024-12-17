@@ -74,17 +74,19 @@ def education(request):
     # Dynamically set the bilingual fields based on the user's language
     for education in education_history:
         if user_language == 'it':
-            education.display_institution = education.institution_it
+            education.display_degree = education.degree
             education.display_field_of_study = education.field_of_study_it
         else:
-            education.display_institution = education.institution_en
+            education.display_degree = education.degree
             education.display_field_of_study = education.field_of_study_en
 
     for job in job_experiences:
         if user_language == 'it':
             job.display_title = job.title_it
+            job.display_company = job.company
         else:
             job.display_title = job.title_en
+            job.display_company = job.company
 
     for skill in skills:
         if user_language == 'it':
