@@ -4,7 +4,7 @@ environ.Env.read_env(env_file='.env.dev')
 
 DEBUG = True
 ALLOWED_HOSTS = []
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio/static'),]
 
 
 

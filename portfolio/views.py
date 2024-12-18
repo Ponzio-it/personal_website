@@ -12,7 +12,6 @@ from django.templatetags.static import static
 from django.utils.translation import get_language
 
 
-
 from .models import (
     Project,
     ContactInfo,
@@ -64,12 +63,29 @@ def education(request):
     
     if skill_ids:
         certificates = Certificate.objects.filter(skills__id__in=skill_ids).distinct()
-        education_history = Education.objects.filter(skills__id__in=skill_ids).distinct()
-        job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids).order_by('-end_date').distinct()
+        
+        # Separate "Present" and "Past" entries for education
+        present_education_history = Education.objects.filter(skills__id__in=skill_ids, end_date__isnull=True).distinct()
+        past_education_history = Education.objects.filter(skills__id__in=skill_ids, end_date__isnull=False).order_by('-end_date').distinct()
+        education_history = list(present_education_history) + list(past_education_history)
+
+        # Separate "Present" and "Past" entries for job experiences
+        present_job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids, end_date__isnull=True).distinct()
+        past_job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids, end_date__isnull=False).order_by('-end_date').distinct()
+        job_experiences = list(present_job_experiences) + list(past_job_experiences)
+
     else:
         certificates = Certificate.objects.all()
-        education_history = Education.objects.all().order_by('-end_date')
-        job_experiences = JobExperience.objects.all().order_by('-end_date')
+        
+        # Separate "Present" and "Past" entries for education
+        present_education_history = Education.objects.filter(end_date__isnull=True)
+        past_education_history = Education.objects.filter(end_date__isnull=False).order_by('-end_date')
+        education_history = list(present_education_history) + list(past_education_history)
+
+        # Separate "Present" and "Past" entries for job experiences
+        present_job_experiences = JobExperience.objects.filter(end_date__isnull=True)
+        past_job_experiences = JobExperience.objects.filter(end_date__isnull=False).order_by('-end_date')
+        job_experiences = list(present_job_experiences) + list(past_job_experiences)
 
     # Dynamically set the bilingual fields based on the user's language
     for education in education_history:
@@ -110,7 +126,6 @@ def education(request):
         'job_experiences': job_experiences,
     }
     return render(request, 'portfolio/education.html', context)
-
 
 
 def projects(request):
@@ -190,8 +205,17 @@ def contact(request):
 # Open CV page view
 def open_cv(request):
     """
-    Handle the download of the CV (PDF file).
+    Handle the download of the CV (PDF file) based on the user's language.
     """
+    # Get the user's current language (e.g., 'it' or 'en')
+    user_language = get_language()
+
+    # Determine the correct file name based on the user's language
+    if user_language == 'it':
+        file_name = 'CV_Ettore Ponzio_it.pdf'
+    else:
+        file_name = 'CV_Ettore Ponzio_eng.pdf'  # Default to English if language is not 'it'
+
     # Determine the correct base path
     if settings.DEBUG:
         # In development, use STATICFILES_DIRS
@@ -201,7 +225,7 @@ def open_cv(request):
         base_path = settings.STATIC_ROOT
 
     # Construct the full file path
-    file_path = os.path.join(base_path, 'portfolio', 'docs', 'CV_Ettore Ponzio_eng.pdf')
+    file_path = os.path.join(base_path, 'portfolio', 'docs', file_name)
 
 
     # Try to open the file and return it as a FileResponse
@@ -538,7 +562,13 @@ class ViewJobExperienceList(ListView):
     def get_queryset(self):
         """Retrieve the job experiences and annotate the bilingual fields based on the user's language."""
         user_language = get_language()  # Detect the current language (e.g., 'en' or 'it')
-        queryset = JobExperience.objects.all()
+        
+        # Separate "Present" jobs (where end_date is NULL) and "Past" jobs (where end_date is set)
+        present_jobs = JobExperience.objects.filter(end_date__isnull=True)
+        past_jobs = JobExperience.objects.filter(end_date__isnull=False).order_by('-end_date')
+
+        # Merge "Present" jobs at the top and "Past" jobs below
+        queryset = list(present_jobs) + list(past_jobs)
         
         # Dynamically set the title and description fields for the language
         for job_experience in queryset:
@@ -555,16 +585,6 @@ class ViewJobExperienceList(ListView):
         """Add context data to the template with bilingual support for title and description."""
         context = super().get_context_data(**kwargs)
         
-        user_language = get_language()  # Detect the current language (e.g., 'en' or 'it')
-        
-        # Update display fields in the context based on the current language
-        for job_experience in context['job_experiences']:
-            if user_language == 'it':
-                job_experience.display_title = job_experience.title_it
-                job_experience.display_description = job_experience.description_it
-            else:
-                job_experience.display_title = job_experience.title_en
-                job_experience.display_description = job_experience.description_en
         
         return context
 
@@ -579,7 +599,12 @@ class ViewEducationList(ListView):
     def get_queryset(self):
         """Retrieve the education entries and annotate the bilingual fields based on the user's language."""
         user_language = get_language()  # Detect the current language (e.g., 'en' or 'it')
-        queryset = Education.objects.all()
+        # Separate "Present" education (where end_date is NULL) and "Past" education (where end_date is set)
+        present_education = Education.objects.filter(end_date__isnull=True)
+        past_education = Education.objects.filter(end_date__isnull=False).order_by('-end_date')
+
+        # Merge "Present" education at the top and "Past" education below
+        queryset = list(present_education) + list(past_education)
         
         # Dynamically set the title and description fields for the language
         for education in queryset:
@@ -596,16 +621,6 @@ class ViewEducationList(ListView):
         """Add context data to the template with bilingual support for title and description."""
         context = super().get_context_data(**kwargs)
         
-        user_language = get_language()  # Detect the current language (e.g., 'en' or 'it')
-        
-        # Update display fields in the context based on the current language
-        for education in context['educations']:
-            if user_language == 'it':
-                education.degree
-                education.display_description = education.description_it
-            else:
-                education.degree
-                education.display_description = education.description_en
         
         return context
     

@@ -16,7 +16,9 @@
         <p><strong>{% trans "Field:" %}</strong> {{ certificate.display_field }}</p>
         <p><strong>{% trans "Description:" %}</strong> {{ certificate.display_description }}</p>
         {% if certificate.link %}
-        <p><strong>{% trans "Link:" %}</strong> <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer">{{ certificate.link }}</a></p>
+        <p><strong>{% trans "Link:" %}</strong> 
+        <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer" class="btn-link"> {%trans "Click Link" %}
+        </a></p>
         {% endif %}
     </section>
     

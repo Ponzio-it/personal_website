@@ -65,6 +65,27 @@ body {
     color: var(--light-text-color);
 }
 
+/* Click Link Button */
+.key-info .btn-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.key-info .btn-link:hover {
+    background-color: var(--primary-color-dark);
+}
+
+
 /* Image Styling */
 .detail-page .image {
     margin-bottom: 20px;
