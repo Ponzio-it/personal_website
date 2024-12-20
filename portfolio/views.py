@@ -631,7 +631,7 @@ class ViewCertificateList(ListView):
     model = Certificate
     template_name = 'portfolio/certificate_list.html'
     context_object_name = 'certificates'
-    paginate_by = 10
+    
 
     def get_queryset(self):
         """Retrieve the certificates and annotate the bilingual fields based on the user's language."""
