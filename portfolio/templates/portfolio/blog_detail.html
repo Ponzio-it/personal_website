@@ -31,8 +31,8 @@
         <p class="post-meta">
             {% trans "By" %} {{ post.author }} {% trans "on" %} {{ post.publication_date|date:"F d, Y" }}
         </p>
-        {% if post.featured_image %}
-        <img src="{{ post.featured_image.url }}" alt="{{ post.display_title }}" class="featured-image">
+        {% if post.display_featured_image_url %}
+        <img src="{{ post.display_featured_image_url }}" alt="{{ post.display_title }}" class="featured-image">
         {% endif %}
     </header>
 

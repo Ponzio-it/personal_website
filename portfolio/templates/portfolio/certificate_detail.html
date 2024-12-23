@@ -22,10 +22,10 @@
         {% endif %}
     </section>
     
-    {% if certificate.image %}
+    {% if certificate.image_url %}
     <section class="image">
         <h2 class="section-heading">{% trans "Certificate" %}</h2>
-        <img src="{{ certificate.image.url }}" alt="{{ certificate.display_title }}" class="certificate-image">
+        <img src="{{ certificate.image_url }}" alt="{{ certificate.display_title }}" class="certificate-image">
     </section>
     {% endif %}
     

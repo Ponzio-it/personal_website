@@ -50,9 +50,9 @@
         <div class="posts-grid">
             {% for post in posts %}
             <article class="post-card">
-                {% if post.featured_image %}
+                {% if post.display_featured_image_url %}
                 <a href="{% url 'portfolio:blog_detail' post.slug %}">
-                    <img src="{{ post.featured_image.url }}" alt="{{ post.display_title }}" class="post-thumbnail">
+                    <img src="{{ post.display_featured_image_url }}" alt="{{ post.display_title }}" class="post-thumbnail">
                 </a>
                 {% endif %}
                 <div class="post-content">

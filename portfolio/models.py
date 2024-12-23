@@ -141,11 +141,12 @@ class File(models.Model):
         help_text=_("Name of the file in Italian, e.g., 'Piano_Progetto.pdf'."), 
         verbose_name=_("Name (IT)")
     )
-    file = models.FileField(
-        upload_to='project_files/', 
-        help_text=_("File to be uploaded for the project."), 
-        verbose_name=_("File")
+    file_url = models.URLField(
+        max_length=500, 
+        help_text=_("URL to the file hosted on Cloud."), 
+        verbose_name=_("file Link")
     )
+    
     is_private = models.BooleanField(
         default=False, 
         help_text=_("Flag to indicate if the file is private."), 
@@ -254,12 +255,11 @@ class Certificate(models.Model):
         help_text=_("Field of the certificate in Italian."), 
         verbose_name=_("Field (IT)")
     )
-    image = models.ImageField(
-        upload_to='certificate_images/', 
+    image_url = models.URLField(
         blank=True, 
         null=True, 
-        help_text=_("Upload an image for the certificate."), 
-        verbose_name=_("Image")
+        help_text=_("URL of the certificate image."), 
+        verbose_name=_("Image URL")
     )
     link = models.URLField(
         help_text=_("URL to the certificate or course information."), 
@@ -554,12 +554,11 @@ class BlogPost(models.Model):
         help_text=_("Short summary or excerpt of the blog post in Italian."), 
         verbose_name=_("Excerpt (IT)")
     )
-    featured_image = models.ImageField(
-        upload_to='blog_images/',
+    featured_image_url = models.URLField(
         blank=True,
         null=True,
-        help_text=_("Optional featured image for the blog post."),
-        verbose_name=_("Featured Image")
+        help_text=_("Optional URL for the featured image of the blog post."),
+        verbose_name=_("Featured Image URL")
     )
     publication_date = models.DateField(
         auto_now_add=True, 

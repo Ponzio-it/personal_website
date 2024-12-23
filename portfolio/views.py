@@ -298,6 +298,7 @@ class FolderDetailView(DetailView):
         files = self.object.files.all()
         for file in files:
             file.display_name = file.name_it if user_language == 'it' else file.name_en
+            file.display_url = file.file_url 
 
         # Add files and folder to the context
         context['files'] = files
@@ -395,6 +396,9 @@ def blog_list(request):
             post.display_title = post.title_en
             post.display_content = post.content_en
             post.display_excerpt = post.excerpt_en  # Ensure you have excerpt_en field
+            
+        # Include the featured image URL directly in the context
+        post.display_featured_image_url = post.featured_image_url
 
     # Dynamically set display names for categories based on the user's language
     for category in categories:
@@ -427,6 +431,9 @@ def blog_detail(request, slug):
         post.display_title = post.title_en
         post.display_content = post.content_en
         post.display_excerpt = post.excerpt_en
+
+    # Include the featured image URL directly in the context
+    post.display_featured_image_url = post.featured_image_url
     
     related_posts = BlogPost.objects.filter(
         categories__in=post.categories.all()
@@ -438,6 +445,9 @@ def blog_detail(request, slug):
             related_post.display_title = related_post.title_it
         else:
             related_post.display_title = related_post.title_en
+
+        # Include the featured image URL directly in the context
+        related_post.display_featured_image_url = related_post.featured_image_url
 
     context = {
         'post': post,
