@@ -31,7 +31,14 @@
     <!-- PowerPoint Presentation Section -->
     <section class="presentation-section" aria-labelledby="presentation-heading">
         <h2 id="presentation-heading" class="section-heading">{% trans "Project Presentation" %}</h2>
-        {% if project.google_file_id %}
+        {% if project.onedrive_share_link %}
+            <p>
+                <a href="{{ project.onedrive_share_link }}" target="_blank" class="open-presentation-link">
+                    {% trans "Open Presentation in a New Tab" %}
+                </a>
+            </p>
+            
+        {% elif project.google_file_id %}
             <p>
                 <a href="https://docs.google.com/presentation/d/{{ project.google_file_id }}" target="_blank" class="open-presentation-link">
                     {% trans "Open Presentation in a New Tab" %}

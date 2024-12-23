@@ -1,3 +1,4 @@
+/* navigation.css */
 /* Navigation Panel Styles */
 .nav-container {
     display: flex;
@@ -126,6 +127,14 @@ nav .language-switcher option {
         margin-left: auto;
     }
 }
+
+@media (hover: hover) {
+    nav a:hover {
+        background-color: #555;
+        color: #ffdd57;
+    }
+}
+
 
 /* Enhancements for Accessibility */
 nav .menu-toggle:focus,

@@ -60,7 +60,14 @@ class Project(models.Model):
         help_text=_("Google File ID for embedding a presentation."), 
         verbose_name=_("Google File ID")
     )
-
+    onedrive_share_link = models.URLField(
+        max_length=2000,
+        blank=True,
+        null=True,
+        help_text=_("OneDrive share link for embedding a presentation"),
+        verbose_name=_("OneDrive_Link")
+    )
+    
     def __str__(self):
         return self.title_en
 
