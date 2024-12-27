@@ -212,7 +212,7 @@ def open_cv(request):
 
     # Determine the correct file name based on the user's language
     if user_language == 'it':
-        file_name = 'CV_Ettore Ponzio_it.pdf'
+        file_name = 'CV_Ettore Ponzio_ita.pdf'
     else:
         file_name = 'CV_Ettore Ponzio_eng.pdf'  # Default to English if language is not 'it'
 
@@ -436,8 +436,8 @@ def blog_detail(request, slug):
     post.display_featured_image_url = post.featured_image_url
     
     related_posts = BlogPost.objects.filter(
-        categories__in=post.categories.all()
-    ).exclude(id=post.id)[:3]
+        categories__in=post.categories.exclude(slug="all-posts") # Exclude "all-posts" category
+                ).exclude(id=post.id)[:3] # Ensure unique results and limit to 3 posts
 
     # Dynamically set bilingual fields for related posts
     for related_post in related_posts:
