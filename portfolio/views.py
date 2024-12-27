@@ -481,6 +481,17 @@ class ViewEducationDetail(DetailView):
             education.description_it if user_language == 'it' else education.description_en
         )
 
+        related_skills = education.skills.all()
+        for skill in related_skills:
+            skill.display_name = (
+                skill.name_it if user_language == 'it' else skill.name_en
+            )
+
+        context['skills'] = related_skills
+
+        return context
+
+
         return context
 
 
@@ -505,6 +516,14 @@ class ViewJobExperienceDetail(DetailView):
         context['job_experience'].display_description = (
             job_experience.description_it if user_language == 'it' else job_experience.description_en
         )
+
+        related_skills = job_experience.skills.all()
+        for skill in related_skills:
+            skill.display_name = (
+                skill.name_it if user_language == 'it' else skill.name_en
+            )
+
+        context['skills'] = related_skills
 
         return context
 

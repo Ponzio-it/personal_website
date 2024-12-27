@@ -26,6 +26,16 @@
         <h2 class="section-heading">{% trans "Description" %}</h2>
         <p>{{ job_experience.display_description }}</p>
     </section>
+    {% if skills %}
+    <section class="skills">
+        <h2 class="section-heading">{% trans "Related Skills" %}</h2>
+        <ul class="skills-list">
+            {% for skill in skills %}
+            <li>{{ skill.display_name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
     <a href="{% url 'portfolio:job_experience_list' %}" class="btn-back">{% trans "Back to Job Experience" %}</a>
     <a href="{% url 'portfolio:education' %}" class="btn-back">{% trans "Back to Experience page" %}</a>
     

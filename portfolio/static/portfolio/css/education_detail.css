@@ -104,6 +104,37 @@ body {
     background-color: var(--primary-color-dark);
 }
 
+/* Skills List Styling */
+.detail-page .skills {
+    margin-bottom: 20px;
+}
+
+.detail-page .skills ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.detail-page .skills ul li {
+    background-color: var(--hover-background-color);
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.detail-page .skills ul li:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    cursor: pointer;
+}
 /* 🔥 Responsive Design */
 @media (max-width: 768px) {
     .detail-page .page-title {
@@ -116,6 +147,9 @@ body {
 
     .detail-page .description {
         font-size: 0.9rem;
+    }
+    .detail-page .skills ul {
+        flex-direction: column;
     }
 
     .detail-page .btn-back {

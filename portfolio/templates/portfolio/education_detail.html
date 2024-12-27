@@ -35,6 +35,19 @@
         <h2 class="section-heading">{% trans "Description" %}</h2>
         <p>{{ education.display_description }}</p>
     </section>
+    
+    <!-- Related skills section-->
+    {% if skills %}
+    <section class="skills">
+        <h2 class="section-heading">{% trans "Related Skills" %}</h2>
+        <ul class="skills-list">
+            {% for skill in skills %}
+            <li>{{ skill.display_name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
+    
 
     <!-- Navigation Buttons -->
     <div class="navigation-buttons">
