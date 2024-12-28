@@ -36,7 +36,9 @@
         <nav aria-label="{% trans 'Main Navigation' %}">
             <div class="nav-container">
                 <!-- Logo Section -->
-                <a href="{% url 'portfolio:home' %}" class="logo">MyPortfolio</a>
+                <a href="{% url 'portfolio:home' %}" class="logo">
+                    <img src="{% static 'portfolio/logo.png' %}" alt="{% trans 'MyPortfolio Logo' %}" class="logo-image"> {% trans "My Portfolio" %}
+                </a>
 
                 <!-- Menu Toggle Button for Mobile -->
                 <div class="menu-toggle" id="mobile-menu">&#9776;</div>

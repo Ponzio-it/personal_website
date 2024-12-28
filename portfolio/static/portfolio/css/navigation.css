@@ -15,11 +15,18 @@
 
 /* Logo Section */
 nav .logo {
-    font-size: 1.8rem; /* Slightly larger for better readability */
-    font-weight: bold;
-    color: #fff;
+    display: flex;
+    align-items: center; /* Center-aligns the image within the container */
     text-decoration: none;
+    flex: 1;
 }
+
+nav .logo-image {
+    max-height: 50px; /* Adjust as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add space between the image and any text (if present) */
+}
+
 
 /* Navigation Links */
 nav ul {
@@ -51,11 +58,15 @@ nav .menu-toggle {
     font-size: 2rem; /* Larger icon for better visibility */
     color: #fff;
     cursor: pointer;
+    text-align: center;
+    flex: 1;
 }
 
 /* Language Switcher Form */
 .language-form {
-    margin-left: auto; /* Push it to the right */
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
     order: 3; /* Ensure the language form is always last */
 }
 
@@ -88,6 +99,15 @@ nav .language-switcher option {
 
 /* Responsive Navigation */
 @media (max-width: 768px) {
+    .nav-container {
+        flex-direction: row; /* Ensures horizontal alignment */
+    } ;
+
+    nav .logo-image {
+        max-height: 40px; /* Smaller logo for tablets and phones */
+        flex: 1
+    }
+
     nav ul {
         display: none; /* Hide navigation links by default */
         flex-direction: column; /* Stack links vertically */
@@ -116,11 +136,13 @@ nav .language-switcher option {
         display: block; /* Show menu toggle button */
         font-size: 2.5rem; /* Bigger for more visibility */
         padding: 0.5em; /* Add padding for easier tapping */
+        flex: 1;
     }
 
     .language-form {
         order: 2;
         margin-left: auto;
+        flex: 1;
     }
 
     nav .menu-toggle + .language-form {
