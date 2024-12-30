@@ -3,7 +3,7 @@ from .base import *
 environ.Env.read_env(env_file='.env.production')
 
 DEBUG = False
-ALLOWED_HOSTS= env("ALLOWED_HOST").split(',')
+ALLOWED_HOSTS= ['personal-website-zkdg.onrender.com','127.0.0.1','www.ponzioettore.me','ponzioettore.me']
 
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP traffic to HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Recognize HTTPS requests behind a proxy
