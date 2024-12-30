@@ -50,7 +50,7 @@ def home(request):
 
 
 def education(request):
-    """ 
+    """
     Render the Education page, displaying a list of skills, certificates, 
     educational history, and job experiences. Filter entries by selected skill if provided. 
     """
