@@ -490,10 +490,7 @@ class ViewEducationDetail(DetailView):
         context['skills'] = related_skills
 
         return context
-
-
-        return context
-
+    
 
 class ViewJobExperienceDetail(DetailView):
     """

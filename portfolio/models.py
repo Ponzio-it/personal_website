@@ -285,6 +285,7 @@ class Education(models.Model):
     DEGREE_CHOICES = [
         ('Bachelors', _('Bachelors')),
         ('Masters', _('Masters')),
+        ('Master', _('Master')),
         ('PhD', _('PhD')),
         ('Other', _('Other')),
     ]
