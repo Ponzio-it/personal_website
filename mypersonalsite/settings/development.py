@@ -6,7 +6,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio/static'),]
 
-
+# Prevent HTTPS settings in development
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_HSTS_SECONDS = 0
 
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
