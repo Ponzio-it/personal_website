@@ -2,25 +2,41 @@
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% trans "My Portfolio" %}{% endblock %}</title>
+    <title>{% block title %}{% trans "Ettore Ponzio | Professional Portfolio" %}{% endblock %}</title>
     <link rel="icon" href="{% static 'portfolio/favicon.ico' %}" type="image/x-icon">
 
 
     <!-- Meta Tags for SEO -->
-    <meta name="description" content="{% trans 'A showcase of my projects, education, and professional experiences. Discover my portfolio and connect with me.' %}">
-    <meta name="author" content="{% trans 'Your Name' %}">
+    <meta name="description" content="{% trans 'Explore the professional portfolio of Ettore Ponzio. Discover projects, experiences, and insights from a skilled developer and innovator.' %}">
+    <meta name="author" content="{% trans 'Ettore Ponzio' %}">
 
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="{% trans 'My Portfolio' %}">
-    <meta property="og:description" content="{% trans 'A showcase of my projects, education, and professional experiences.' %}">
+    <meta property="og:title" content="{% trans 'Ettore Ponzio | Professional Portfolio' %}">
+    <meta property="og:description" content="{% trans 'Explore projects, experiences, and insights from Ettore Ponzio.' %}">
     <meta property="og:image" content="{% static 'portfolio/images/preview_image.jpg' %}">
     <meta property="og:url" content="https://www.ponzioettore.me">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Ettore Ponzio",
+            "url": "https://www.ponzioettore.me",
+            "image": "https://www.ponzioettore.me{% static 'portfolio/images/preview_image.jpg' %}",
+            "jobTitle": "Developer and Innovator",
+            "sameAs": [
+                "https://www.linkedin.com/in/ettore-ponzio/",
+                "https://github.com/Ponzio-it"
+            ]
+        }
+    </script>
+    
     <!-- Link to CSS stylesheets -->
     <!--link rel="stylesheet" href="{% static 'portfolio/css/styles.css' %}"-->
     <link rel="stylesheet" href="{% static 'portfolio/css/navigation.css' %}">
