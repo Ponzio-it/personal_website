@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     # Register the 'portfolio' app
     'portfolio',
     'modeltranslation',
+    'analytics',
+    'rest_framework',
+    'django_filters',
+    'rest_framework_simplejwt',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +58,26 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    #'DEFAULT_THROTTLE_CLASSES': [
+     #   'rest_framework.throttling.UserRateThrottle',  # Limit based on user
+      #  'rest_framework.throttling.AnonRateThrottle',  # Limit for anonymous users
+    #],
+    #'DEFAULT_THROTTLE_RATES': {
+     #   'user': '100/day',  # 100 requests per day for authenticated users
+      #  'anon': '10/hour',  # 10 requests per hour for anonymous users
+    #},
+    
+}
+
+
 
 ROOT_URLCONF = 'mypersonalsite.urls'
 
