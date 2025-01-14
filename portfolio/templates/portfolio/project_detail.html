@@ -13,8 +13,13 @@
 <article class="project-detail-page">
     <header>
         <h1 class="project-title">{{ project.display_title }}</h1>
-        <p class="project-description">{{ project.display_description }}</p>
     </header>
+
+    <!-- Description Section -->
+    <section class="description">
+        <h2 class="section-heading">{% trans "Description" %}</h2>
+        <p class="project-description">{{ project.display_description }}</p>
+    </section>
     
     <!-- Message Block-->
     {% if messages %}

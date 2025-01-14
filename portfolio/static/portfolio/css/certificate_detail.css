@@ -66,6 +66,13 @@ body {
     color: var(--light-text-color);
 }
 
+/* Description Styling */
+.key-info .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
 /* Click Link Button */
 .key-info .btn-link {
     display: inline-block;

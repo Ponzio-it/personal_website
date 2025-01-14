@@ -24,18 +24,14 @@ body {
 /* Page Titles */
 .project-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 10px;
     color: var(--secondary-color);
 }
 
-.project-description {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: var(--light-text-color);
-}
+
+
 
 /* Section Headings */
 .section-heading {
@@ -45,6 +41,18 @@ body {
     color: var(--secondary-color);
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
+}
+
+/* Description section */
+.project-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--white-color);
 }
 
 /* PowerPoint Presentation Section */

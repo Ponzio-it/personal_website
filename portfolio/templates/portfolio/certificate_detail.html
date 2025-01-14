@@ -14,10 +14,13 @@
     
     <section class="key-info">
         <p><strong>{% trans "Field:" %}</strong> {{ certificate.display_field }}</p>
-        <p><strong>{% trans "Description:" %}</strong> {{ certificate.display_description }}</p>
+        <section class="description">
+            <h2 class="section-heading">{% trans "Description" %}</h2>
+            <p>{{ certificate.display_description }}</p>
+        </section>
         {% if certificate.link %}
         <p><strong>{% trans "Link:" %}</strong> 
-        <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer" class="btn-link"> {%trans "Click Link" %}
+            <a href="{{ certificate.link }}" target="_blank" rel="noopener noreferrer" class="btn-link"> {%trans "Click Link" %}
         </a></p>
         {% endif %}
     </section>
