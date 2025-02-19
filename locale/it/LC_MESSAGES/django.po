@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 09:22+0100\n"
+"POT-Creation-Date: 2025-02-19 17:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: portfolio/form.py:14 portfolio/templates/portfolio/base.html:15
+#: portfolio/form.py:14
 msgid "Your Name"
 msgstr "Il tuo nome:"
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Project"
 msgstr "Progetti"
 
-#: portfolio/models.py:76 portfolio/templates/portfolio/base.html:50
+#: portfolio/models.py:76 portfolio/templates/portfolio/base.html:66
 #: portfolio/templates/portfolio/projects.html:22
 msgid "Projects"
 msgstr "Progetti"
@@ -362,7 +362,7 @@ msgid "Skills related to this certificate."
 msgstr ""
 
 #: portfolio/models.py:280
-#: portfolio/templates/portfolio/certificate_detail.html:27
+#: portfolio/templates/portfolio/certificate_detail.html:30
 msgid "Certificate"
 msgstr "Certificati"
 
@@ -527,7 +527,7 @@ msgstr ""
 msgid "Review"
 msgstr "t"
 
-#: portfolio/models.py:401 portfolio/templates/portfolio/project_detail.html:77
+#: portfolio/models.py:401 portfolio/templates/portfolio/project_detail.html:82
 msgid "Reviews"
 msgstr "Recensioni"
 
@@ -707,63 +707,64 @@ msgstr ""
 
 #: portfolio/templates/portfolio/base.html:9
 #: portfolio/templates/portfolio/base.html:18
-#: portfolio/templates/portfolio/base.html:40
-msgid "My Portfolio"
-msgstr "Il Mio Portfolio"
+msgid "Ettore Ponzio | Professional Portfolio"
+msgstr ""
 
 #: portfolio/templates/portfolio/base.html:14
 msgid ""
-"A showcase of my projects, education, and professional experiences. Discover "
-"my portfolio and connect with me."
+"Explore the professional portfolio of Ettore Ponzio. Discover projects, "
+"experiences, and insights from a skilled developer and innovator."
 msgstr ""
-"Una vetrina dei miei progetti, formazione ed esperienze professionali. "
-"Scopri il mio portfolio costruiamo innovazione insieme."
+
+#: portfolio/templates/portfolio/base.html:15
+msgid "Ettore Ponzio"
+msgstr ""
 
 #: portfolio/templates/portfolio/base.html:19
-msgid "A showcase of my projects, education, and professional experiences."
-msgstr "Una vetrina dei miei progetti, formazione ed esperienze professionali."
+msgid "Explore projects, experiences, and insights from Ettore Ponzio."
+msgstr ""
 
-#: portfolio/templates/portfolio/base.html:36
+#: portfolio/templates/portfolio/base.html:52
 msgid "Main Navigation"
 msgstr "Navigazione Principale"
 
-#: portfolio/templates/portfolio/base.html:40
+#: portfolio/templates/portfolio/base.html:56
 #, fuzzy
 #| msgid "My Portfolio"
 msgid "MyPortfolio Logo"
 msgstr "Il Mio Portfolio"
 
-#: portfolio/templates/portfolio/base.html:48
+#: portfolio/templates/portfolio/base.html:64
 msgid "Home"
 msgstr "Home"
 
-#: portfolio/templates/portfolio/base.html:49
+#: portfolio/templates/portfolio/base.html:65
 msgid "Experiences"
 msgstr "Esperienze"
 
-#: portfolio/templates/portfolio/base.html:51
+#: portfolio/templates/portfolio/base.html:67
 msgid "Contact Me"
 msgstr "Contattami"
 
-#: portfolio/templates/portfolio/base.html:52
+#: portfolio/templates/portfolio/base.html:68
 #: portfolio/templates/portfolio/blog_list.html:6
 #: portfolio/templates/portfolio/blog_list.html:19
 msgid "Blog"
 msgstr ""
 
-#: portfolio/templates/portfolio/base.html:53
+#: portfolio/templates/portfolio/base.html:69
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: portfolio/templates/portfolio/base.html:54
+#: portfolio/templates/portfolio/base.html:70
 msgid "GitHub"
 msgstr "GitHub"
 
-#: portfolio/templates/portfolio/base.html:55
+#: portfolio/templates/portfolio/base.html:71
 msgid "Curriculum Vitae"
 msgstr ""
 
-#: portfolio/templates/portfolio/base.html:82
+#: portfolio/templates/portfolio/base.html:98
 msgid "2024 Ettore Ponzio. All Rights Reserved."
 msgstr "2024 Ettore Ponzio. Tutti i Diritti Riservati."
 
@@ -824,31 +825,32 @@ msgstr "Dettaglio dei certificati"
 msgid "Field:"
 msgstr "Argomenti:"
 
-#: portfolio/templates/portfolio/certificate_detail.html:17
-#, fuzzy
-#| msgid "Description"
-msgid "Description:"
+#: portfolio/templates/portfolio/certificate_detail.html:18
+#: portfolio/templates/portfolio/education_detail.html:35
+#: portfolio/templates/portfolio/job_experience_detail.html:26
+#: portfolio/templates/portfolio/project_detail.html:20
+msgid "Description"
 msgstr "Descrizione"
 
-#: portfolio/templates/portfolio/certificate_detail.html:19
+#: portfolio/templates/portfolio/certificate_detail.html:22
 msgid "Link:"
 msgstr "Link:"
 
-#: portfolio/templates/portfolio/certificate_detail.html:20
+#: portfolio/templates/portfolio/certificate_detail.html:23
 msgid "Click Link"
 msgstr "Clicca per il link"
 
-#: portfolio/templates/portfolio/certificate_detail.html:34
+#: portfolio/templates/portfolio/certificate_detail.html:37
 #: portfolio/templates/portfolio/education_detail.html:42
 #: portfolio/templates/portfolio/job_experience_detail.html:31
 msgid "Related Skills"
 msgstr "Competenze correlate"
 
-#: portfolio/templates/portfolio/certificate_detail.html:42
+#: portfolio/templates/portfolio/certificate_detail.html:45
 msgid "Back to certificate list"
 msgstr "Ritorna ai certificati"
 
-#: portfolio/templates/portfolio/certificate_detail.html:43
+#: portfolio/templates/portfolio/certificate_detail.html:46
 #: portfolio/templates/portfolio/education_list.html:38
 msgid "Back to experience page"
 msgstr "Ritorna alla pagina Esperienze"
@@ -1021,11 +1023,6 @@ msgstr "Data di inizio:"
 msgid "End Date:"
 msgstr "Data di fine:"
 
-#: portfolio/templates/portfolio/education_detail.html:35
-#: portfolio/templates/portfolio/job_experience_detail.html:26
-msgid "Description"
-msgstr "Descrizione"
-
 #: portfolio/templates/portfolio/education_detail.html:55
 msgid "Back to education list"
 msgstr "Ritorna agli studi"
@@ -1045,7 +1042,7 @@ msgstr "Dettagli cartella"
 
 #: portfolio/templates/portfolio/folder_detail.html:33
 msgid "No files available in this folder."
-msgstr "Nessun certificato disponibile al momento."
+msgstr "Nessun file disponibile al momento."
 
 #: portfolio/templates/portfolio/folder_detail.html:38
 #: portfolio/templates/portfolio/review_form.html:33
@@ -1088,54 +1085,54 @@ msgstr "Ritorna alle esperienze lavorative"
 msgid "Project Details"
 msgstr "Progetti"
 
-#: portfolio/templates/portfolio/project_detail.html:22
+#: portfolio/templates/portfolio/project_detail.html:27
 #, fuzzy
 #| msgid "Notificatio#:"
 msgid "Notification:"
 msgstr "Notifiche:"
 
-#: portfolio/templates/portfolio/project_detail.html:33
+#: portfolio/templates/portfolio/project_detail.html:38
 msgid "Project Presentation"
 msgstr "Presentazione del progetto"
 
-#: portfolio/templates/portfolio/project_detail.html:37
-#: portfolio/templates/portfolio/project_detail.html:44
+#: portfolio/templates/portfolio/project_detail.html:42
+#: portfolio/templates/portfolio/project_detail.html:49
 msgid "Open Presentation in a New Tab"
 msgstr "Apri la presentazione in una nuova finestra"
 
-#: portfolio/templates/portfolio/project_detail.html:48
+#: portfolio/templates/portfolio/project_detail.html:53
 msgid "No presentation available for this project."
 msgstr "Nessun certificato disponibile al momento."
 
-#: portfolio/templates/portfolio/project_detail.html:54
+#: portfolio/templates/portfolio/project_detail.html:59
 msgid "Folders and Files"
 msgstr "Cartelle e file"
 
-#: portfolio/templates/portfolio/project_detail.html:64
+#: portfolio/templates/portfolio/project_detail.html:69
 msgid "Files in Folder:"
 msgstr "File nella cartella:"
 
-#: portfolio/templates/portfolio/project_detail.html:66
+#: portfolio/templates/portfolio/project_detail.html:71
 msgid "View Files"
 msgstr "Guarda file"
 
-#: portfolio/templates/portfolio/project_detail.html:71
+#: portfolio/templates/portfolio/project_detail.html:76
 msgid "No folders or files available for this project."
 msgstr "Nessun certificato disponibile al momento."
 
-#: portfolio/templates/portfolio/project_detail.html:86
+#: portfolio/templates/portfolio/project_detail.html:91
 msgid "Submitted on"
 msgstr "Iniziato il"
 
-#: portfolio/templates/portfolio/project_detail.html:92
+#: portfolio/templates/portfolio/project_detail.html:97
 msgid "No reviews available yet. Be the first to leave a review!"
 msgstr "Nessuna recensione disponibile. Sii il primo!"
 
-#: portfolio/templates/portfolio/project_detail.html:96
+#: portfolio/templates/portfolio/project_detail.html:101
 msgid "Leave a Review"
 msgstr "Aggiungi recensione"
 
-#: portfolio/templates/portfolio/project_detail.html:99
+#: portfolio/templates/portfolio/project_detail.html:104
 msgid "Back to Projects"
 msgstr "Ritorna ai progetti"
 
@@ -1207,6 +1204,25 @@ msgstr ""
 msgid "Your review has been submitted and is pending approval. Thank you!"
 msgstr ""
 "La tua recensione è stata aggiunta ed è in attesa di approvazione. Grazie!"
+
+#~ msgid "My Portfolio"
+#~ msgstr "Il Mio Portfolio"
+
+#~ msgid ""
+#~ "A showcase of my projects, education, and professional experiences. "
+#~ "Discover my portfolio and connect with me."
+#~ msgstr ""
+#~ "Una vetrina dei miei progetti, formazione ed esperienze professionali. "
+#~ "Scopri il mio portfolio costruiamo innovazione insieme."
+
+#~ msgid "A showcase of my projects, education, and professional experiences."
+#~ msgstr ""
+#~ "Una vetrina dei miei progetti, formazione ed esperienze professionali."
+
+#, fuzzy
+#~| msgid "Description"
+#~ msgid "Description:"
+#~ msgstr "Descrizione"
 
 #~ msgid "File to be uploaded for the project."
 #~ msgstr "Nessun certificato disponibile al momento."
