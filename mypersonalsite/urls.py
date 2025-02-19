@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+
 
 
 # URL configuration for the project
@@ -28,10 +28,8 @@ urlpatterns = [
 ] 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),  # Admin URLs
-    path('', include('portfolio.urls')),  # Include your app's URLs
-    path('api/', include('analytics.urls')),  # API routes with language prefix
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('', include('portfolio.urls')),
+    path('analytics/', include('analytics.urls', namespace="analytics")),  # Include your< app's URLs
 )
 
 

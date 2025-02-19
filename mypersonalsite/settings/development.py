@@ -3,7 +3,7 @@ from .base import *
 environ.Env.read_env(env_file='.env.dev')
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'portfolio/static'),]
 
 # Prevent HTTPS settings in development

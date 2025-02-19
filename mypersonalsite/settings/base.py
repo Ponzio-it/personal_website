@@ -64,8 +64,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated'
     ),
+        
     #'DEFAULT_THROTTLE_CLASSES': [
      #   'rest_framework.throttling.UserRateThrottle',  # Limit based on user
       #  'rest_framework.throttling.AnonRateThrottle',  # Limit for anonymous users

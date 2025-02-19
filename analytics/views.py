@@ -2,6 +2,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import BasePermission, IsAdminUser
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from django.shortcuts import render
+from django.views import View
 from .models import (
     BusinessPerformanceMetric,
     EngagementMetric,
@@ -90,3 +92,17 @@ class SystemHealthIndicatorViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['status']
     ordering_fields = ['last_checked', 'uptime_percentage']
+
+class AnalyticsPageView(View):
+    """
+    A class-based view for rendering the analytics page template.
+    """
+
+    template_name = "analytics/analytics.html"
+
+    def get(self, request):
+        """
+        Renders the analytics page template.
+        """
+        context = {}
+        return render(request, self.template_name, context)
