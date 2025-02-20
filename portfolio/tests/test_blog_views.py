@@ -12,19 +12,13 @@ class BlogViewTest(TestCase):
             name_it="Tecnologia"
         )
         
-        image = SimpleUploadedFile(
-            "test_image.jpg",
-            b"file_content",
-            content_type="image/jpeg"
-        )
-        
         self.post = BlogPost.objects.create(
             title_en="Sample Blog Post", 
             title_it="Post del blog di esempio", 
             content_en="This is a sample blog post content.", 
             content_it="Questo è un contenuto di esempio per il post del blog.", 
             author="John Doe", 
-            featured_image=image
+            
         )
         self.post.categories.add(self.category)
 

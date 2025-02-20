@@ -266,7 +266,11 @@ class ProjectDetailView(DetailView):
         # Add folders and reviews to the context
         context['folders'] = folders
 
-        context['reviews'] = self.object.reviews.filter(status='approved')
+        if self.object:
+            context['reviews'] = self.object.reviews.filter(status='approved')
+        else:
+            context['reviews'] = []
+            
         return context
 
 
