@@ -1,3 +1,6 @@
+from datetime import date, timedelta
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import BasePermission, IsAdminUser
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -21,15 +24,17 @@ from .serializers import (
 
 class IsAdminOrReadOnly(BasePermission):
     """
-    Custom permission to only allow admins to modify data, but read access for others.
+    Allow GET and POST for everyone.
+    Restrict PUT, PATCH, DELETE to admins only.
     """
 
     def has_permission(self, request, view):
-        if request.method in ['GET']:
-            return True  # Allow read-only access
+        # If it's GET or POST, allow everyone
+        if request.method in ['GET', 'POST']:
+            return True
+        
+        # Else (PUT, PATCH, DELETE, etc.), require admin/staff
         return request.user and request.user.is_staff
-
-
 
 class BusinessPerformanceMetricViewSet(ModelViewSet):
     """
@@ -46,6 +51,47 @@ class BusinessPerformanceMetricViewSet(ModelViewSet):
     search_fields = ['total_views', 'unique_visitors']  # Search on specific fields
     ordering_fields = ['date', 'total_views', 'unique_visitors']  # Allow ordering
 
+    def get_today_metric(self):
+        """
+        Retrieve or create the BusinessPerformanceMetric record for today's date.
+        Returns (metric_instance, created_boolean).
+        """
+        today = date.today()
+        metric, created = BusinessPerformanceMetric.objects.get_or_create(
+            date=today,
+            defaults={
+                # Provide any defaults needed for new records
+                'average_time_on_portfolio': timedelta(seconds=0),
+                'ctr_contact_button': 0.0,
+            }
+        )
+        return metric, created
+
+    def create(self, request, *args, **kwargs):
+        """
+        Overrides default create() to increment total_views in today's record.
+        If today's record does not exist, create a new one.
+        """
+        metric, created = self.get_today_metric()
+
+        # Read the event_type from request data
+        event_type = request.data.get('event_type', 'page_view')
+
+        if event_type == 'contact_click':
+            # Increment Contact CTR
+            metric.ctr_contact_button += 1
+        else:
+            # Default is page_view or unknown event => increment total_views
+            metric.total_views += 1
+        
+        metric.save()
+
+        serializer = self.get_serializer(metric)
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        )
+    
 class EngagementMetricViewSet(ModelViewSet):
     """
     ViewSet for Engagement Metrics with filtering, search, and ordering.
