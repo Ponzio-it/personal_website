@@ -5,7 +5,7 @@ __pycache__/
 .env.dev
 .env.stage
 .env.production
-<<<<<<< HEAD
+
 venv/
 venv
 .venv
