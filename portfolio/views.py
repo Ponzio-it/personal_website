@@ -70,8 +70,8 @@ def education(request):
         education_history = list(present_education_history) + list(past_education_history)
 
         # Separate "Present" and "Past" entries for job experiences
-        present_job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids, end_date__isnull=True).distinct()
-        past_job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids, end_date__isnull=False).order_by('-end_date').distinct()
+        present_job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids, end_date__isnull=True).order_by('-start_date').distinct()
+        past_job_experiences = JobExperience.objects.filter(skills__id__in=skill_ids, end_date__isnull=False).order_by('-start_date').distinct()
         job_experiences = list(present_job_experiences) + list(past_job_experiences)
 
     else:
@@ -83,8 +83,8 @@ def education(request):
         education_history = list(present_education_history) + list(past_education_history)
 
         # Separate "Present" and "Past" entries for job experiences
-        present_job_experiences = JobExperience.objects.filter(end_date__isnull=True)
-        past_job_experiences = JobExperience.objects.filter(end_date__isnull=False).order_by('-end_date')
+        present_job_experiences = JobExperience.objects.filter(end_date__isnull=True).order_by('-start_date')
+        past_job_experiences = JobExperience.objects.filter(end_date__isnull=False).order_by('-start_date')
         job_experiences = list(present_job_experiences) + list(past_job_experiences)
 
     # Dynamically set the bilingual fields based on the user's language
@@ -594,8 +594,8 @@ class ViewJobExperienceList(ListView):
         user_language = get_language()  # Detect the current language (e.g., 'en' or 'it')
         
         # Separate "Present" jobs (where end_date is NULL) and "Past" jobs (where end_date is set)
-        present_jobs = JobExperience.objects.filter(end_date__isnull=True)
-        past_jobs = JobExperience.objects.filter(end_date__isnull=False).order_by('-end_date')
+        present_jobs = JobExperience.objects.filter(end_date__isnull=True).order_by('-start_date')
+        past_jobs = JobExperience.objects.filter(end_date__isnull=False).order_by('-start_date')
 
         # Merge "Present" jobs at the top and "Past" jobs below
         queryset = list(present_jobs) + list(past_jobs)
