@@ -10,3 +10,4 @@ venv/
 venv
 .venv
 node_modules/
+.next/
