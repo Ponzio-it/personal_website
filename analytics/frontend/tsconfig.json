@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    
     "jsx": "preserve",
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Projects */
@@ -121,4 +127,5 @@
   "exclude": [
     "node_modules"
   ],
+  
 }

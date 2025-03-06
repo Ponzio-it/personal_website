@@ -1,38 +1,27 @@
-// src/components/layout/Sidebar.js
-"use client"; // Client component since it handles user interactions
+import Link from 'next/link';
+import '@/styles/Sidebar.css';
 
-import React, { useState } from "react";
-import styles from "./Sidebar.module.css";
-
-const dashboards = [
-  { id: "business", name: "Business Metrics" },
-  { id: "engagement", name: "Engagement Metrics" },
-  { id: "security", name: "Security Metrics" },
-];
-
-const Sidebar = ({ onSelectDashboard }) => {
-  const [activeDashboard, setActiveDashboard] = useState(dashboards[0].id);
-
-  const handleDashboardChange = (id) => {
-    setActiveDashboard(id);
-    onSelectDashboard(id); // Notify parent component
-  };
-
+const Sidebar = () => {
   return (
-    <div className={styles.sidebar}>
-      <h2 className={styles.title}>Dashboards</h2>
-      <ul className={styles.menu}>
-        {dashboards.map((dashboard) => (
-          <li
-            key={dashboard.id}
-            className={`${styles.menuItem} ${activeDashboard === dashboard.id ? styles.active : ""}`}
-            onClick={() => handleDashboardChange(dashboard.id)}
-          >
-            {dashboard.name}
-          </li>
-        ))}
+    <nav className="sidebar" aria-label="Dashboard navigation">
+      <ul>
+        <li>
+          <Link href="/analytics/business" className="sidebar-link">
+            Business Metrics
+          </Link>
+        </li>
+        <li>
+          <Link href="/analytics/engagement" className="sidebar-link">
+            Engagement Metrics
+          </Link>
+        </li>
+        <li>
+          <Link href="/analytics/security" className="sidebar-link">
+            Security Metrics
+          </Link>
+        </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

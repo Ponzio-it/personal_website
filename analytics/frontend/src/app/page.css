@@ -1,0 +1,23 @@
+.analytics-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .dashboard-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #f9fafb;
+  }
+  
+  .dashboard-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  
+  .dashboard-content p {
+    color: #6b7280;
+  }
+  
