@@ -77,6 +77,15 @@
         {% endif %}
     </section>
 
+    <!--Public link-->
+    <section class="presentation-section" aria-labelledby="presentation-heading">
+        {% if project.public_url %}
+            <a href="{{ project.public_url }}" target="_blank" class="open-presentation-link">
+                {% trans "View Project Website" %}
+            </a>
+        {% endif %}
+    </section>
+
     <!-- Reviews -->
     <section class="reviews-section" aria-labelledby="reviews-heading">
         <h2 id="reviews-heading" class="section-heading">{% trans "Reviews" %}</h2>
