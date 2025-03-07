@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-19 17:16+0100\n"
+"POT-Creation-Date: 2025-03-07 10:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -527,7 +527,7 @@ msgstr ""
 msgid "Review"
 msgstr "t"
 
-#: portfolio/models.py:401 portfolio/templates/portfolio/project_detail.html:82
+#: portfolio/models.py:401 portfolio/templates/portfolio/project_detail.html:91
 msgid "Reviews"
 msgstr "Recensioni"
 
@@ -1120,19 +1120,23 @@ msgstr "Guarda file"
 msgid "No folders or files available for this project."
 msgstr "Nessun certificato disponibile al momento."
 
-#: portfolio/templates/portfolio/project_detail.html:91
+#: portfolio/templates/portfolio/project_detail.html:84
+msgid "View Project Website"
+msgstr "Visita sito web del progetto"
+
+#: portfolio/templates/portfolio/project_detail.html:100
 msgid "Submitted on"
 msgstr "Iniziato il"
 
-#: portfolio/templates/portfolio/project_detail.html:97
+#: portfolio/templates/portfolio/project_detail.html:106
 msgid "No reviews available yet. Be the first to leave a review!"
 msgstr "Nessuna recensione disponibile. Sii il primo!"
 
-#: portfolio/templates/portfolio/project_detail.html:101
+#: portfolio/templates/portfolio/project_detail.html:110
 msgid "Leave a Review"
 msgstr "Aggiungi recensione"
 
-#: portfolio/templates/portfolio/project_detail.html:104
+#: portfolio/templates/portfolio/project_detail.html:113
 msgid "Back to Projects"
 msgstr "Ritorna ai progetti"
 
@@ -1189,18 +1193,18 @@ msgstr "Compilazione form di contatto"
 msgid "The requested CV could not be found."
 msgstr "Il CV richiesto non può essere trovato."
 
-#: portfolio/views.py:324
+#: portfolio/views.py:328
 msgid "New Review Submission Pending Approval"
 msgstr "Nuova recensione in attesa di approvazione"
 
-#: portfolio/views.py:325
+#: portfolio/views.py:329
 #, python-brace-format
 msgid ""
 "A new review has been submitted for the project: {project_title}. Please "
 "review and approve it."
 msgstr ""
 
-#: portfolio/views.py:335
+#: portfolio/views.py:339
 msgid "Your review has been submitted and is pending approval. Thank you!"
 msgstr ""
 "La tua recensione è stata aggiunta ed è in attesa di approvazione. Grazie!"
