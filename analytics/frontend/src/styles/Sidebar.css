@@ -1,38 +1,104 @@
+/* Sidebar base styles (from your original CSS) */
 .sidebar {
-    width: 250px;
-    min-height: 100vh;
-    padding: 20px;
-    background-color: #1f2937;
-    color: #ffffff;
+  width: 250px;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #333;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out; /* Add a smooth slide transition */
+  position: relative;
+}
+
+/* This class is applied when isOpen === true */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus {
+  background-color: #374151;
+  outline: none;
+}
+
+.sidebar-link:focus-visible {
+  box-shadow: 0 0 0 2px #9ca3af;
+}
+
+/* Hamburger Button */
+.menu-toggle {
+  display: none; /* Hidden by default on larger screens */
+  background: none ;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+/* -------------------------------------------- */
+/* MEDIA QUERIES FOR RESPONSIVENESS            */
+/* -------------------------------------------- */
+
+/* On smaller screens, show the hamburger button and hide the sidebar by default */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 60px; /* Adjust to make it a top navbar */
+    min-height: auto;
     display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    flex-direction: row; /* Make sidebar a horizontal top nav */
+    align-items: center;
+    padding: 10px 15px;
+    justify-content: space-between;
+    transform: translateX(0); /* Always visible in top nav position */
+    z-index: 1000;
   }
-  
+
+  /* Sidebar menu (hidden on mobile initially) */
   .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+      display: none; /* Hide links initially */
+      position: absolute;
+      top: 60px; /* Below the top navbar */
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      flex-direction: column;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 999;
   }
-  
-  .sidebar-link {
-    display: block;
-    padding: 12px 15px;
-    margin-bottom: 10px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+
+  /* Show menu when sidebar is open */
+  .sidebar.open ul {
+      display: flex;
   }
-  
-  .sidebar-link:hover,
-  .sidebar-link:focus {
-    background-color: #374151;
-    outline: none;
+
+
+  /* Show the hamburger button on mobile */
+  .menu-toggle {
+    display: inline-block;
   }
-  
-  .sidebar-link:focus-visible {
-    box-shadow: 0 0 0 2px #9ca3af;
-  }
-  
+}

@@ -10,10 +10,9 @@ import {
     ResponsiveContainer,
   } from 'recharts';
   
-const BarChart = ({ data, xKey, yKey, title }) => {
+const BarChart = ({ data, xKey, yKey,}) => {
     return (
       <div style={{ width: '100%', height: 300 }}>
-        <h2>{title}</h2>
         <ResponsiveContainer width="100%" height="100%">
           <ReBarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />

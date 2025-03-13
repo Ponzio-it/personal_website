@@ -1,29 +1,19 @@
-{% extends 'portfolio/base.html' %}
+{% extends 'analytics/base.html' %}
 
-<title>Analytics Dashboard</title>
-  <!-- 
-    Add any meta tags here for SEO and accessibility (WCAG). 
-    Example:
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  -->
-</head>
-<body>
-  <h1>Analytics Dashboard</h1>
-
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Analytics Dashboard</title>
+  </head>
+  <body>
+    <!-- The iframe displaying the Next.js app -->
     <iframe 
-      src="http://localhost:3000/" 
+      src="http://localhost:3000" 
       title="Analytics Dashboard" 
       width="100%" 
       height="1200">
     </iframe>
-
-
-  <!-- 
-    Option 2: If you have a bundled Next.js or React build (e.g., `npm run build` and `npm run export`), 
-    place the built static files in your Django static directory and load them here.
-
-    <div id="root"></div>
-    <script src="{xxxx% static 'analytics_dashboard/main.js' %}"></script>
-  -->
-</body>
+  </body>
 </html>
+{% endblock %}

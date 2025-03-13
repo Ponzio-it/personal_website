@@ -1,10 +1,34 @@
+// ./components/Sidebar.jsx
+"use client"
+import { useState } from 'react';
 import Link from 'next/link';
 import '@/styles/Sidebar.css';
 
-const Sidebar = () => {
+export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSidebarToggle = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
   return (
-    <nav className="sidebar" aria-label="Dashboard navigation">
-      <ul>
+    <>
+    <nav className={`sidebar ${isOpen ? 'open' : ''}`} aria-label="Dashboard navigation">
+      {/* Hamburger Menu Button */}
+      <button
+        type="button"
+        className="menu-toggle"
+        onClick={handleSidebarToggle}
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={isOpen}
+        aria-controls="sidebarMenu"
+      >
+        {/* You can replace the text or icon below with any hamburger or close icon */}
+        {isOpen ? '✕' : '☰'}
+      </button>
+
+      {/* Actual sidebar links */}
+      <ul id="sidebarMenu">
         <li>
           <Link href="/analytics/business" className="sidebar-link">
             Business Metrics
@@ -22,7 +46,15 @@ const Sidebar = () => {
         </li>
       </ul>
     </nav>
-  );
-};
+     {/* Background Overlay */}
+     {isOpen && (
+      <div
+        className="sidebar-overlay"
+        onClick={handleSidebarToggle}
+        aria-hidden="true"
+      />
+    )}
+    </>
 
-export default Sidebar;
+  );
+}
