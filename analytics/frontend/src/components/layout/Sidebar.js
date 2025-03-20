@@ -1,15 +1,23 @@
 // ./components/Sidebar.jsx
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from "next/navigation";
 import Link from 'next/link';
 import '@/styles/Sidebar.css';
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleSidebarToggle = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
+
+  // Automatically close the sidebar when the route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
 
   return (
     <>
